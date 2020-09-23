@@ -1,6 +1,6 @@
-package ch.heigvd.amt.mvcsimple.business;
+package business;
 
-import ch.heigvd.amt.mvcsimple.model.Question;
+import model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class QuestionListGenerator {
 
     public List<Question> generateQuestion() {
-        List<Question> result = new ArrayList<>();
+        List<Question> result = new ArrayList<Question>();
         result.add(new Question("User_1", "What's the meaning of life?", "cannot find out :(",1));
         result.add(new Question("User_2", "How to delete system 32?", "it take too much space...",2));
         result.add(new Question("User_3", "Where is my cat?","just lost it...",3));

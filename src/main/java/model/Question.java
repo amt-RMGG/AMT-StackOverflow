@@ -1,4 +1,4 @@
-package ch.heigvd.amt.mvcsimple.model;
+package model;
 
 public class Question {
 
