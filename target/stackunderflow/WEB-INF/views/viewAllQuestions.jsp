@@ -15,7 +15,7 @@
       </tr>
       <c:forEach items="${questions}" var="question">
       <tr>
-        <td><a href="/mvc-simple/question?id=${question.id}">${question.title}</a></td>
+        <td><a href="/stackunderflow/question?id=${question.id}">${question.title}</a></td>
         <td>${question.author}</td>
         <td>${question.id}</td>
       </tr>
