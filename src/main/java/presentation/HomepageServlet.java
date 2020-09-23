@@ -1,7 +1,6 @@
-package ch.heigvd.amt.mvcsimple.presentation;
-
-import ch.heigvd.amt.mvcsimple.business.QuestionListGenerator;
-import ch.heigvd.amt.mvcsimple.model.Question;
+package presentation;
+import business.QuestionListGenerator;
+import model.Question;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -23,6 +22,6 @@ public class HomepageServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws ServletException, IOException {
         List<Question> model = service.generateQuestion();
         request.setAttribute("questions", model);
-        request.getRequestDispatcher("/WEB-INF/pages/viewAllQuestions.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/viewAllQuestions.jsp").forward(request, response);
     }
 }

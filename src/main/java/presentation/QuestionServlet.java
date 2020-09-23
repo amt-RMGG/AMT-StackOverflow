@@ -1,7 +1,7 @@
-package ch.heigvd.amt.mvcsimple.presentation;
+package presentation;
 
-import ch.heigvd.amt.mvcsimple.business.QuestionListGenerator;
-import ch.heigvd.amt.mvcsimple.model.Question;
+import business.QuestionListGenerator;
+import model.Question;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -24,6 +24,6 @@ public class QuestionServlet extends javax.servlet.http.HttpServlet {
         String id = request.getParameter("id");
         Question question = service.getQuestionById(Integer.parseInt(id));
         request.setAttribute("question", question);
-        request.getRequestDispatcher("/WEB-INF/pages/viewQuestion.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/viewQuestion.jsp").forward(request, response);
     }
 }
