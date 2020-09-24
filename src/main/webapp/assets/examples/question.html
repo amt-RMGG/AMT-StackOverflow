@@ -15,7 +15,14 @@
 
   <!-- Custom styles for this template -->
   <link href="css/blog-home.css" rel="stylesheet">
-
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+      tinymce.init({
+                        selector:'textarea',
+                        height: 450,
+                        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+                   });
+  </script>
 </head>
 
 <body>
@@ -56,35 +63,38 @@
 
     <div class="row">
 
-      <div class="col-md-6">
-          <div class="col-md-12">
-              <div class="card-body">
-              <h5 class="card-header">Connexion</h5>
-                <div class="input-group">
-                    <form name="connexion" method="post" action="login.html" class="col-md-12 form-login">
-                        <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" class="form-control" placeholder="Mot de passe">
-                        <input type="submit"$ class="btn btn-primary" value="Connexion"/>
-                    </form>
-                </div>
-              </div>
+      <!-- Blog Entries Column -->
+      <div class="col-md-12">
+        <div class="card mb-12">
+          <div class="card-body">
+            <h2 class="card-title">Titre de la question</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
           </div>
+          <div class="card-footer text-muted">
+            Posted on January 1, 2020 by
+            <a href="#">Start Bootstrap</a>
+          </div>
+        </div>
       </div>
-        
-      <div class="col-md-6">
-          <div class="col-md-12">
-              <div class="card-body">
-              <h5 class="card-header">S'enregistrer</h5>
-                <div class="input-group">
-                    <form name="register" method="post" action="login.html" class="col-md-12">
-                        <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" class="form-control" placeholder="Mot de passe">
-                        <input type="password" class="form-control" placeholder="Confirmer le mot de passe">
-                        <input type="submit"$ class="btn btn-primary" value="S'enregistrer"/>
-                    </form>
-                </div>
-              </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-12">
+          <div class="card-body">
+            <h2 class="card-title">Réponse</h2> by author
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
           </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-12">
+          <textarea id="comment"></textarea>
+            <a href="#" class="btn btn-primary">Répondre</a>
+        </div>
+
       </div>
 
     </div>
