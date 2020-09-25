@@ -15,7 +15,7 @@ public class Question {
     }
 
     public String getAuthor() {
-        return author;
+        return author+ "aséldkfjaésldkfjasédlk";
     }
 
     public String getTitle() {

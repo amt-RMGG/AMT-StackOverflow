@@ -1,6 +1,6 @@
 #maven build
 cd ../../..
-mvn clean install
+mvn clean package
 
 #vérifie la présence du .war dans le dossier target
 FILE=target/stackunderflow.war
