@@ -61,9 +61,9 @@
               <div class="card-body">
               <h5 class="card-header">Connexion</h5>
                 <div class="input-group">
-                    <form name="connexion" method="post" action="login.html" class="col-md-12">
-                        <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" class="form-control" placeholder="Mot de passe">
+                    <form name="connexion" method="post" action="${pageContext.request.contextPath}/loginService" class="col-md-12">
+                        <input type="text" name="username" class="form-control" placeholder="Nom d'utilisateur">
+                        <input type="password" name="pswd" class="form-control" placeholder="Mot de passe">
                         <input type="submit"$ class="btn btn-primary" value="Connexion"/>
                     </form>
                 </div>
@@ -76,10 +76,10 @@
               <div class="card-body">
               <h5 class="card-header">S'enregistrer</h5>
                 <div class="input-group">
-                    <form name="register" method="post" action="login.html" class="col-md-12">
-                        <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" class="form-control" placeholder="Mot de passe">
-                        <input type="password" class="form-control" placeholder="Confirmer le mot de passe">
+                    <form name="register" method="post" action="${pageContext.request.contextPath}/registerService" class="col-md-12">
+                        <input type="text" name = "username" class="form-control" placeholder="Nom d'utilisateur">
+                        <input type="password" name = "pswd" class="form-control" placeholder="Mot de passe">
+                        <input type="password" name = "confirm" class="form-control" placeholder="Confirmer le mot de passe">
                         <input type="submit"$ class="btn btn-primary" value="S'enregistrer"/>
                     </form>
                 </div>
