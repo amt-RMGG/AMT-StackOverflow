@@ -1,4 +1,11 @@
+business/HashMapCredentialsFactory.class
+business/UserCredentialsHashMap.class
+presentation/DependencyInjectionListener.class
+presentation/LoginServlet.class
+presentation/QuestionServlet.class
+presentation/RegisterServlet.class
+business/UserCredentialsManagerFactory.class
+business/UserCredentialsManager.class
 business/QuestionListGenerator.class
 model/Question.class
 presentation/HomepageServlet.class
-presentation/QuestionServlet.class

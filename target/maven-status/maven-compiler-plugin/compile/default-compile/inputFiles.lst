@@ -1,4 +1,11 @@
 /mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/business/QuestionListGenerator.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/business/UserCredentialsManagerFactory.java
 /mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/presentation/QuestionServlet.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/presentation/RegisterServlet.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/business/HashMapCredentialsFactory.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/presentation/DependencyInjectionListener.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/business/UserCredentialsManager.java
 /mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/model/Question.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/presentation/LoginServlet.java
+/mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/business/UserCredentialsHashMap.java
 /mnt/c/AMT labos/labos/repo/AMT-StackOverflow/src/main/java/presentation/HomepageServlet.java
