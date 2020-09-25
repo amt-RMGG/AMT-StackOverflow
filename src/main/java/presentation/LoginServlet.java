@@ -1,6 +1,6 @@
 package presentation;
 
-import business.UserCredentialsManager;
+import business.UserCredentialsHashMap;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,18 +19,14 @@ public class LoginServlet extends javax.servlet.http.HttpServlet{
         if(username != null)
         {
 
-            UserCredentialsManager userCredentialManager = UserCredentialsManager.getManagerFactory().getInstance();
-
-            if(userCredentialManager.checkCredentials(username, pswd))
+            if(UserCredentialsHashMap.checkCredentials(username, pswd))
             {
                 //TODO : Redirect to index.jsp
                 //TODO : Manage user sessions
-                response.getWriter().println("Login Successful");
+                response.sendRedirect("index.jsp");
                 return;
             }
         }
-
-        response.getWriter().println("Login Failed");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException

@@ -1,7 +1,6 @@
 package presentation;
 
-import business.UserCredentialsManager;
-import business.UserCredentialsManagerFactory;
+import business.UserCredentialsHashMap;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,19 +25,15 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet{
                 return;
             }
 
-            UserCredentialsManager userCredentialManager = UserCredentialsManager.getManagerFactory().getInstance();
             if(!username.equals(""))
             {
-                if(userCredentialManager.addUser(username, pswd))
+                if(UserCredentialsHashMap.addUser(username, pswd))
                 {
-                    //TODO : Redirect to index.jsp
-                    response.getWriter().println("Registration successful");
+                    response.sendRedirect("login.jsp");
                     return;
                 }
             }
         }
-
-        response.getWriter().println("Registration failed");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException

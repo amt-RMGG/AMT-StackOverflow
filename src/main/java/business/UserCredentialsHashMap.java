@@ -3,16 +3,16 @@ package business;
 import java.util.Hashtable;
 import java.util.Map;
 
-public class UserCredentialsHashMap extends UserCredentialsManager{
+public class UserCredentialsHashMap {
 
-    private Map credentials;
+    static private Map<String, String> credentials = new Hashtable<String, String>();
 
     UserCredentialsHashMap()
     {
         credentials = new Hashtable<String, String>();
     }
 
-    public boolean addUser(String username, String pswd)
+    static public boolean addUser(String username, String pswd)
     {
         if(credentials.containsKey(username))
         {
@@ -22,7 +22,7 @@ public class UserCredentialsHashMap extends UserCredentialsManager{
         return true;
     }
 
-    public boolean checkCredentials(String username, String pswd)
+    static public boolean checkCredentials(String username, String pswd)
     {
         return credentials.get(username).equals(pswd);
     }
