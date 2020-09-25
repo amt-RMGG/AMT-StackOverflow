@@ -61,9 +61,9 @@
               <h5 class="card-header">Connexion</h5>
                 <div class="input-group">
                     <form name="connexion" method="post" action="${pageContext.request.contextPath}/loginService" class="col-md-12">
-                        <input type="text" name="username" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" name="pswd" class="form-control" placeholder="Mot de passe">
-                        <input type="submit"$ class="btn btn-primary" value="Connexion"/>
+                        <input type="text" name="username" class="form-control input-login-username" placeholder="Nom d'utilisateur">
+                        <input type="password" name="pswd" class="form-control input-login-password" placeholder="Mot de passe">
+                        <input type="submit"$ class="btn btn-primary btn-login" value="Connexion"/>
                     </form>
                 </div>
               </div>
@@ -76,10 +76,10 @@
               <h5 class="card-header">S'enregistrer</h5>
                 <div class="input-group">
                     <form name="register" method="post" action="${pageContext.request.contextPath}/registerService" class="col-md-12">
-                        <input type="text" name = "username" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" name = "pswd" class="form-control" placeholder="Mot de passe">
-                        <input type="password" name = "confirm" class="form-control" placeholder="Confirmer le mot de passe">
-                        <input type="submit"$ class="btn btn-primary" value="S'enregistrer"/>
+                        <input type="text" name = "username" class="form-control input-register-username" placeholder="Nom d'utilisateur">
+                        <input type="password" name = "pswd" class="form-control input-register-password" placeholder="Mot de passe">
+                        <input type="password" name = "confirm" class="form-control input-register-confirm" placeholder="Confirmer le mot de passe">
+                        <input type="submit"$ class="btn btn-primary btn-register" value="S'enregistrer"/>
                     </form>
                 </div>
               </div>
