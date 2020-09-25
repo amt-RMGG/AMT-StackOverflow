@@ -15,7 +15,14 @@
 
   <!-- Custom styles for this template -->
   <link href="../css/blog-home.css" rel="stylesheet">
-
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+      tinymce.init({
+                        selector:'textarea',
+                        height: 700,
+                        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+                   });
+  </script>
 </head>
 
 <body>
@@ -53,38 +60,17 @@
 
   <!-- Page Content -->
   <div class="container">
-
+      
     <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-12">
+            <form name="ask" method="post" action="question.html"></form>
+                <input type="text" class="form-control" placeholder="Titre de votre question">
+                <textarea id="comment"></textarea>
+                <input type="submit" class="btn btn-primary" value="Posez votre question"/>
+            </form>
+        </div>
 
-      <div class="col-md-6">
-          <div class="col-md-12">
-              <div class="card-body">
-              <h5 class="card-header">Connexion</h5>
-                <div class="input-group">
-                    <form name="connexion" method="post" action="${pageContext.request.contextPath}/loginService" class="col-md-12">
-                        <input type="text" name="username" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" name="pswd" class="form-control" placeholder="Mot de passe">
-                        <input type="submit"$ class="btn btn-primary" value="Connexion"/>
-                    </form>
-                </div>
-              </div>
-          </div>
-      </div>
-        
-      <div class="col-md-6">
-          <div class="col-md-12">
-              <div class="card-body">
-              <h5 class="card-header">S'enregistrer</h5>
-                <div class="input-group">
-                    <form name="register" method="post" action="${pageContext.request.contextPath}/registerService" class="col-md-12">
-                        <input type="text" name = "username" class="form-control" placeholder="Nom d'utilisateur">
-                        <input type="password" name = "pswd" class="form-control" placeholder="Mot de passe">
-                        <input type="password" name = "confirm" class="form-control" placeholder="Confirmer le mot de passe">
-                        <input type="submit"$ class="btn btn-primary" value="S'enregistrer"/>
-                    </form>
-                </div>
-              </div>
-          </div>
       </div>
 
     </div>
