@@ -23,7 +23,8 @@ public class LoginServlet extends javax.servlet.http.HttpServlet{
             {
                 //TODO : Redirect to index.jsp
                 //TODO : Manage user sessions
-                response.sendRedirect("index.jsp");
+                //TODO : rework the url pattern !
+                response.sendRedirect("/stackunderflow/");
                 return;
             }
         }

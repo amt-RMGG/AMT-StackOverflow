@@ -1,7 +1,6 @@
 package io.stackunderflow.flow.domain.question;
 
 import io.stackunderflow.flow.domain.Id;
-
 import java.util.UUID;
 
 public class QuestionId extends Id {

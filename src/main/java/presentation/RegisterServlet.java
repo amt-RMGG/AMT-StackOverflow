@@ -29,7 +29,7 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet{
             {
                 if(UserCredentialsHashMap.addUser(username, pswd))
                 {
-                    response.sendRedirect("login.jsp");
+                    response.sendRedirect("/stackunderflow/login");
                     return;
                 }
             }
