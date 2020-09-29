@@ -2,11 +2,12 @@ package io.stackunderflow.flow.domain.question;
 
 import io.stackunderflow.flow.domain.IEntity;
 
+import io.stackunderflow.flow.domain.Id;
 import lombok.*;
 
 @Data // bundles of @ToString, @EqualsAndHashCode, @Getter
 @Builder(toBuilder = true) //https://projectlombok.org/features/Builder
-public class Question implements IEntity {
+public class Question implements IEntity<Question, QuestionId> {
 
     @Setter(AccessLevel.NONE)
     private QuestionId id = new QuestionId();
@@ -20,6 +21,13 @@ public class Question implements IEntity {
 
     public void categorizeAs(QuestionType type){
         this.questionType = type;
+    }
+
+    @Override
+    public Question deepClone() {
+        return this.toBuilder()
+                .id(new QuestionId(id.asString()))
+                .build();
     }
 
     //Override lombok build method to : enforce the presence of an id for the entity

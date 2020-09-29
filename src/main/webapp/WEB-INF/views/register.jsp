@@ -10,10 +10,10 @@
     <title>Stack Underflow - register</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stackunderflow/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../assets/css/blog-home.css" rel="stylesheet">
+    <link href="/stackunderflow/assets/css/blog-home.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <h5 class="card-header">S'enregistrer</h5>
                     <div class="input-group">
-                        <form name="register" method="post" action="${pageContext.request.contextPath}/registerService" class="col-md-12">
+                        <form name="register" method="post" action="${pageContext.request.contextPath}/register.do" class="col-md-12">
                             <input type="text" name = "username" class="form-control input-register-username" placeholder="Nom d'utilisateur">
                             <input type="password" name = "pswd" class="form-control input-register-password" placeholder="Mot de passe">
                             <input type="password" name = "confirm" class="form-control input-register-confirm" placeholder="Confirmer le mot de passe">
