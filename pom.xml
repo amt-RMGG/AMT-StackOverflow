@@ -35,11 +35,22 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -51,7 +62,7 @@
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>3.2</version>
-                <!-- uncomment this to generate an executable jar - but packaging a .war in a Docker image is faster-->
+                <!-- uncomment this to generate an executable jar - but packaging a .war in a Docker image is faster
                 <executions>
                     <execution>
                         <id>package-server</id>
@@ -70,7 +81,7 @@
                 <configuration>
                     <include>runnable</include>
                 </configuration>
-
+                -->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
