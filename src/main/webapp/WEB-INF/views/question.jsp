@@ -15,10 +15,10 @@
   <title>Stack Underflow</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/stackunderflow/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../assets/css/blog-home.css" rel="stylesheet">
+  <link href="/stackunderflow/assets/css/blog-home.css" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
       tinymce.init({
@@ -81,8 +81,8 @@
 <%@include file="fragments/footer.jsp" %>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/stackunderflow/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/stackunderflow/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
