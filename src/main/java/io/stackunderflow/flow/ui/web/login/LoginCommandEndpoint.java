@@ -36,9 +36,9 @@ public class LoginCommandEndpoint extends HttpServlet {
             currentUser = identityManagementFacade.authenticate(authenticateCommand);
             req.getSession().setAttribute("currentUser", currentUser);
 
-            //Pour savoir ou le user était avant de vouloir se loger
+            //Pour savoir ou le user était avant de vouloir se logger
             String targetUrl = (String) req.getSession().getAttribute("targetUrl");
-            //Si c'est vide, on va sur login par défault
+            //Si c'est vide, on va sur login par défaut
             targetUrl = (targetUrl != null) ? targetUrl : "/stackunderflow/login"; //TODO : regler ce probleme d'url !
             resp.sendRedirect(targetUrl);
             return;
