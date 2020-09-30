@@ -1,6 +1,7 @@
 .gitignore
 .idea
 AMT-StackOverflow.iml
+target/*
 target/
 .classpath
 .settings/
