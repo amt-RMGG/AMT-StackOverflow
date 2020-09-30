@@ -42,4 +42,5 @@ public class RegisterCommandEndpoint extends HttpServlet {
             return;
         }
     }
+
 }
