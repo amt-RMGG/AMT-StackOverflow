@@ -33,7 +33,10 @@
                     <div class="input-group">
                         <form name="register" method="post" action="${pageContext.request.contextPath}/register.do" class="col-md-12">
                             <input type="text" name = "username" class="form-control input-register-username" placeholder="Nom d'utilisateur">
-                            <input type="password" name = "pswd" class="form-control input-register-password" placeholder="Mot de passe">
+                            <input type="text" name = "lastname" class="form-control input-register-username" placeholder="Nom">
+                            <input type="text" name = "firstname" class="form-control input-register-username" placeholder="Prénom">
+                            <input type="text" name = "email" class="form-control input-register-username" placeholder="Email">
+                            <input type="password" name = "password" class="form-control input-register-password" placeholder="Mot de passe">
                             <input type="password" name = "confirm" class="form-control input-register-confirm" placeholder="Confirmer le mot de passe">
                             <input type="submit"$ class="btn btn-primary btn-register" value="S'enregistrer"/>
                         </form>

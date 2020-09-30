@@ -51,7 +51,7 @@
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>3.2</version>
-                <!-- uncomment this to generate an executable jar - but packaging a .war in a Docker image is faster
+                <!-- uncomment this to generate an executable jar - but packaging a .war in a Docker image is faster-->
                 <executions>
                     <execution>
                         <id>package-server</id>
@@ -70,12 +70,7 @@
                 <configuration>
                     <include>runnable</include>
                 </configuration>
-                -->
-            </plugin>
-            <plugin>
-                <groupId>io.openliberty.tools</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.2</version>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -99,6 +94,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

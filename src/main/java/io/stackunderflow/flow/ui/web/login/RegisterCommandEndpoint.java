@@ -25,11 +25,11 @@ public class RegisterCommandEndpoint extends HttpServlet {
         req.getSession().removeAttribute("errors");
 
         RegisterCommand registerCommand = RegisterCommand.builder()
-                .username("username")
-                .firstname("firstname")
-                .lastname("lastname")
-                .email("email")
-                .clearTextPassword("password")
+                .username(req.getParameter("username"))
+                .firstname(req.getParameter("firstname"))
+                .lastname(req.getParameter("lastname"))
+                .email(req.getParameter("email"))
+                .clearTextPassword(req.getParameter("password"))
                 .build();
 
         try {
@@ -37,7 +37,7 @@ public class RegisterCommandEndpoint extends HttpServlet {
             req.getRequestDispatcher("/login.do").forward(req, resp);
             return;
         }catch (RegistrationFailedException e){
-            req.getSession().setAttribute("errors", List.of(e.getMessage()));
+            req.getSession().setAttribute("errors", (e.getMessage()));
             resp.sendRedirect("/login");
             return;
         }

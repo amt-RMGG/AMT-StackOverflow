@@ -43,7 +43,7 @@ public class LoginCommandEndpoint extends HttpServlet {
             resp.sendRedirect(targetUrl);
             return;
         }catch (AuthenticationFailedException e){
-            req.getSession().setAttribute("errors", List.of(e.getMessage()));
+            req.getSession().setAttribute("errors", (e.getMessage()));
             resp.sendRedirect("/stackunderflow/login");
             return;
         }
