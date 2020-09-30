@@ -32,7 +32,7 @@ jobs:
 
 
     - name: Build and publish Docker image
-      run: echo ${{ secrets.DOCKER_PUBLISH }} | docker login ghcr.io -u reutelerr --password-stdin &&
+      run: echo ${{ secrets.PAT_RMGG_DEPLOY }} | docker login ghcr.io -u RMGG-deploy --password-stdin &&
         docker build -t amt/stackunderflow . &&
-        docker tag amt/stackunderflow ghcr.io/reutelerr/amt-stackoverflow &&
-        docker push ghcr.io/reutelerr/amt-stackoverflow
+        docker tag amt/stackunderflow ghcr.io/amt-rmgg/amt-stackoverflow &&
+        docker push ghcr.io/amt-rmgg/amt-stackoverflow

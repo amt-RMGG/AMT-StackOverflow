@@ -1,9 +1,0 @@
-version: '3'
-services:
-  openliberty:
-    image: amt/stackunderflow
-    environment:
-     - ADMIN_PASSWORD=admin #TODO choisir un mdp simple mais différent
-    ports:
-     - "8080:8080"
-     - "8443:8443"
