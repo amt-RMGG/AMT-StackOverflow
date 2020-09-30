@@ -50,9 +50,7 @@
                                 <input type="submit" class="btn btn-primary" value="Posez votre question"/>
                             </form>
                         </div>
-
                     </div>
-
                 </div>
                 <!-- /.row -->
 

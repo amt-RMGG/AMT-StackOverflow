@@ -30,7 +30,7 @@
                 <li>
                     <c:choose>
                         <c:when test="${currentUser != null}">
-                            <li>${currentUser.firstname}</li>
+                            <li style="color:white">${currentUser.firstname}</li>
                         </c:when>
                         <c:otherwise>
                             <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Login</a>
