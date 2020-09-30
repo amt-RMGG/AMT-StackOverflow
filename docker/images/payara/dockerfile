@@ -1,3 +1,0 @@
-FROM payara/server-full
-
-COPY stackunderflow.war $DEPLOY_DIR
