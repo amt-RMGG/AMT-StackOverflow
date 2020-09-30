@@ -27,7 +27,7 @@ public class InMemoryPersonRepository extends InMemoryRepository<Person, PersonI
     @Override
     public Optional<Person> findByUsername(String username) {
 
-        //TODO Dans la vidéo comme ça, mais ne marche pas!
+        //TODO Dans la vidéo comme ça, mais ne marche pas! Pourquoi ?
      /*   List<Person> matchingEntities = findAll().stream()
                 .filter(p -> p.getUsername().equals(username))
                 .collect(Collectors.toList());*/

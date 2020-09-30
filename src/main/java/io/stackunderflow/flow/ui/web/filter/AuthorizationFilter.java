@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthorizationFilter", urlPatterns = "/*") //TODO : normalement c'est "/*" mais le filtre marche pas !
+@WebFilter(filterName = "AuthorizationFilter", urlPatterns = "/*")
 public class AuthorizationFilter implements Filter {
 
 
