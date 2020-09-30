@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -25,6 +26,17 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="btn btn-primary">Poser une question</a>
+                </li>
+                <li>
+                    <c:choose>
+                        <c:when test="${currentUser != null}">
+                            <li>${currentUser.firstname}</li>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Login</a>
+                        </c:otherwise>
+                        
+                    </c:choose>
                 </li>
             </ul>
         </div>
