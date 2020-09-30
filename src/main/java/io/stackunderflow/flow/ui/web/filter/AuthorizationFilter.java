@@ -1,0 +1,67 @@
+package io.stackunderflow.flow.ui.web.filter;
+
+import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebFilter(filterName = "AuthorizationFilter", urlPatterns = "/test/*") //TODO : normalement c'est "/*" mais le filtre marche pas !
+public class AuthorizationFilter implements Filter {
+
+
+    //TODO : Obligé de faire ça, sinon j'ai une erreur : java filter could not be initialized
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+
+        HttpServletRequest  request     = (HttpServletRequest) req;
+        HttpServletResponse response    = (HttpServletResponse) resp;
+
+        // Static content (css, js, ...) never restricted !
+        if(isPublicRessouce(request.getRequestURI())){
+            chain.doFilter(req, resp);
+            return;
+        }
+
+        CurrentUserDTO currentUser = (CurrentUserDTO) request.getSession().getAttribute("currentUser");
+
+        //Always redirect to the login page the non logged users
+        if(currentUser == null){
+            String targetURL = request.getRequestURI();
+            if(request.getQueryString() != null){
+                targetURL += "?" + request.getQueryString();
+            }
+            request.getSession().setAttribute("targetUrl", targetURL); //dans la vidéo pas commenté, mais Liechti trouve ça bizarre donc on enleve ^^
+            request.getSession().removeAttribute("targetUrl");
+
+            //TODO : rajouter la targetUrl dans request ?
+
+            ((HttpServletResponse)resp).sendRedirect("/stackunderflow/login");
+            return;
+        }
+        chain.doFilter(req, resp);
+
+    }
+
+    boolean isPublicRessouce(String requestURI) {
+        /*if(requestURI.startsWith("/stackunderflow/home")) //TODO : Faire une home page !!!
+            return true;*/
+        if(requestURI.startsWith("/stackunderflow/assets"))
+            return true;
+        if(requestURI.startsWith("/stackunderflow/login"))
+            return true;
+        if(requestURI.startsWith("/stackunderflow/logout"))
+            return true;
+        if(requestURI.startsWith("/stackunderflow/register"))
+            return true;
+
+        return false;
+    }
+}

@@ -1,4 +1,3 @@
 .idea
 AMT-StackOverflow.iml
-*/target/*
-pom.xml
+target/*
