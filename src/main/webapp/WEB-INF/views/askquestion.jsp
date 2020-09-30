@@ -44,10 +44,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mb-12">
-                            <form name="ask" method="post" action="${pageContext.request.contextPath}/askService"></form>
-                                <input type="text" class="form-control" name="title" placeholder="Titre de votre question">
-                                <textarea name="question"></textarea>
-                                <input type="submit" class="btn btn-primary" value="Posez votre question"/>
+
+                            <form id="newQuestion" method="POST" action="submitQuestion.do">
+                                <h3>Title</h3>
+                                <textarea id="tfTitle" name="title" form="newQuestion"> </textarea>
+                                <h3>Text</h3>
+                                <textarea id="tfText" name="text" form="newQuestion"> </textarea>
+                                <button id="bSubmitQuestion" type="submit">Submit question</button>
                             </form>
                         </div>
                     </div>

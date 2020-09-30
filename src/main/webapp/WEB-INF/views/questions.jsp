@@ -52,42 +52,6 @@
           
       </div>
 
-      <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
-          <h1 class="my-4">Add question</h1>
-          <form id="newQuestion" method="POST" action="submitQuestion.do">
-            <h3>Title</h3>
-            <textarea id="tfTitle" name="title" form="newQuestion"> </textarea>
-            <h3>Text</h3>
-            <textarea id="tfText" name="text" form="newQuestion"> </textarea>
-            <button id="bSubmitQuestion" type="submit">Submit question</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
-
-        <!-- Search Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <!-- /.row -->
-
   </div>
   <!-- /.container -->
 

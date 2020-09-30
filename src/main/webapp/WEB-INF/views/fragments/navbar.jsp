@@ -17,27 +17,34 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="${pageContext.request.contextPath}">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <c:choose>
+                <c:when test="${currentUser != null}">
+                    <li class="nav-item">
+                        <a href="${pageContext.request.contextPath}/askQuestion" class="btn btn-primary">Poser une question</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="${pageContext.request.contextPath}/user" class="btn btn-info">${currentUser.firstname} ${currentUser.lastname}</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="${pageContext.request.contextPath}/logout.do">
+                            <input class="btn btn-danger" type="submit" value="Déconnexion">
+                        </form>
+                    </li>
+                </c:when>
+                <c:otherwise>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profil</a>
+                    <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="btn btn-primary">Poser une question</a>
+                    <a href="${pageContext.request.contextPath}/register" class="btn btn-primary">Sign in</a>
                 </li>
-                <li>
-                    <c:choose>
-                        <c:when test="${currentUser != null}">
-                            <li style="color:white">${currentUser.firstname}</li>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Login</a>
-                        </c:otherwise>
-                        
-                    </c:choose>
-                </li>
+                </c:otherwise>
+
+                </c:choose>
             </ul>
         </div>
     </div>
