@@ -4,5 +4,5 @@
 #exception for files needed
 !*.war
 !server.xml
-!src/*
+!src/main/liberty/config/*
 !dockerfile
