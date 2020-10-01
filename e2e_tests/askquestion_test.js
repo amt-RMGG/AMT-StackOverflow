@@ -1,19 +1,9 @@
-Feature('register');
+Feature('askQuestion');
 
-Scenario('test registering', (I) => {
-    I.amOnPage(':8080/stackunderflow/register');
-    I.click('Login');
-    I.fillField('.input-register-username', 'testUsername');
-    I.fillField('.input-register-password', 'pass');
-    I.fillField('.input-register-confirm', 'pass');
-    I.click('.btn-register');
-    I.see('Registration successful');
-
-    I.amOnPage(':8080/stackunderflow/question');
-    I.click('Login');
-    I.fillField('.input-register-username', 'testUsername');
-    I.fillField('.input-register-password', 'pass');
-    I.fillField('.input-register-confirm', 'wrongpass');
-    I.click('.btn-register');
-    I.see('Error : Passwords do not match');
+Scenario('test asking a question', (I) => {
+    I.amOnPage(':8080/stackunderflow/askquestion');
+    I.click('Poser une question');
+    I.fillField('.title', 'tfTitle');
+    I.fillField('.question', 'tfText');
+    I.click('.bSubmitQuestion');
 });
