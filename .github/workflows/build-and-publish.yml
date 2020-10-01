@@ -30,6 +30,7 @@ jobs:
 
     - name: Build and publish Docker image
       run: echo ${{ secrets.PAT_RMGG_DEPLOY }} | docker login ghcr.io -u RMGG-deploy --password-stdin &&
+        chmod +x ./build-image.sh &&
         ./build-image.sh &&
         docker tag amt/stackunderflow ghcr.io/amt-rmgg/amt-stackoverflow &&
         docker push ghcr.io/amt-rmgg/amt-stackoverflow
