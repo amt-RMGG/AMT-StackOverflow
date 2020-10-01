@@ -8,7 +8,7 @@
 <%@include file="fragments/navbar.jsp" %>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container mainContent">
 
     <div class="row">
 
@@ -17,7 +17,6 @@
                 <div class="card-body">
                     <h5 class="card-header">Welcome in StackUnderFlow !</h5>
                     <div class="input-group">
-
                     </div>
                 </div>
             </div>

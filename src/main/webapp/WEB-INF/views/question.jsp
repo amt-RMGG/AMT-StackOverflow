@@ -17,7 +17,7 @@
 <%@include file="fragments/navbar.jsp" %>
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mainContent">
 
     <div class="row">
 

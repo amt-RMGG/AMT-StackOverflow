@@ -3,7 +3,6 @@
 <html>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
         <a class="navbar-brand" href="#">Stack Underflow</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,17 +22,17 @@
                 </li>
                 <c:choose>
                 <c:when test="${currentUser != null}">
-                    <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/askQuestion" class="btn btn-primary">Poser une question</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/user" class="btn btn-info">${currentUser.firstname} ${currentUser.lastname}</a>
-                    </li>
-                    <li class="nav-item">
-                        <form method="POST" action="${pageContext.request.contextPath}/logout.do">
-                            <input class="btn btn-danger" type="submit" value="Déconnexion">
-                        </form>
-                    </li>
+                <li class="nav-item">
+                    <a href="${pageContext.request.contextPath}/askQuestion" class="btn btn-primary">Poser une question</a>
+                </li>
+                <li class="nav-item">
+                    <a href="${pageContext.request.contextPath}/user" class="btn btn-info">${currentUser.firstname} ${currentUser.lastname}</a>
+                </li>
+                <li class="nav-item">
+                    <form method="POST" action="${pageContext.request.contextPath}/logout.do">
+                        <input class="btn btn-outline-light" type="submit" value="Déconnexion">
+                    </form>
+                </li>
                 </c:when>
                 <c:otherwise>
                 <li class="nav-item">
@@ -47,6 +46,5 @@
                 </c:choose>
             </ul>
         </div>
-    </div>
 </nav>
 </html>
