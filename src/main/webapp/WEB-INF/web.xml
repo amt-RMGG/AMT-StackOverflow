@@ -7,7 +7,7 @@
     <servlet>
         <servlet-name>RootServlet</servlet-name>
         <!-- TODO : Servet here define the main landing page  -->
-        <servlet-class>io.stackunderflow.flow.ui.web.question.QuestionsQueryEndpoint</servlet-class>
+        <servlet-class>io.stackunderflow.flow.ui.web.landingpage.LandingPageEndpoint</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RootServlet</servlet-name>

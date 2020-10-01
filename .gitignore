@@ -5,5 +5,4 @@ target/
 .classpath
 .settings/
 .project
-e2e_tests/node_modules
 node_modules
