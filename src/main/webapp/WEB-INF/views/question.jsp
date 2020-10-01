@@ -2,23 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="question" value="${question}" />
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Stack Underflow</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/stackunderflow/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="/stackunderflow/assets/css/blog-home.css" rel="stylesheet">
+<%@include file="fragments/header.jsp"%>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
       tinymce.init({
@@ -27,7 +11,6 @@
                         toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
                    });
   </script>
-</head>
 
 <body>
 
@@ -79,10 +62,6 @@
   <!-- /.container -->
 
 <%@include file="fragments/footer.jsp" %>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="/stackunderflow/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="/stackunderflow/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
