@@ -7,6 +7,7 @@ if [ -f "$FILE" ]; then
     #copie le .war au même niveau que le dockerfile
     echo "$FILE found, copying..."
     cp $FILE .
+    echo "$FILE copy finished"
     #construit l'image
     docker build -t amt/stackunderflow .
 else 
