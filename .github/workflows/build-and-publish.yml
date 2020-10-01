@@ -26,13 +26,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-    - name: Build with maven
-      run: mvn clean package 
-
 
 
     - name: Build and publish Docker image
       run: echo ${{ secrets.PAT_RMGG_DEPLOY }} | docker login ghcr.io -u RMGG-deploy --password-stdin &&
-        docker build -t amt/stackunderflow . &&
+        ./build-image.sh &&
         docker tag amt/stackunderflow ghcr.io/amt-rmgg/amt-stackoverflow &&
         docker push ghcr.io/amt-rmgg/amt-stackoverflow
