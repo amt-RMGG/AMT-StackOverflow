@@ -7,3 +7,4 @@ Scenario('test asking a question', (I) => {
     I.fillField('.question', 'tfText');
     I.click('.bSubmitQuestion');
 });
+

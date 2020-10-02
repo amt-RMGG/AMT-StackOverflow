@@ -41,16 +41,21 @@ public class AuthorizationFilter implements Filter {
             request.getSession().setAttribute("targetUrl", targetURL); //dans la vidéo pas commenté, mais Liechti trouve ça bizarre donc on enleve ^^
             request.getSession().removeAttribute("targetUrl");
 
-            //TODO : rajouter la targetUrl dans request ?
-
-            ((HttpServletResponse)resp).sendRedirect("/stackunderflow/login");
+            //Si le user n'est pas connecté, on le redirige sur la page "home"
+            ((HttpServletResponse)resp).sendRedirect("/stackunderflow/home");
             return;
+        }
+        if(request.getRequestURI().equals("/stackunderflow"))
+        {
+            ((HttpServletResponse)resp).sendRedirect("stackunderflow/questions");
         }
         chain.doFilter(req, resp);
 
     }
 
     boolean isPublicRessouce(String requestURI) {
+        if(requestURI.startsWith("/stackunderflow/home"))
+            return true;
         if(requestURI.startsWith("/stackunderflow/assets"))
             return true;
         if(requestURI.startsWith("/stackunderflow/login"))

@@ -1,4 +1,4 @@
-package io.stackunderflow.flow.userManagement;
+package io.stackunderflow.flow.user_management;
 
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
