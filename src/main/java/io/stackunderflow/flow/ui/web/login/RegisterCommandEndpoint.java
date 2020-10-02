@@ -38,7 +38,7 @@ public class RegisterCommandEndpoint extends HttpServlet {
             return;
         }catch (RegistrationFailedException e){
             req.getSession().setAttribute("errors", (e.getMessage()));
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/stackunderflow/register");
             return;
         }
     }
