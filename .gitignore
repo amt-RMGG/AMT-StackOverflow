@@ -6,3 +6,4 @@ target/
 .settings/
 .project
 node_modules
+stackunderflow.war
