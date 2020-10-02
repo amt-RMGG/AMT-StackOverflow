@@ -20,6 +20,9 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="${pageContext.request.contextPath}/questions" class="btn btn-primary">Visiter les questions</a>
+                </li>
                 <c:choose>
                 <c:when test="${currentUser != null}">
                 <li class="nav-item">
