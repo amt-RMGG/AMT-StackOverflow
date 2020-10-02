@@ -4,6 +4,15 @@
 
 <%@include file="fragments/header.jsp"%>
 
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector:'textarea',
+        height: 450,
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+    });
+</script>
+
 <body>
 
     <%@include file="fragments/navbar.jsp" %>
