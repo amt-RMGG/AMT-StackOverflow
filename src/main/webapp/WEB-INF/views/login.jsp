@@ -7,6 +7,8 @@
 
 <%@include file="fragments/navbar.jsp" %>
 
+
+
   <!-- Page Content -->
   <div class="container mainContent">
 
