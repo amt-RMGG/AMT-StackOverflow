@@ -17,7 +17,9 @@
                 <div class="card-body">
                     <h5 class="card-header">Welcome in StackUnderFlow !</h5>
                     <div class="input-group">
+                        <img src="https://pbs.twimg.com/media/EXy32bWWkAUQyj-.jpg" />
                     </div>
+                    <a href="${pageContext.request.contextPath}/questions" class="btn btn-info">Liste des questions</a>
                 </div>
             </div>
         </div>
