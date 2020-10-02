@@ -6,3 +6,35 @@
 body {
   padding-top: 56px;
 }
+
+.navbar {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.nav-item {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.shortForm {
+  display : flex;
+  flex-direction: column;
+  width : 50%;
+}
+
+.short-text-input {
+  width : 250px;
+}
+
+.btn-small {
+  width : 200px;
+  margin-top : 25px;
+  margin-bottom : 25px;
+  align-self: flex-start;
+}
+
+.mainContent {
+  padding : 10px;
+}
+

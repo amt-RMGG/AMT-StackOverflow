@@ -45,6 +45,10 @@ public class AuthorizationFilter implements Filter {
             ((HttpServletResponse)resp).sendRedirect("/stackunderflow/home");
             return;
         }
+        if(request.getRequestURI().equals("/stackunderflow"))
+        {
+            ((HttpServletResponse)resp).sendRedirect("stackunderflow/questions");
+        }
         chain.doFilter(req, resp);
 
     }
