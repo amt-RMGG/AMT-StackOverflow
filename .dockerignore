@@ -1,0 +1,8 @@
+#ignore everyting
+*
+
+#exception for files needed
+!*.war
+!server.xml
+!src/main/liberty/config/*
+!dockerfile

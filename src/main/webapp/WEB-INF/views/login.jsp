@@ -1,28 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Stack Underflow - login</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/stackunderflow/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="/stackunderflow/assets/css/blog-home.css" rel="stylesheet">
-
-</head>
+<%@include file="fragments/header.jsp"%>
 
 <body>
 
 <%@include file="fragments/navbar.jsp" %>
 
+
+
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mainContent">
 
     <div class="row">
 
@@ -48,10 +36,6 @@
   <!-- /.container -->
 
 <%@include file="fragments/footer.jsp" %>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="/stackunderflow/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="/stackunderflow/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

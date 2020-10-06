@@ -1,10 +1,10 @@
 .gitignore
 .idea
 AMT-StackOverflow.iml
-target/*
 target/
 .classpath
 .settings/
 .project
 node_modules
 stackunderflow.war
+e2e_tests/output/*

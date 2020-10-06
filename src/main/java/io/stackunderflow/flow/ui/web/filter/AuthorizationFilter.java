@@ -45,11 +45,17 @@ public class AuthorizationFilter implements Filter {
             ((HttpServletResponse)resp).sendRedirect("/stackunderflow/home");
             return;
         }
+        if(request.getRequestURI().equals("/stackunderflow"))
+        {
+            ((HttpServletResponse)resp).sendRedirect("stackunderflow/questions");
+        }
         chain.doFilter(req, resp);
 
     }
 
     boolean isPublicRessouce(String requestURI) {
+        if(requestURI.startsWith("/stackunderflow/questions"))
+            return true;
         if(requestURI.startsWith("/stackunderflow/home"))
             return true;
         if(requestURI.startsWith("/stackunderflow/assets"))
