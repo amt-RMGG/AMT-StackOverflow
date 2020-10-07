@@ -6,8 +6,25 @@
     <variable name="default.http.port" defaultValue="8080"/>
     <variable name="default.https.port" defaultValue="8443"/>
 
-    <webApplication location="/config/dropins/stackunderflow.war" contextRoot="/stackunderflow"/>
+    <!--<webApplication location="/config/dropins/stackunderflow.war" contextRoot="/stackunderflow"/>  VERSION POUR DOCKER -->
+    <webApplication location="stackunderflow.war" contextRoot="/stackunderflow"/>
 
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
+
+    <library id="MySqlLib">
+        <fileset dir="${server.config.dir}" includes="*.jar" />
+    </library>
+
+    <dataSource jndiName="jdbc/StackUnderFlowDS">
+        <jdbcDriver libraryRef="MySqlLib"/>
+        <properties
+            databaseName="AMT_STACKUNDERFLOW"
+            serverName="localhost"
+            portnumber="3307"
+            user="root"
+            password="root"
+            serverTimezone = "UTC"
+        />
+    </dataSource>
 
 </server>

@@ -17,6 +17,10 @@ import java.util.List;
 @WebServlet(name = "RegisterCommandHandler", urlPatterns = "/register.do")
 public class RegisterCommandEndpoint extends HttpServlet {
 
+    //TODO : changer ici si on veut faire que ServiceRegistry sois un singleton avec l'annotation @ApplicationScoped
+    //-->
+    //@Inject
+    //private ServiceRegistry serviceRegistry
     private ServiceRegistry serviceRegistry = ServiceRegistry.getServiceRegistry();
     private IdentityManagementFacade identityManagementFacade = serviceRegistry.getIdentityManagementFacade();
 
