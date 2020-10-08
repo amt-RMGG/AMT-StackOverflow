@@ -1,5 +1,6 @@
 package io.stackunderflow.flow.application.question;
 
+import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 
@@ -17,13 +18,17 @@ public class QuestionFacade {
     }
 
     public void proposeQuestion(ProposeQuestionCommand command){
-        Question submittedQuestion = Question.builder()
-                .author(command.getAuthor())
-                .text(command.getText())
-                .title(command.getTitle())
-                .build();
+        try {
+            Question submittedQuestion = Question.builder()
+                    .author(command.getAuthor())
+                    .text(command.getText())
+                    .title(command.getTitle())
+                    .build();
 
-        questionRepository.save(submittedQuestion);
+            questionRepository.save(submittedQuestion);
+        } catch (RegistrationFailedException e) {
+            e.printStackTrace();
+        }
     }
 
     public QuestionsDTO getQuestions(QuestionQuery query){

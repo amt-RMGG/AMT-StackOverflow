@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -84,6 +83,7 @@ public class JdbcPersonRepository implements IPersonRepository {
         return Optional.empty();
     }
 
+    //TODO FACTORISER çA avec une super classe JdbcRepository
     @Override
     public void save(Person entity) throws RegistrationFailedException {
         synchronized (entity.getUsername()){

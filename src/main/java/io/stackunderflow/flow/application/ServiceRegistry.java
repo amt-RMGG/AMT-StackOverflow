@@ -5,6 +5,7 @@ import io.stackunderflow.flow.application.question.QuestionFacade;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcQuestionRepository;
 import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
 import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryQuestionRepository;
 
@@ -32,7 +33,7 @@ public class ServiceRegistry {
         singleton = this;
 
         //"DB" des questions
-        questionRepository = new InMemoryQuestionRepository();
+        questionRepository = new JdbcQuestionRepository();
         questionFacade = new QuestionFacade(questionRepository);
 
         //"DB" des users
