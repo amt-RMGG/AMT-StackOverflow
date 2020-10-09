@@ -5,6 +5,8 @@
  */
 body {
   padding-top: 56px;
+  display : flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -39,10 +41,6 @@ body {
 }
 
 footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
   height: 100px;
   width: 100%;
-  overflow: hidden;
 }
