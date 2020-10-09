@@ -30,5 +30,5 @@ insert into user (username,email,password,firstname, lastname)
 values("momo","momo@momo.mo","PASSWORD", "Maurice", "Lehmann");
 
 
-insert into question (title,text,author)
-values("Quel est le sens de la vie?","Grosse question...","momo");
+-- insert into question (title,text,author)
+-- values("Quel est le sens de la vie?","Grosse question...","momo");

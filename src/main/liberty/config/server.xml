@@ -17,7 +17,7 @@
     <dataSource jndiName="jdbc/StackUnderFlowDS">
         <jdbcDriver libraryRef="MySqlLib"/>
         <properties
-            databaseName="AMT_STACKUNDERFLOW"
+            databaseName="amt_stackunderflow"
             serverName="localhost"
             portnumber="3307"
             user="root"

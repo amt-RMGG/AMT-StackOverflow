@@ -127,7 +127,7 @@ public class JdbcQuestionRepository implements IQuestionRepository {
             }
 
         }catch(SQLException e){
-            System.out.println(e.getCause());
+            System.out.println("error : " + e.getMessage());
         }
         return allQuestion;
     }
