@@ -54,4 +54,35 @@ services:
 #### Nota bene
 In Linux the server can be access on `localhost:8080` , but don't forget that in Windows (with docker-machine), you'll need to access it from `http://192.168.99.100:8080/` !
 
+### Database
 
+The application is using an MySQL 8.0 database. <br/>
+In the `liberty\config\` folder, you'll find the mysql connector jar file : `mysql-connector-java-8.0.21.jar` <br />
+In the same folder, we specifie the database information in the `server.xml` file : 
+```
+    ... 
+    <library id="MySqlLib">
+        <fileset dir="${server.config.dir}" includes="*.jar" />
+    </library>
+
+    <dataSource jndiName="jdbc/StackUnderFlowDS">
+        <jdbcDriver libraryRef="MySqlLib"/>
+        <properties
+            databaseName="amt_stackunderflow"
+            serverName="localhost"
+            portnumber="" <!-- usually 3306 --> 
+            user="root"
+            password="root"
+            serverTimezone = "UTC"
+        />
+    </dataSource>
+ ```
+At this point, you have two choice : 
+- Running a local MySql server on your machine on `localhost:3306`
+- Using a Docker Container, using MySql Server image from dockerhub.
+
+If you want to deploy the application via the docker images, you'll need to use the docker-compose command with our .yml file 
+The `topologie\docker-compose.yml` :
+```
+TODO
+```
