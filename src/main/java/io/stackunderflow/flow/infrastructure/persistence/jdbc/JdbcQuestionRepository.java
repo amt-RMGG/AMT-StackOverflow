@@ -25,7 +25,6 @@ import java.util.Optional;
 @Named("JdbcQuestionRepository")
 public class JdbcQuestionRepository implements IQuestionRepository {
 
-
     @Resource(lookup = "jdbc/StackUnderFlowDS")
     DataSource dataSource;
 
