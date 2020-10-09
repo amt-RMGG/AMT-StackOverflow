@@ -7,6 +7,8 @@ import io.stackunderflow.flow.application.identitymgmt.authenticate.Authenticate
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +19,14 @@ import java.io.IOException;
 @WebServlet(name = "LoginCommandHandler", urlPatterns = "/login.do")
 public class LoginCommandEndpoint extends HttpServlet {
 
-    private ServiceRegistry serviceRegistry = ServiceRegistry.getServiceRegistry();
-    private IdentityManagementFacade identityManagementFacade = serviceRegistry.getIdentityManagementFacade();
+    @Inject
+    private ServiceRegistry serviceRegistry;
+    private IdentityManagementFacade identityManagementFacade;
+
+    @PostConstruct
+    public void postConstruct(){
+        identityManagementFacade = serviceRegistry.getIdentityManagementFacade();
+    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("errors");
