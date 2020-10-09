@@ -30,7 +30,6 @@ public class JdbcRepository {
         }catch(SQLException e){
             System.out.println(e.getCause());
         }
-
         return rs;
     }
 
