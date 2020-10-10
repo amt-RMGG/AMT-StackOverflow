@@ -17,11 +17,11 @@
     <dataSource jndiName="jdbc/StackUnderFlowDS">
         <jdbcDriver libraryRef="MySqlLib"/>
         <properties
-            databaseName="amt_stackunderflow"
-            serverName="localhost"
-            portnumber="3307"
-            user="root"
-            password="root"
+            databaseName="${DB_NAME}"
+            serverName="${DB_SERVER_HOSTNAME}"
+            portnumber="${DB_PORT_NUMBER}"
+            user="${DB_USER}"
+            password="${DB_USER_PASSWORD}"
             serverTimezone = "UTC"
         />
     </dataSource>

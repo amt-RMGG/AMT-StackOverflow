@@ -4,7 +4,7 @@
 
 ### Working in dev mode
 ```mvn liberty:dev``` </br>
-This command will generate and launch the .war file and let you access to the application in local. When the process is running, you can modify the code and refresh the page to see modifications. In order to use the database-related features, you will need to configure your personal database in `src/main/liberty/config/server.env` , and ensure that the specified database is up and running.
+This command will generate and launch the .war file and let you access to the application in local. When the process is running, you can modify the code and refresh the page to see modifications. In order to use the database-related features, you will need to configure your personal database in an environnemnt file at `src/main/liberty/config/server.env` , and ensure that the specified database is up and running. An example of this file is given at `src/main/liberty/config/server.env.example`. All you need to do is fill in your values and delete the `.example` extension.
 
 ### Generate the .war file (for docker use)
 ```mvn clean package``` </br>

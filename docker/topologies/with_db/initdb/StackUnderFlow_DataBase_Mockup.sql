@@ -1,6 +1,7 @@
 DROP SCHEMA IF EXISTS amt_stackunderflow;
 CREATE SCHEMA IF NOT EXISTS `amt_stackunderflow` DEFAULT CHARACTER SET utf8mb4 ;
 USE `amt_stackunderflow` ;
+SET GLOBAL time_zone = '+00:00';
 
 
 CREATE TABLE IF NOT EXISTS user (
