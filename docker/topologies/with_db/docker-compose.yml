@@ -20,7 +20,7 @@ services:
     image: amt/stackunderflow
     container_name: webapp_stackunderflow
     environment:
-     - ADMIN_PASSWORD=admin #TODO choisir un mdp simple mais différent
+     - ADMIN_PASSWORD=admin
     ports:
      - "8080:8080"
      - "8443:8443"
