@@ -22,8 +22,8 @@
             databaseName="amt_stackunderflow"
             serverName="db_stackunderflow"
             portnumber="3306"
-            user="root"
-            password="root"
+            user="stackunderflow_user"
+            password="stackunderflow_secret"
             serverTimezone = "UTC"
         />
     </dataSource> 
