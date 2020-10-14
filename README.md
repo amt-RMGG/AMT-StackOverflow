@@ -81,7 +81,8 @@ In Linux the server can be access on `localhost:8080` , but don't forget that in
 
 The application is using an MySQL 8.0 database. <br/>
 In the `liberty\config\` folder, you'll find the mysql connector jar file : `mysql-connector-java-8.0.21.jar` <br />
-In the same folder, we specifie the database information in the `server.xml` file : 
+In the same folder, we specifie the database information in the `server.xml` file.
+**You'll have to specifie the environement variables in the `server.env` (in the same folder)**
 ```
     ... 
     <library id="MySqlLib">
@@ -92,20 +93,46 @@ In the same folder, we specifie the database information in the `server.xml` fil
         <jdbcDriver libraryRef="MySqlLib"/>
         <properties
             databaseName="amt_stackunderflow"
-            serverName="localhost"
-            portnumber="" <!-- usually 3306 --> 
-            user="root"
-            password="root"
-            serverTimezone = "UTC"
+                serverName="${DB_SERVER_HOSTNAME}"
+                portnumber="${DB_PORT_NUMBER}"
+                user="${DB_USER}"
+                password="${DB_USER_PASSWORD}"
+                serverTimezone = "UTC"
         />
     </dataSource>
  ```
+
 At this point, you have two choice : 
-- Running a local MySql server on your machine on `localhost:3306`
+- Running a local MySql server on your machine on `<adress>:<port>`
 - Using a Docker Container, using MySql Server image from dockerhub.
 
-If you want to deploy the application via the docker images, you'll need to use the docker-compose command with our .yml file 
-The `topologie\docker-compose.yml` :
+If you want to deploy the application via the docker images, you'll need to use the docker-compose (down) command with our .yml file 
+`topologie\with-db\initdb\docker-compose.yml` :
 ```
-TODO
+version: '3.7'
+services:
+  db_stackunderflow:
+    image: mysql
+    container_name: db_stackunderflow
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: amt_stackunderflow
+      MYSQL_USER: stackunderflow_user
+      MYSQL_PASSWORD: stackunderflow_secret
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+
+  webapp_stackunderflow:
+    image: amt/stackunderflow
+    container_name: webapp_stackunderflow
+    environment:
+     - ADMIN_PASSWORD=admin
+    ports:
+     - "8080:8080"
+     - "8443:8443"
 ```
