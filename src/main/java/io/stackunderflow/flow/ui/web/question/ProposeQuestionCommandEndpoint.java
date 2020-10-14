@@ -5,19 +5,26 @@ import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserD
 import io.stackunderflow.flow.application.question.ProposeQuestionCommand;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Currency;
 
 @WebServlet(name = "SubmitQuestionsCommandHandler", urlPatterns = "/submitQuestion.do")
 public class ProposeQuestionCommandEndpoint extends HttpServlet {
 
-    private ServiceRegistry serviceRegistry = ServiceRegistry.getServiceRegistry();
-    private QuestionFacade questionFacade = serviceRegistry.getQuestionFacade();
+    @Inject
+    private ServiceRegistry serviceRegistry;
+    private QuestionFacade questionFacade;
+
+    @PostConstruct
+    public void postConstruct(){
+        questionFacade = serviceRegistry.getQuestionFacade();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

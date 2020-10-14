@@ -5,20 +5,27 @@ import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-
 
 @WebServlet(name = "RegisterCommandHandler", urlPatterns = "/register.do")
 public class RegisterCommandEndpoint extends HttpServlet {
 
-    private ServiceRegistry serviceRegistry = ServiceRegistry.getServiceRegistry();
-    private IdentityManagementFacade identityManagementFacade = serviceRegistry.getIdentityManagementFacade();
+    @Inject
+    private ServiceRegistry serviceRegistry;
+    private IdentityManagementFacade identityManagementFacade;
+
+
+    @PostConstruct
+    public void postConstruct(){
+        identityManagementFacade = serviceRegistry.getIdentityManagementFacade();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

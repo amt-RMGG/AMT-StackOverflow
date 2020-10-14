@@ -7,7 +7,6 @@ import io.stackunderflow.flow.domain.question.Question;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Data;
 
 public class QuestionFacade {
 
