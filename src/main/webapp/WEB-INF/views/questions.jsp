@@ -24,10 +24,10 @@
               <div class="card-body">
                 <h2 class="card-title">${question.title}</h2>
                 <p class="card-text">${question.text}</p>
-                <a href="${pageContext.request.contextPath}/question" class="btn btn-primary disabled">Read More &rarr;</a>
+                <a href="${pageContext.request.contextPath}/question?id=${question.id}" class="btn btn-primary">Read More &rarr;</a>
               </div>
               <div class="card-footer text-muted">
-                Posted on January 1, 2020 by
+                Posted on January 1, 2020 by ${question.author}
                 <a href="#">${question.author}</a>
               </div>
             </div>

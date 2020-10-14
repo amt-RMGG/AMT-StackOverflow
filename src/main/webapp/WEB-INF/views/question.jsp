@@ -26,7 +26,7 @@
         <div class="card mb-12">
           <div class="card-body">
             <h2 class="card-title">${question.title}</h2>
-            <p class="card-text">${question.body}</p>
+            <p class="card-text">${question.text}</p>
           </div>
           <div class="card-footer text-muted">
             Posted on January 1, 2020 by
@@ -39,8 +39,7 @@
       <div class="col-md-12">
         <div class="card mb-12">
           <div class="card-body">
-            <h2 class="card-title">Réponse</h2> by author
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <h2 class="card-title">Réponse(s)</h2>
           </div>
         </div>
       </div>
@@ -52,7 +51,6 @@
           <textarea id="comment"></textarea>
             <a href="#" class="btn btn-primary">Répondre</a>
         </div>
-
       </div>
 
     </div>

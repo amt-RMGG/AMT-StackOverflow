@@ -22,13 +22,20 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
 
     @Override
     public Collection<Question> find(QuestionQuery query) {
-
-        // behavior here ... TODO to be define !
-        if(query != null){
-            return findAll();
+        Collection<Question> questions = new LinkedList<>();
+        //Find by id
+        if(query.getId() != null){
+            Optional<Question> q = findById(query.getId());
+            if(!q.isEmpty()) {
+               questions.add(q.get());
+            }else{
+                //TODO : throw error ? question id not found ?
+            }
+            return questions;
         }
-        //if nothing is found, return the whole repo
-        return findAll();
+        //if the query is empty, return the all the questions
+        questions = findAll();
+        return questions;
     }
 
     @Override
@@ -50,7 +57,29 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
 
     @Override
     public Optional<Question> findById(QuestionId id) {
-        return Optional.empty();
+
+        ResultSet rs = super.fetchData("SELECT * FROM question WHERE id = ?", id.asString());
+        Question q = null;
+
+        try{
+            if(rs.next()) {
+                String title = rs.getString(2);
+                String text = rs.getString(3);
+                String author = rs.getString(5);
+                q = Question.builder()
+                        .id(id)
+                        .title(title)
+                        .text(text)
+                        .author(author)
+                        .build();
+            }
+        }catch(SQLException e){
+            System.out.println("error : " + e.getMessage());
+        }
+        if(q == null)
+            return Optional.empty();
+        else
+            return Optional.of(q);
     }
 
     @Override
