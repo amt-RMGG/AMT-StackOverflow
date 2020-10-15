@@ -51,6 +51,16 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
             throw new RegistrationFailedException(e.getMessage());
         }
     }
+    @Override
+    public void saveAnswer(Answer entity) throws RegistrationFailedException {
+        try {
+            String query = "INSERT INTO answer (id, text, user, question) VALUES(?, ?, ?, ?)";
+            super.executeInsertQuery(query, entity.getId().asString(), entity.getText(), entity.getAuthor(), entity.getQuestionId());
+
+        }catch(RegistrationFailedException e){
+            throw new RegistrationFailedException(e.getMessage());
+        }
+    }
 
     @Override
     public void remove(QuestionId id) {

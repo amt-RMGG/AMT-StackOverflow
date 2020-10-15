@@ -1,6 +1,8 @@
 package io.stackunderflow.flow.application.question;
 
+import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
+import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 
@@ -25,6 +27,20 @@ public class QuestionFacade {
                     .build();
 
             questionRepository.save(submittedQuestion);
+        } catch (RegistrationFailedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void proposeAnswer(ProposeAnswerCommand command) {
+        try {
+            Answer submittedAnswer = Answer.builder()
+                    .author(command.getAuthor())
+                    .text(command.getText())
+                    .questionId(command.getQuestionId())
+                    .build();
+
+            questionRepository.saveAnswer(submittedAnswer);
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
