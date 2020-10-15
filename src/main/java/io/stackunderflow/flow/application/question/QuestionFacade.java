@@ -40,11 +40,11 @@ public class QuestionFacade {
                         .text(question.getText())
                         .author(question.getAuthor())
                         .title(question.getTitle())
+                        .answers(question.getAnswers())
                         .build()).collect(Collectors.toList());
 
         return QuestionsDTO.builder()
                 .questions(allQuestionsDTO)
                 .build();
     }
-
 }

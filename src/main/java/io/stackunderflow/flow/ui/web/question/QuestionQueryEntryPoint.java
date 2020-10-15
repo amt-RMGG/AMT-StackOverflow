@@ -51,6 +51,7 @@ public class QuestionQueryEntryPoint extends HttpServlet {
 
         //TODO sale ?
         req.setAttribute("question", questionsDTO.getQuestions().get(0));
+        req.setAttribute("answers", questionsDTO.getQuestions().get(0).getAnswers());
         req.getRequestDispatcher("/WEB-INF/views/question.jsp").forward(req, resp);
     }
 

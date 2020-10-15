@@ -2,6 +2,8 @@ package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.application.question.QuestionQuery;
+import io.stackunderflow.flow.domain.answer.Answer;
+import io.stackunderflow.flow.domain.answer.AnswerId;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
@@ -60,8 +62,13 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
 
         ResultSet rs = super.fetchData("SELECT * FROM question WHERE id = ?", id.asString());
         Question q = null;
+        Collection<Answer> answers;
+
 
         try{
+
+            answers = getAnswers(id);
+
             if(rs.next()) {
                 String title = rs.getString(2);
                 String text = rs.getString(3);
@@ -71,6 +78,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
                         .title(title)
                         .text(text)
                         .author(author)
+                        .answers(answers)
                         .build();
             }
         }catch(SQLException e){
@@ -80,6 +88,31 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
             return Optional.empty();
         else
             return Optional.of(q);
+    }
+
+    private Collection<Answer> getAnswers(QuestionId questionId) {
+
+        LinkedList<Answer> ret = new LinkedList<>();
+        ResultSet rs = super.fetchData("SELECT * FROM answer WHERE answer.question = ?", questionId.asString());
+        try{
+            while(rs.next()) {
+                AnswerId id = new AnswerId(rs.getString(1));
+                String text = rs.getString(2);
+                //String date = rs.getString(3); // TODO : ajouter la date dans le Answer builder !
+                String author = rs.getString(4);
+
+                Answer ans = Answer.builder()
+                        .id(id)
+                        .text(text)
+                        .author(author)
+                        .build();
+
+                ret.add(ans);
+            }
+        }catch(SQLException e){
+            System.out.println("error : " + e.getMessage());
+        }
+        return ret;
     }
 
     @Override

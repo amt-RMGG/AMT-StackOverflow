@@ -33,10 +33,10 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS answer (
   id VARCHAR(255) NOT NULL,
-  title VARCHAR(255) NOT NULL,
   text MEDIUMTEXT NOT NULL,
-  date DATE NULL,
+  date DATETIME NULL DEFAULT NOW(),
   user VARCHAR(255) NOT NULL,
+  question VARCHAR(255) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
   INDEX fk_question_user_idx (user ASC) VISIBLE,
@@ -44,7 +44,14 @@ CREATE TABLE IF NOT EXISTS answer (
     FOREIGN KEY (user)
     REFERENCES amt_stackunderflow.user (username)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_answer_question
+      FOREIGN KEY (question)
+          REFERENCES amt_stackunderflow.question (id)
+          ON DELETE NO ACTION
+          ON UPDATE NO ACTION
+
+                                  )
 ENGINE = InnoDB;
 
 
