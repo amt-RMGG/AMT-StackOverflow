@@ -8,3 +8,4 @@ target/
 node_modules
 stackunderflow.war
 e2e_tests/output/*
+.factorypath
