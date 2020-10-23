@@ -10,4 +10,20 @@
 
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
 
+    <library id="MySqlLib">
+        <fileset dir="${server.config.dir}" includes="*.jar" />
+    </library>
+
+    <dataSource jndiName="jdbc/StackUnderFlowDS">
+        <jdbcDriver libraryRef="MySqlLib"/>
+        <properties
+            databaseName="amt_stackunderflow"
+            serverName="${DB_SERVER_HOSTNAME}"
+            portnumber="${DB_PORT_NUMBER}"
+            user="${DB_USER}"
+            password="${DB_USER_PASSWORD}"
+            serverTimezone = "UTC"
+        />
+    </dataSource>
+
 </server>

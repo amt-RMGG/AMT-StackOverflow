@@ -1,11 +1,21 @@
-.gitignore
+#project files
 .idea
-AMT-StackOverflow.iml
-target/
 .classpath
-.settings/
+AMT-StackOverflow.iml
 .project
+.settings/
+
+#node dependencies
 node_modules
+
+#temporary files
 stackunderflow.war
+target/
+
+#test outputs
 e2e_tests/output/*
 .factorypath
+
+#local environment files
+server.env
+server.env.example
