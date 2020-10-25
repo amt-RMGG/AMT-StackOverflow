@@ -17,7 +17,15 @@
                 <div class="card-body">
                     <h5 class="card-header">User profile</h5>
                     <div class="input-group">
-                        under construction...
+                        <c:choose>
+                            <c:when test="${currentUser != null}">
+                                <h4>${currentUser.firstname} ${currentUser.lastname}</h4> <br/>
+                                <p>Also known as ${currentUser.username}</p>
+                            </c:when>
+                            <c:otherwise>
+                                Please login or register first
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
