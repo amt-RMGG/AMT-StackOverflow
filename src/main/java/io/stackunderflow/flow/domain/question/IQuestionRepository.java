@@ -7,4 +7,6 @@ import java.util.Collection;
 
 public interface IQuestionRepository extends IRepository<Question, QuestionId> {
     public Collection<Question> find(QuestionQuery query);
+
+    public Collection<Question> search(String result);
 }

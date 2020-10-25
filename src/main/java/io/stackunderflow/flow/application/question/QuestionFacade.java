@@ -47,4 +47,20 @@ public class QuestionFacade {
                 .build();
     }
 
+    public QuestionsDTO searchQuestions(String search){
+        Collection<Question> results = questionRepository.search(search);
+
+        List<QuestionsDTO.QuestionDTO> allQuestionsDTO =
+                results.stream()
+                        .map(question -> QuestionsDTO.QuestionDTO.builder()
+                                .text(question.getText())
+                                .author(question.getAuthor())
+                                .title(question.getTitle())
+                                .build()).collect(Collectors.toList());
+
+        return QuestionsDTO.builder()
+                .questions(allQuestionsDTO)
+                .build();
+    }
+
 }
