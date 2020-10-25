@@ -33,8 +33,7 @@ public class QuestionIdTest {
 
     @Test(expected = NullPointerException.class)
     public void shouldThrowExceptionWhenNullUUID(){
-        UUID uuid = UUID.randomUUID();
-        uuid = null;
+        UUID uuid = null;
         QuestionId questionId = new QuestionId(uuid);
     }
 

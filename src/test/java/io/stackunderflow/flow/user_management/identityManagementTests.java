@@ -1,14 +1,14 @@
 package io.stackunderflow.flow.user_management;
 
-import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
+import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
-import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeAll;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class identityManagementFacadeTest {
+public class identityManagementTests {
 
     static private IPersonRepository personRepository = new InMemoryPersonRepository();
     static private IdentityManagementFacade facade = new IdentityManagementFacade(personRepository);
