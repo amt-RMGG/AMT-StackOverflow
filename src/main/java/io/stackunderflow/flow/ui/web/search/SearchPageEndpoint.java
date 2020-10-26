@@ -4,6 +4,8 @@ import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 import io.stackunderflow.flow.application.question.QuestionsDTO;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,17 +16,20 @@ import java.io.IOException;
 @WebServlet(name = "SearchPageHandler", urlPatterns = "/search")
 public class SearchPageEndpoint extends HttpServlet {
 
-
+    @Inject
     private ServiceRegistry serviceRegistry;
     private QuestionFacade questionFacade;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        serviceRegistry = ServiceRegistry.getServiceRegistry();
-        questionFacade = serviceRegistry.getQuestionFacade();
     }
 
+
+    @PostConstruct
+    public void postConstruct(){
+        questionFacade = serviceRegistry.getQuestionFacade();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

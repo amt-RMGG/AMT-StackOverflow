@@ -11,4 +11,5 @@ public interface IQuestionRepository extends IRepository<Question, QuestionId> {
     public Collection<Question> find(QuestionQuery query);
 
     public Collection<Question> search(String result);
+    public void saveAnswer(Answer entity) throws RegistrationFailedException;
 }
