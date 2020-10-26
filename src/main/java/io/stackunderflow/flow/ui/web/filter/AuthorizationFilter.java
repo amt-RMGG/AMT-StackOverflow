@@ -56,6 +56,9 @@ public class AuthorizationFilter implements Filter {
     boolean isPublicRessouce(String requestURI) {
         if(requestURI.startsWith("/stackunderflow/search"))
             return true;
+
+        if(requestURI.startsWith("/stackunderflow/question"))
+            return true;
         if(requestURI.startsWith("/stackunderflow/questions"))
             return true;
         if(requestURI.startsWith("/stackunderflow/home"))
