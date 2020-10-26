@@ -41,6 +41,41 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
     }
 
     @Override
+    public Collection<Question> search(String search) {
+        Collection<Question> results = new LinkedList<>();
+
+        try {
+            PreparedStatement statement = dataSource.getConnection()
+                    .prepareStatement("SELECT * FROM question WHERE title LIKE '%" + search + "%';");
+
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()){
+
+                QuestionId id = new QuestionId(rs.getString(1));
+                String title = rs.getString(2);
+                String text = rs.getString(3);
+                String author = rs.getString(4);
+
+                Question q = Question.builder()
+                        .id(id)
+                        .title(title)
+                        .text(text)
+                        .author(author)
+                        .build();
+
+                results.add(q);
+            }
+
+        }catch(SQLException e){
+            System.out.println("error : " + e.getMessage());
+        }
+        return results;
+    }
+
+
+    //TODO FACTORISER çA avec une super classe JdbcRepository
+    @Override
     public void save(Question entity) throws RegistrationFailedException {
 
         try {
