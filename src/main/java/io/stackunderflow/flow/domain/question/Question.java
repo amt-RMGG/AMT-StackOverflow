@@ -20,6 +20,7 @@ public class Question implements IEntity<Question, QuestionId> {
     private String text;
     private String title;
     private Collection<Answer> answers;
+    private String date;
 
     @Setter(AccessLevel.NONE)
     private QuestionType questionType;
@@ -51,10 +52,14 @@ public class Question implements IEntity<Question, QuestionId> {
             if(questionType == null){
                 questionType = QuestionType.DEFAULT;
             }
-            if(answers == null){
+            if(answers == null)
                 answers = new LinkedList<>();
-            }
-            return new Question(id, author, text, title, answers, questionType);
+
+            if(date == null)
+                date = "";
+
+
+            return new Question(id, author, text, title, answers, date, questionType);
         }
     }
 

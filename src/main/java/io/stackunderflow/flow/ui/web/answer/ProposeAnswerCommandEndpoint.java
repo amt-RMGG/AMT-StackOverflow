@@ -3,7 +3,6 @@ package io.stackunderflow.flow.ui.web.answer;
 import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
-import io.stackunderflow.flow.application.question.ProposeQuestionCommand;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 
 import javax.annotation.PostConstruct;

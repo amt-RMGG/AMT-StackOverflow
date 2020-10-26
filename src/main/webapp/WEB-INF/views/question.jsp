@@ -30,7 +30,7 @@
             <p class="card-text">${question.text}</p>
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
+            Posted on ${question.date} by
             <a href="#">${question.author}</a>
           </div>
         </div>
@@ -49,7 +49,7 @@
                     <p class="card-text">${answer.text}</p>
                   </div>
                   <div class="card-footer text-muted">
-                    Posted on January 1, 2020 by
+                    Posted on ${answer.date} by
                     <a href="#">${answer.author}</a>
                   </div>
                 </div>

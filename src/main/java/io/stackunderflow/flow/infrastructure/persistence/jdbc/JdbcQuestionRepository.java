@@ -82,12 +82,14 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
             if(rs.next()) {
                 String title = rs.getString(2);
                 String text = rs.getString(3);
+                String date = rs.getString(4);
                 String author = rs.getString(5);
                 q = Question.builder()
                         .id(id)
                         .title(title)
                         .text(text)
                         .author(author)
+                        .date(date)
                         .answers(answers)
                         .build();
             }
@@ -108,13 +110,14 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
             while(rs.next()) {
                 AnswerId id = new AnswerId(rs.getString(1));
                 String text = rs.getString(2);
-                //String date = rs.getString(3); // TODO : ajouter la date dans le Answer builder !
+                String date = rs.getString(3);
                 String author = rs.getString(4);
 
                 Answer ans = Answer.builder()
                         .id(id)
                         .text(text)
                         .author(author)
+                        .date(date)
                         .build();
 
                 ret.add(ans);
@@ -136,12 +139,14 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
                 QuestionId id = new QuestionId(rs.getString(1));
                 String title = rs.getString(2);
                 String text = rs.getString(3);
-                String author = rs.getString(4);
+                String date = rs.getString(4);
+                String author = rs.getString(5);
 
                 Question q = Question.builder()
                         .id(id)
                         .title(title)
                         .text(text)
+                        .date(date)
                         .author(author)
                         .build();
 

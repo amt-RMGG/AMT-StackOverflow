@@ -56,6 +56,7 @@ public class QuestionFacade {
                         .text(question.getText())
                         .author(question.getAuthor())
                         .title(question.getTitle())
+                        .date(question.getDate())
                         .answers(question.getAnswers())
                         .build()).collect(Collectors.toList());
 

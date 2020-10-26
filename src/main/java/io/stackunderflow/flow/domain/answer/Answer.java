@@ -11,6 +11,7 @@ public class Answer implements IEntity<Answer, AnswerId> {
     private AnswerId id = new AnswerId();
     private String author;
     private String text;
+    private String date;
     private String questionId;
 
     @Override
@@ -29,10 +30,15 @@ public class Answer implements IEntity<Answer, AnswerId> {
             if(text == null)
                 text = "";
 
-            if(questionId == null)
-                questionId = "";
+            if(date == null)
+                date = "";
 
-            return new Answer(id, author, text, questionId);
+            if(questionId == null) {
+                questionId = "";
+            }
+
+
+            return new Answer(id, author, text, date, questionId);
         }
     }
 

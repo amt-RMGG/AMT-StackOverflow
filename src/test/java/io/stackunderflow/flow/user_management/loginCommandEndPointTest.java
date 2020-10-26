@@ -1,4 +1,4 @@
-package io.stackunderflow.flow.loginCommand;
+package io.stackunderflow.flow.user_management;
 
 import io.stackunderflow.flow.ui.web.login.LoginCommandEndpoint;
 import org.junit.Test;
