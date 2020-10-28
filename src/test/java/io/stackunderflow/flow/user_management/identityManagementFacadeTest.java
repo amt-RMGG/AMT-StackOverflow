@@ -8,7 +8,8 @@ import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
-import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -19,8 +20,8 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class identityManagementFacadeTest {
-
-    static private IPersonRepository personRepository = new InMemoryPersonRepository();
+/*
+    static private IPersonRepository personRepository = new JdbcPersonRepository();
     static private IdentityManagementFacade facade = new IdentityManagementFacade(personRepository);
 
     @BeforeAll
@@ -76,5 +77,5 @@ public class identityManagementFacadeTest {
         {
             exception.printStackTrace();
         }
-    }
+    }*/
 }
