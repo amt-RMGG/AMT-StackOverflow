@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:set var="user" value="${currentUser}" />
 <%@include file="fragments/header.jsp"%>
 
 <body>
@@ -18,9 +18,9 @@
                     <h5 class="card-header">User profile</h5>
                     <div class="input-group">
                         <c:choose>
-                            <c:when test="${currentUser != null}">
-                                <h4>${currentUser.firstname} ${currentUser.lastname}</h4> <br/>
-                                <p>Also known as ${currentUser.username}</p>
+                            <c:when test="${user != null}">
+                                <h4>${user.firstname} ${user.lastname}</h4> <br/>
+                                <p>Also known as ${user.username}</p>
                             </c:when>
                             <c:otherwise>
                                 Please login or register first
