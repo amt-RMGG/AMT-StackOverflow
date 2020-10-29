@@ -19,7 +19,6 @@ public class IdentityManagementFacade {
     public void register(RegisterCommand command) throws RegistrationFailedException {
 
         //Check if another user has already the same username
-        //TODO ET l'email alors ???
         Person existingPersonWithSameUsername = personRepository.findByUsername(command.getUsername()).orElse(null);
 
         if(existingPersonWithSameUsername != null){
