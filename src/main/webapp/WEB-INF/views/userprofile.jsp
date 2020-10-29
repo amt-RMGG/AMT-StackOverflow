@@ -16,11 +16,13 @@
             <div class="col-md-12">
                 <div class="card-body">
                     <h5 class="card-header">User profile</h5>
-                    <div class="input-group">
+                    <div class="">
                         <c:choose>
                             <c:when test="${user != null}">
-                                <h4>${user.firstname} ${user.lastname}</h4> <br/>
-                                <p>Also known as ${user.username}</p>
+                                <h4>${user.firstname} ${user.lastname}</h4>
+                                <br/>
+                                <p>Username : ${user.username}</p>
+                                <p>Email : ${user.email}</p>
                             </c:when>
                             <c:otherwise>
                                 Please login or register first
@@ -38,8 +40,6 @@
 <!-- /.container -->
 
 <%@include file="fragments/footer.jsp" %>
-
-
 
 </body>
 
