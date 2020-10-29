@@ -1,9 +1,6 @@
 package io.stackunderflow.flow.domain.question;
 
-import io.stackunderflow.flow.application.answer.AnswerDTO;
 import io.stackunderflow.flow.domain.IEntity;
-
-import io.stackunderflow.flow.domain.Id;
 import io.stackunderflow.flow.domain.answer.Answer;
 import lombok.*;
 

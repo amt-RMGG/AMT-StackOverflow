@@ -4,11 +4,6 @@ import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.identitymgmt.UserFacade;
 import io.stackunderflow.flow.application.identitymgmt.UserQuery;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
-import io.stackunderflow.flow.application.question.QuestionFacade;
-import io.stackunderflow.flow.application.question.QuestionQuery;
-import io.stackunderflow.flow.application.question.QuestionsDTO;
-import io.stackunderflow.flow.domain.person.PersonId;
-import io.stackunderflow.flow.domain.question.QuestionId;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -47,15 +42,12 @@ public class UserQueryEntryPoint extends HttpServlet {
             return;
         }
 
-
-
         UserQuery query = UserQuery.builder()
                 .username(username)
                 .build();
 
         UserDTO userDTO = userFacade.getUser(query);
 
-        //TODO sale ?
         req.setAttribute("user", userDTO);
         req.getRequestDispatcher("/WEB-INF/views/userprofile.jsp").forward(req, resp);
     }
