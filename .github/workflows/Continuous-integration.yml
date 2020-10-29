@@ -34,7 +34,7 @@ jobs:
           cd e2e_tests
           npm ci
 
-      - name: Build with maven
+      - name: maven build
         run: mvn clean package 
 
       - name: docker compose
@@ -53,3 +53,6 @@ jobs:
         run: |
           cd docker/topologies/with_db
           docker-compose down
+
+      - name: Run maven tests
+        run: mvn verify
