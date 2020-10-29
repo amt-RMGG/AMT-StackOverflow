@@ -25,7 +25,7 @@
                                 <p>Email : ${user.email}</p>
                             </c:when>
                             <c:otherwise>
-                                Please login or register first
+                                User not found
                             </c:otherwise>
                         </c:choose>
                     </div>
