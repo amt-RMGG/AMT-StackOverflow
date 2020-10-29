@@ -1,0 +1,57 @@
+name: Maven & Codeceptjs Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: setup jdk11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: npm install
+        run: |
+        cd e2e_tests
+        npm ci
+
+      - name: Build with maven
+        run: mvn clean package 
+
+      - name: docker compose
+        run: |
+        chmod +x build-image.sh
+        chmod +x run-image.sh
+        ./build-image.sh
+        ./run-image.sh
+#      - name: Run maven tests
+#        run: |
+#          cp src/test/resources/arquillian.xml.example src/test/resources/arquillian.xml
+#          mvn verify
+      - name: run codeceptjs e2e tests
+        run: |
+          cd e2e_tests
+          npx codeceptjs run --override '{"helpers": {"Puppeteer": {"show": false}}}' --steps
+      - name: Stop servers
+        run: |
+          cd docker/topologies/with_db
+          docker-compose down
