@@ -1,4 +1,4 @@
-name: End to end tests 
+name: Run the tests 
 
 on: [push, pull_request]
 
