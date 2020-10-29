@@ -27,7 +27,8 @@ public class Vote implements IEntity {
     @Override
     public Vote deepClone() {
         return this.toBuilder()
-                .idVote(new VoteID(idVote.asString()))
+                .idUser(new PersonId(idUser.asString()))
+                .idQuestion(new QuestionId(idQuestion.asString()))
                 .build();
     }
 
@@ -45,7 +46,7 @@ public class Vote implements IEntity {
             else
                 return null;
 
-            return new Vote(idVote, idQuestion, vote);
+            return new Vote(idUser, idQuestion, vote, type);
         }
     }
 }
