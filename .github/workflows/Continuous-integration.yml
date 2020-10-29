@@ -42,7 +42,7 @@ jobs:
           chmod +x build-image.sh
           chmod +x run-image.sh
           ./build-image.sh
-          ./run-image.sh
+          ./run-image.sh &
 #      - name: Run maven tests
 #        run: |
 #          cp src/test/resources/arquillian.xml.example src/test/resources/arquillian.xml
