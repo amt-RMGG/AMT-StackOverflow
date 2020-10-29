@@ -6,6 +6,9 @@ import io.stackunderflow.flow.domain.vote.VoteType;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Singular;
+
+import java.util.List;
 
 @Builder
 @Getter
@@ -15,8 +18,11 @@ public class VoteDTO {
     @Getter
     @EqualsAndHashCode
     public static class ProposedVoteDTO {
-        private PersonId userID;
+        private String username;
         private QuestionId questionID;
         private VoteType type;
     }
+
+    @Singular
+    private List<ProposedVoteDTO> votes;
 }

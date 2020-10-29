@@ -5,15 +5,15 @@ import java.util.UUID;
 
 public class VoteID extends Id {
 
-    public void VoteId(){
+    public VoteID(){
         super();
     }
 
-    public void VoteId(String id){
+    public VoteID(String id){
         super(id);
     }
 
-    public void VoteId(UUID id){
+    public VoteID(UUID id){
         super(id);
     }
 }

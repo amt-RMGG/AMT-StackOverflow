@@ -12,7 +12,7 @@ import lombok.Getter;
 @EqualsAndHashCode
 public class ProposeVoteCommand {
     @Builder.Default
-    private PersonId idUser = null;
+    private String username = "Anonymous";
 
     @Builder.Default
     private QuestionId idQuestion = null;

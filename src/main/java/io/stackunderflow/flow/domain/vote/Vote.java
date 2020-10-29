@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Vote implements IEntity {
 
     @Setter(AccessLevel.NONE)
-    private PersonId idUser = new PersonId();
+    private String username;
     private QuestionId idQuestion = new QuestionId();
     private int vote = 0;
     private VoteType type;
@@ -27,7 +27,7 @@ public class Vote implements IEntity {
     @Override
     public Vote deepClone() {
         return this.toBuilder()
-                .idUser(new PersonId(idUser.asString()))
+                .username(username)
                 .idQuestion(new QuestionId(idQuestion.asString()))
                 .build();
     }
@@ -46,7 +46,7 @@ public class Vote implements IEntity {
             else
                 return null;
 
-            return new Vote(idUser, idQuestion, vote, type);
+            return new Vote(username, idQuestion, vote, type);
         }
     }
 }

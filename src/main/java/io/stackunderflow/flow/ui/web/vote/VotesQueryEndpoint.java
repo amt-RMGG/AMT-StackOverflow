@@ -28,7 +28,7 @@ public class VotesQueryEndpoint extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         VoteDTO voteDTO = voteFacade.getVotes(VoteQuery.builder().build());
-        req.setAttribute("votes", votesDTO);
+        req.setAttribute("votes", voteDTO);
         req.getRequestDispatcher("/WEB-INF/views/questions.jsp").forward(req, resp);
     }
 }
