@@ -46,5 +46,4 @@ public class QuestionFacade {
                 .questions(allQuestionsDTO)
                 .build();
     }
-
 }

@@ -31,6 +31,9 @@
           <div class="card-footer text-muted">
             Posted on January 1, 2020 by
             <a href="#">${question.author}</a>
+            <p>votes</p>
+            <a href="#">[+]</a>
+            <a href="#">[-]</a>
           </div>
         </div>
       </div>

@@ -2,8 +2,10 @@ package io.stackunderflow.flow.application;
 
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.question.QuestionFacade;
+import io.stackunderflow.flow.application.vote.VoteFacade;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
+import io.stackunderflow.flow.domain.vote.IVoteRepository;
 import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
 import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcQuestionRepository;
 import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
@@ -21,6 +23,9 @@ public class ServiceRegistry {
     //@Inject @Named("JdbcPersonRepository") on devrait faire comme ça...
     private static IPersonRepository personRepository;
     private static IdentityManagementFacade identityManagementFacade;
+
+    private static IVoteRepository voteRepository;
+    private static VoteFacade voteFacade;
 
     public static ServiceRegistry getServiceRegistry() {
         if(singleton == null)
@@ -46,5 +51,9 @@ public class ServiceRegistry {
 
     public IdentityManagementFacade getIdentityManagementFacade() {
         return identityManagementFacade;
+    }
+
+    public VoteFacade getVoteFacade() {
+        return voteFacade;
     }
 }

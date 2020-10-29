@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS user (
   firstname VARCHAR(255) NOT NULL,
   lastname VARCHAR(255) NOT NULL,
   PRIMARY KEY (username),
-  UNIQUE INDEX username_UNIQUE (username ASC) VISIBLE)
+  UNIQUE INDEX username_unique (username ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
