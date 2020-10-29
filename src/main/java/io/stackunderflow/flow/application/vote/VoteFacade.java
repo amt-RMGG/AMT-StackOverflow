@@ -15,13 +15,17 @@ public class VoteFacade {
         this.voteRepository = voteRepository;
     }
 
-    public void proposeVote(ProposeVoteCommand command) throws RegistrationFailedException {
-        Vote submittedVote = Vote.builder()
-                .username(command.getUsername())
-                .idQuestion(command.getIdQuestion())
-                .type(command.getType())
-                .build();
-        voteRepository.save(submittedVote);
+    public void proposeVote(ProposeVoteCommand command) {
+        try {
+            Vote submittedVote = Vote.builder()
+                    .username(command.getUsername())
+                    .idQuestion(command.getIdQuestion())
+                    .type(command.getType())
+                    .build();
+            voteRepository.save(submittedVote);
+        } catch (RegistrationFailedException e) {
+            e.printStackTrace();
+        }
     }
 
     public VoteDTO getVotes(VoteQuery query) {
