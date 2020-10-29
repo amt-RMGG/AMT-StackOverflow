@@ -31,7 +31,7 @@
                     <a href="${pageContext.request.contextPath}/askQuestion" class="btn btn-primary">Poser une question</a>
                 </li>
                 <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/user" class="btn btn-info">${currentUser.firstname} ${currentUser.lastname}</a>
+                    <a href="${pageContext.request.contextPath}/user?username=${currentUser.username}" class="btn btn-info">${currentUser.firstname} ${currentUser.lastname}</a>
                 </li>
                 <li class="nav-item">
                     <form method="POST" action="${pageContext.request.contextPath}/logout.do">

@@ -2,7 +2,7 @@ package io.stackunderflow.flow.application.identitymgmt;
 
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
@@ -40,7 +40,7 @@ public class IdentityManagementFacade {
         }
     }
 
-    public CurrentUserDTO authenticate(AuthenticateCommand command) throws AuthenticationFailedException {
+    public UserDTO authenticate(AuthenticateCommand command) throws AuthenticationFailedException {
         Person person = personRepository.findByUsername(command.getUsername())
                 .orElseThrow(()-> new AuthenticationFailedException("User not found!"));
 
@@ -48,7 +48,7 @@ public class IdentityManagementFacade {
         if(!success)
             throw new AuthenticationFailedException("Password verification failed!");
 
-        CurrentUserDTO  currentUser = CurrentUserDTO.builder()
+        UserDTO currentUser = UserDTO.builder()
                 .username(person.getUsername())
                 .firstname(person.getFirstname())
                 .lastname(person.getLastname())

@@ -21,6 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class identityManagementTests {
 
     static private IPersonRepository personRepository = new InMemoryPersonRepository();
+    import static org.junit.jupiter.api.Assertions.assertThrows;
+
+    static private IPersonRepository personRepository = new JdbcPersonRepository();
+
     static private IdentityManagementFacade facade = new IdentityManagementFacade(personRepository);
 
     @BeforeAll
@@ -62,19 +66,19 @@ public class identityManagementTests {
 
     @Test
     public void loginTest() throws AuthenticationFailedException {
-        CurrentUserDTO currentUser = facade.authenticate(loginExample1());
+        UserDTO currentUser = facade.authenticate(loginExample1());
         assertEquals(currentUser.getUsername(), "rob");
     }
 
     @Test
     public void failedLoginTest() {
         try {
-            CurrentUserDTO currentUser = facade.authenticate(loginExample2());
+            UserDTO currentUser = facade.authenticate(loginExample2());
             assertNotEquals(currentUser.getUsername(), "rob");
         }
         catch (AuthenticationFailedException exception)
         {
             exception.printStackTrace();
         }
-    }
+    }*/
 }
