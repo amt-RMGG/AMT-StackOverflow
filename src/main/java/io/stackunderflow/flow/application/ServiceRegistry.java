@@ -4,8 +4,12 @@ import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
+import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcQuestionRepository;
 import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
 import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryQuestionRepository;
+
+
 
 public class ServiceRegistry {
 
@@ -14,6 +18,7 @@ public class ServiceRegistry {
     private static IQuestionRepository questionRepository;
     private static QuestionFacade questionFacade;
 
+    //@Inject @Named("JdbcPersonRepository") on devrait faire comme ça...
     private static IPersonRepository personRepository;
     private static IdentityManagementFacade identityManagementFacade;
 
@@ -28,11 +33,12 @@ public class ServiceRegistry {
         singleton = this;
 
         //"DB" des questions
-        questionRepository = new InMemoryQuestionRepository();
+        questionRepository = new JdbcQuestionRepository();
         questionFacade = new QuestionFacade(questionRepository);
 
         //"DB" des users
-        personRepository = new InMemoryPersonRepository();
+        //personRepository = new InMemoryPersonRepository();
+        personRepository = new JdbcPersonRepository();
         identityManagementFacade = new IdentityManagementFacade(personRepository);
     }
 

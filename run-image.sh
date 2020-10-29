@@ -1,3 +1,2 @@
-#better way of starting the container
-cd topologies
+cd docker/topologies/with_db
 docker-compose up

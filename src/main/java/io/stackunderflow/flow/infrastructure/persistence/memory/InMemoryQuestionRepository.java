@@ -23,4 +23,9 @@ public class InMemoryQuestionRepository extends InMemoryRepository<Question, Que
         return findAll();
     }
 
+    @Override
+    public Collection<Question> search(String result) {
+        return null;
+    }
+
 }

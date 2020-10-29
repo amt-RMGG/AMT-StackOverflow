@@ -7,16 +7,18 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="input-group" style="max-width: 500px;">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-append">
-            <button class="btn btn-secondary" type="button">Go!</button>
-          </span>
-        </div>
+        <form action="${pageContext.request.contextPath}/search">
+            <div class="input-group" style="max-width: 500px;">
+                <input name="searchText" type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-append">
+                <button class="btn btn-secondary" type="submit">Go!</button>
+              </span>
+            </div>
+        </form>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="${pageContext.request.contextPath}">Home
+                    <a class="nav-link" href="${pageContext.request.contextPath}/">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
