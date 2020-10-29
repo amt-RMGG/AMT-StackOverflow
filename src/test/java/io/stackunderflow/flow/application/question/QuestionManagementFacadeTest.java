@@ -1,10 +1,13 @@
 package io.stackunderflow.flow.application.question;
 
+import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
+import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
@@ -17,12 +20,21 @@ public class QuestionManagementFacadeTests {
     static private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
     static private QuestionFacade facade = new QuestionFacade(questionRepository);
 
-    public static ProposeQuestionCommand commandExample1()
+    public static ProposeQuestionCommand questionCommandExample1()
     {
         return ProposeQuestionCommand.builder()
-                .author("Douglas Adams")
+                .author("The mice")
                 .title("H2G2")
                 .text("What is the meaning of life, the universe and everything")
+                .build();
+    }
+
+    public static ProposeAnswerCommand answerCommandExample1(String questionId)
+    {
+        return ProposeAnswerCommand.builder()
+                .author("Deep thought")
+                .questionId(questionId)
+                .text("42")
                 .build();
     }
 
@@ -35,8 +47,19 @@ public class QuestionManagementFacadeTests {
 
     @Test
     public void proposeQuestionTest() throws RegistrationFailedException {
-        facade.proposeQuestion(commandExample1());
-        verify(questionRepository).save(Mockito.anyObject());
+        ArgumentCaptor<Question> argument = ArgumentCaptor.forClass(Question.class);
+        facade.proposeQuestion(questionCommandExample1());
+        verify(questionRepository).save(argument.capture());
+        assertEquals("H2G2", argument.getValue().getTitle());
+        //TODO : Additional verifications needed ?
+    }
+
+    @Test
+    public void proposeAnswerTest() throws RegistrationFailedException {
+        ArgumentCaptor<Answer> argument = ArgumentCaptor.forClass(Answer.class);
+        facade.proposeAnswer(answerCommandExample1(Mockito.anyString()));
+        verify(questionRepository).saveAnswer(argument.capture());
+        assertEquals("42", argument.getValue().getText());
     }
 
     @Test

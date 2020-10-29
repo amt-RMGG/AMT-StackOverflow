@@ -1,8 +1,8 @@
 package io.stackunderflow.flow.user_management;
 
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
-import io.stackunderflow.flow.infrastructure.persistence.memory.InMemoryPersonRepository;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
+import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
@@ -18,10 +18,7 @@ import org.junit.jupiter.api.BeforeAll;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class identityManagementTests {
-
-    static private IPersonRepository personRepository = new InMemoryPersonRepository();
-    import static org.junit.jupiter.api.Assertions.assertThrows;
+public class identityManagementTest {
 
     static private IPersonRepository personRepository = new JdbcPersonRepository();
 
@@ -80,5 +77,5 @@ public class identityManagementTests {
         {
             exception.printStackTrace();
         }
-    }*/
+    }
 }
