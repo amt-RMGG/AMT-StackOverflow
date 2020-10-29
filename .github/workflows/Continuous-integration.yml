@@ -44,10 +44,7 @@ jobs:
           ./build-image.sh
           ./run-image.sh &
           sleep 1m
-#      - name: Run maven tests
-#        run: |
-#          cp src/test/resources/arquillian.xml.example src/test/resources/arquillian.xml
-#          mvn verify
+
       - name: run codeceptjs e2e tests
         run: |
           cd e2e_tests
