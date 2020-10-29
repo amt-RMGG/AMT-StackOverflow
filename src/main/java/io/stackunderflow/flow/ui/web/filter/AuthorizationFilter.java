@@ -1,6 +1,6 @@
 package io.stackunderflow.flow.ui.web.filter;
 
-import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -30,7 +30,7 @@ public class AuthorizationFilter implements Filter {
             return;
         }
 
-        CurrentUserDTO currentUser = (CurrentUserDTO) request.getSession().getAttribute("currentUser");
+        UserDTO currentUser = (UserDTO) request.getSession().getAttribute("currentUser");
 
         //Always redirect to the login page the non logged users
         if(currentUser == null){
@@ -56,7 +56,8 @@ public class AuthorizationFilter implements Filter {
     boolean isPublicRessouce(String requestURI) {
         if(requestURI.startsWith("/stackunderflow/search"))
             return true;
-
+        if(requestURI.startsWith("/stackunderflow/user"))
+            return true;
         if(requestURI.startsWith("/stackunderflow/question"))
             return true;
         if(requestURI.startsWith("/stackunderflow/questions"))

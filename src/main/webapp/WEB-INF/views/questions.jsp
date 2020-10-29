@@ -27,7 +27,7 @@
                 <a href="${pageContext.request.contextPath}/question?id=${question.id}" class="btn btn-primary">Read More</a>
               </div>
               <div class="card-footer text-muted">
-                Posted on ${question.date} by ${question.author}
+                Posted on ${question.date} by <a href="${pageContext.request.contextPath}/user?username=${question.author}">${question.author}</a>
               </div>
             </div>
           </c:forEach>

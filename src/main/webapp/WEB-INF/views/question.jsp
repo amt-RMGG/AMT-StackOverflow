@@ -31,7 +31,7 @@
           </div>
           <div class="card-footer text-muted">
             Posted on ${question.date} by
-            <a href="#">${question.author}</a>
+            <a href="${pageContext.request.contextPath}/user?username=${question.author}">${question.author}</a>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
                   </div>
                   <div class="card-footer text-muted">
                     Posted on ${answer.date} by
-                    <a href="#">${answer.author}</a>
+                    <a href="${pageContext.request.contextPath}/user?username=${answer.author}">${answer.author}</a>
                   </div>
                 </div>
               </div>

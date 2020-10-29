@@ -1,6 +1,7 @@
 package io.stackunderflow.flow.application;
 
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
+import io.stackunderflow.flow.application.identitymgmt.UserFacade;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
@@ -25,16 +26,23 @@ public class ServiceRegistry {
     @Named("JdbcPersonRepository")
     private IPersonRepository personRepository;
     private IdentityManagementFacade identityManagementFacade;
+    private UserFacade userFacade;
+
 
     @PostConstruct
     public void postConstruct(){
         questionFacade = new QuestionFacade(questionRepository);
         identityManagementFacade = new IdentityManagementFacade(personRepository);
+        userFacade = new UserFacade(personRepository);
     }
 
     public QuestionFacade getQuestionFacade() { return questionFacade; }
 
     public IdentityManagementFacade getIdentityManagementFacade() {
         return identityManagementFacade;
+    }
+
+    public UserFacade getUserFacade() {
+        return userFacade;
     }
 }

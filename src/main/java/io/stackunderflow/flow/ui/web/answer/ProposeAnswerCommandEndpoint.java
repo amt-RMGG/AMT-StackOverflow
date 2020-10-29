@@ -2,7 +2,7 @@ package io.stackunderflow.flow.ui.web.answer;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +30,7 @@ public class ProposeAnswerCommandEndpoint extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         ProposeAnswerCommand command = ProposeAnswerCommand.builder()
-                .author(((CurrentUserDTO)req.getSession().getAttribute("currentUser")).getUsername())
+                .author(((UserDTO)req.getSession().getAttribute("currentUser")).getUsername())
                 .text(req.getParameter("text"))
                 .questionId(req.getParameter("questionId"))
                 .build();

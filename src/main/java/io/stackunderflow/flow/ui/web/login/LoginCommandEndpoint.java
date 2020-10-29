@@ -5,7 +5,7 @@ import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -31,7 +31,7 @@ public class LoginCommandEndpoint extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("errors");
 
-        CurrentUserDTO currentUser = null;
+        UserDTO currentUser = null;
 
         AuthenticateCommand authenticateCommand = AuthenticateCommand.builder()
                 .username(req.getParameter("username"))

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:set var="user" value="${user}" />
 <%@include file="fragments/header.jsp"%>
 
 <body>
@@ -16,8 +16,18 @@
             <div class="col-md-12">
                 <div class="card-body">
                     <h5 class="card-header">User profile</h5>
-                    <div class="input-group">
-                        under construction...
+                    <div class="">
+                        <c:choose>
+                            <c:when test="${user != null}">
+                                <h4>${user.firstname} ${user.lastname}</h4>
+                                <br/>
+                                <p>Username : ${user.username}</p>
+                                <p>Email : ${user.email}</p>
+                            </c:when>
+                            <c:otherwise>
+                                User not found
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -30,8 +40,6 @@
 <!-- /.container -->
 
 <%@include file="fragments/footer.jsp" %>
-
-
 
 </body>
 

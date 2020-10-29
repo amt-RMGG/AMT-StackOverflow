@@ -1,7 +1,7 @@
 package io.stackunderflow.flow.ui.web.question;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.CurrentUserDTO;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.question.ProposeQuestionCommand;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 
@@ -29,7 +29,7 @@ public class ProposeQuestionCommandEndpoint extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProposeQuestionCommand command = ProposeQuestionCommand.builder()
-                .author(((CurrentUserDTO)req.getSession().getAttribute("currentUser")).getUsername())
+                .author(((UserDTO)req.getSession().getAttribute("currentUser")).getUsername())
                 .text(req.getParameter("text"))
                 .title(req.getParameter("title"))
                 .build();
