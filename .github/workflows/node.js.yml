@@ -26,6 +26,8 @@ jobs:
           with:
             node-version: ${{ matrix.node-version }}
     - run: |
+          chmod +x build-image.sh
+          chmod +x run-image.sh
           ./build-image.sh
           ./run-image.sh
           cd e2e_tests
