@@ -6,17 +6,18 @@ import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.LinkedList;
 
 import static org.mockito.Mockito.verify;
 
-public class QuestionManagementFacadeTests {
+public class QuestionManagementFacadeTest {
     static private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
     static private QuestionFacade facade = new QuestionFacade(questionRepository);
 
@@ -64,7 +65,7 @@ public class QuestionManagementFacadeTests {
 
     @Test
     public void getQuestionsFromEmptyRepositoryTest() {
-        Mockito.when(questionRepository.find(null))
+        Mockito.when(questionRepository.find(Mockito.anyObject()))
                 .thenReturn(new LinkedList<Question>());
         assertEquals(facade.getQuestions(null), QuestionsDTO.builder()
                 .questions(new LinkedList<>())

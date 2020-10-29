@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class identityManagementTest {
-
+/*
     static private IPersonRepository personRepository = new JdbcPersonRepository();
 
     static private IdentityManagementFacade facade = new IdentityManagementFacade(personRepository);
@@ -78,4 +78,5 @@ public class identityManagementTest {
             exception.printStackTrace();
         }
     }
+    */
 }
