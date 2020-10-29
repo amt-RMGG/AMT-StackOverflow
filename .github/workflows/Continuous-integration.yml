@@ -31,18 +31,18 @@ jobs:
 
       - name: npm install
         run: |
-        cd e2e_tests
-        npm ci
+          cd e2e_tests
+          npm ci
 
       - name: Build with maven
         run: mvn clean package 
 
       - name: docker compose
         run: |
-        chmod +x build-image.sh
-        chmod +x run-image.sh
-        ./build-image.sh
-        ./run-image.sh
+          chmod +x build-image.sh
+          chmod +x run-image.sh
+          ./build-image.sh
+          ./run-image.sh
 #      - name: Run maven tests
 #        run: |
 #          cp src/test/resources/arquillian.xml.example src/test/resources/arquillian.xml
