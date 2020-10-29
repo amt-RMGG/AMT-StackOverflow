@@ -21,6 +21,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
+          ./build-image.sh
+          ./run-image.sh
           cd e2e_tests
           npm install
           npx codeceptjs run --override '{"helpers": {"Puppeteer": {"show": false}}}' --steps
