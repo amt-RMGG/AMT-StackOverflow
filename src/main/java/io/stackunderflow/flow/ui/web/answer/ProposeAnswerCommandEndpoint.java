@@ -1,8 +1,8 @@
-package io.stackunderflow.flow.ui.web.question;
+package io.stackunderflow.flow.ui.web.answer;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
+import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
-import io.stackunderflow.flow.application.question.ProposeQuestionCommand;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "SubmitQuestionsCommandHandler", urlPatterns = "/submitQuestion.do")
-public class ProposeQuestionCommandEndpoint extends HttpServlet {
+@WebServlet(name = "SubmitAnswerCommandHandler", urlPatterns = "/submitAnswer.do")
+public class ProposeAnswerCommandEndpoint extends HttpServlet {
 
     @Inject
     private ServiceRegistry serviceRegistry;
@@ -28,13 +28,14 @@ public class ProposeQuestionCommandEndpoint extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProposeQuestionCommand command = ProposeQuestionCommand.builder()
+
+        ProposeAnswerCommand command = ProposeAnswerCommand.builder()
                 .author(((UserDTO)req.getSession().getAttribute("currentUser")).getUsername())
                 .text(req.getParameter("text"))
-                .title(req.getParameter("title"))
+                .questionId(req.getParameter("questionId"))
                 .build();
 
-        questionFacade.proposeQuestion(command);
+        questionFacade.proposeAnswer(command);
         resp.sendRedirect("questions");
     }
 }

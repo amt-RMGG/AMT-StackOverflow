@@ -6,6 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 @Getter
 @Setter
@@ -24,7 +28,7 @@ public class Person implements IEntity<Person, PersonId> {
 
 
     public boolean authenticate(String clearTextPassword){
-        return clearTextPassword.toUpperCase().equals(encryptedPassword);
+        return hashPassword(clearTextPassword).equals(encryptedPassword);
     }
 
     @Override
@@ -39,7 +43,7 @@ public class Person implements IEntity<Person, PersonId> {
             if(clearTextPassword == null || clearTextPassword.isEmpty()){
                 throw new java.lang.IllegalArgumentException("Password is mandatory");
             }
-            encryptedPassword = clearTextPassword.toUpperCase(); //will change in the future !
+            encryptedPassword = hashPassword(clearTextPassword); //will change in the future !
             return this;
         }
 
@@ -68,4 +72,18 @@ public class Person implements IEntity<Person, PersonId> {
         }
     }
 
+    private static String hashPassword(String clearPassword){
+
+        byte[] salt = "".getBytes();
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-512");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        md.update(salt);
+        byte[] hashedPassword = md.digest(clearPassword.getBytes());
+
+        return new String(hashedPassword, StandardCharsets.UTF_8);
+    }
 }

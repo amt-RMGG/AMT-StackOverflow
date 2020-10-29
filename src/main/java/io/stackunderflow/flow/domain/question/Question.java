@@ -1,9 +1,14 @@
 package io.stackunderflow.flow.domain.question;
 
+import io.stackunderflow.flow.application.answer.AnswerDTO;
 import io.stackunderflow.flow.domain.IEntity;
 
 import io.stackunderflow.flow.domain.Id;
+import io.stackunderflow.flow.domain.answer.Answer;
 import lombok.*;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 @Data // bundles of @ToString, @EqualsAndHashCode, @Getter
 @Builder(toBuilder = true) //https://projectlombok.org/features/Builder
@@ -14,14 +19,16 @@ public class Question implements IEntity<Question, QuestionId> {
     private String author;
     private String text;
     private String title;
+    private Collection<Answer> answers;
+    private String date;
 
-    //TODO : QuestionType (cf video de liechti https://www.youtube.com/watch?v=SW9YFmC_va0&ab_channel=OlivierLiechti)
     @Setter(AccessLevel.NONE)
     private QuestionType questionType;
 
     public void categorizeAs(QuestionType type){
         this.questionType = type;
     }
+
 
     @Override
     public Question deepClone() {
@@ -46,7 +53,14 @@ public class Question implements IEntity<Question, QuestionId> {
             if(questionType == null){
                 questionType = QuestionType.DEFAULT;
             }
-            return new Question(id, author, text, title, questionType);
+            if(answers == null)
+                answers = new LinkedList<>();
+
+            if(date == null)
+                date = "";
+
+
+            return new Question(id, author, text, title, answers, date, questionType);
         }
     }
 

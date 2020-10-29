@@ -13,6 +13,6 @@ Scenario('test asking a question', ({I}) => {
     I.click('input[type="submit"]')
     I.click('Poser une question');
     I.fillField('input[type="text"]', 'tfTitle');
-    I.fillField('.text', 'tfText');
-    I.click('.bSubmitQuestion');
+    I.fillField('iframe[id="tfText_ifr"]', 'tfText');
+    I.click('button[id="bSubmitQuestion"]');
 });

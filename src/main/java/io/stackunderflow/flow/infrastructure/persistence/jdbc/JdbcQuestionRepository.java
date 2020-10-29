@@ -2,89 +2,98 @@ package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.application.question.QuestionQuery;
-import io.stackunderflow.flow.domain.person.Person;
+import io.stackunderflow.flow.domain.answer.Answer;
+import io.stackunderflow.flow.domain.answer.AnswerId;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 
-import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
 
-@ApplicationScoped //Singleton
+@ApplicationScoped
 @Named("JdbcQuestionRepository")
-public class JdbcQuestionRepository implements IQuestionRepository {
+public class JdbcQuestionRepository extends JdbcRepository implements IQuestionRepository {
 
-    @Resource(lookup = "jdbc/StackUnderFlowDS")
-    DataSource dataSource;
-
-    public  JdbcQuestionRepository(){
-        //TODO : ça marche si on fait ça, mais devrait marcher sans, avec le " @Resource(lookup = "jdbc/StackUnderFlowDS")"
-        try {
-            dataSource = InitialContext.doLookup("jdbc/StackUnderFlowDS");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
-
+    public JdbcQuestionRepository(){}
 
     @Override
     public Collection<Question> find(QuestionQuery query) {
-        // behavior here ... TODO to be define !
-        if(query != null){
-            return findAll();
+        Collection<Question> questions = new LinkedList<>();
+        //Find by id
+        if(query.getId() != null){
+            Optional<Question> q = findById(query.getId());
+            if(!q.isEmpty()) {
+               questions.add(q.get());
+            }else{
+                //TODO : throw error ? question id not found ?
+            }
+            return questions;
         }
-        //if nothing is found, return the whole repo
-        return findAll();
+        //if the query is empty, return the all the questions
+        questions = findAll();
+        return questions;
     }
+
+    @Override
+    public Collection<Question> search(String search) {
+        Collection<Question> results = new LinkedList<>();
+
+        try {
+            PreparedStatement statement = dataSource.getConnection()
+                    .prepareStatement("SELECT * FROM question WHERE title LIKE '%" + search + "%';");
+
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()){
+
+                QuestionId id = new QuestionId(rs.getString(1));
+                String title = rs.getString(2);
+                String text = rs.getString(3);
+                String author = rs.getString(4);
+
+                Question q = Question.builder()
+                        .id(id)
+                        .title(title)
+                        .text(text)
+                        .author(author)
+                        .build();
+
+                results.add(q);
+            }
+
+        }catch(SQLException e){
+            System.out.println("error : " + e.getMessage());
+        }
+        return results;
+    }
+
 
     //TODO FACTORISER çA avec une super classe JdbcRepository
     @Override
     public void save(Question entity) throws RegistrationFailedException {
 
-        Connection connection = null;
-        PreparedStatement statement = null;
-        //Insert into the db
         try {
+            String query = "INSERT INTO question (id, title, text, author) VALUES(?, ?, ?, ?)";
+            super.executeInsertQuery(query, entity.getId().asString(), entity.getTitle(), entity.getText(), entity.getAuthor());
 
-            connection = dataSource.getConnection();
-            statement = connection.prepareStatement(
-                    "INSERT INTO question (id, title, text, author) VALUES(?, ?, ?, ?)"
-            );
-            statement.setString(1, entity.getId().asString());
-            statement.setString(2, entity.getTitle());
-            statement.setString(3, entity.getText());
-            statement.setString(4, entity.getAuthor());
-
-            statement.executeUpdate();
-
-        }catch(SQLException e){
+        }catch(RegistrationFailedException e){
             throw new RegistrationFailedException(e.getMessage());
+        }
+    }
+    @Override
+    public void saveAnswer(Answer entity) throws RegistrationFailedException {
+        try {
+            String query = "INSERT INTO answer (id, text, user, question) VALUES(?, ?, ?, ?)";
+            super.executeInsertQuery(query, entity.getId().asString(), entity.getText(), entity.getAuthor(), entity.getQuestionId());
 
-            //Close connection to the DB
-        }finally {
-            try{
-                if(statement != null)
-                    connection.close();
-            }catch(SQLException se){
-                //TODO : do something ?
-            }
-            try{
-                if(connection != null)
-                    connection.close();
-            }catch(SQLException se){
-                se.printStackTrace();
-            }
+        }catch(RegistrationFailedException e){
+            throw new RegistrationFailedException(e.getMessage());
         }
     }
 
@@ -95,36 +104,89 @@ public class JdbcQuestionRepository implements IQuestionRepository {
 
     @Override
     public Optional<Question> findById(QuestionId id) {
-        return Optional.empty();
+
+        ResultSet rs = super.fetchData("SELECT * FROM question WHERE id = ?", id.asString());
+        Question q = null;
+        Collection<Answer> answers;
+
+
+        try{
+
+            answers = getAnswers(id);
+
+            if(rs.next()) {
+                String title = rs.getString(2);
+                String text = rs.getString(3);
+                String date = rs.getString(4);
+                String author = rs.getString(5);
+                q = Question.builder()
+                        .id(id)
+                        .title(title)
+                        .text(text)
+                        .author(author)
+                        .date(date)
+                        .answers(answers)
+                        .build();
+            }
+        }catch(SQLException e){
+            System.out.println("error : " + e.getMessage());
+        }
+        if(q == null)
+            return Optional.empty();
+        else
+            return Optional.of(q);
+    }
+
+    private Collection<Answer> getAnswers(QuestionId questionId) {
+
+        LinkedList<Answer> ret = new LinkedList<>();
+        ResultSet rs = super.fetchData("SELECT * FROM answer WHERE answer.question = ?", questionId.asString());
+        try{
+            while(rs.next()) {
+                AnswerId id = new AnswerId(rs.getString(1));
+                String text = rs.getString(2);
+                String date = rs.getString(3);
+                String author = rs.getString(4);
+
+                Answer ans = Answer.builder()
+                        .id(id)
+                        .text(text)
+                        .author(author)
+                        .date(date)
+                        .build();
+
+                ret.add(ans);
+            }
+        }catch(SQLException e){
+            System.out.println("error : " + e.getMessage());
+        }
+        return ret;
     }
 
     @Override
     public Collection<Question> findAll() {
         Collection<Question> allQuestion = new LinkedList<>();
 
-        try {
-            PreparedStatement statement = dataSource.getConnection()
-                    .prepareStatement("SELECT * FROM question");
+        ResultSet rs = super.fetchData("SELECT * FROM question");
 
-            ResultSet rs = statement.executeQuery();
-
-            while(rs.next() != false){
-
+        try{
+            while(rs.next()) {
                 QuestionId id = new QuestionId(rs.getString(1));
                 String title = rs.getString(2);
                 String text = rs.getString(3);
-                String author = rs.getString(4);
+                String date = rs.getString(4);
+                String author = rs.getString(5);
 
                 Question q = Question.builder()
-                     .id(id)
-                     .title(title)
-                     .text(text)
-                     .author(author)
-                     .build();
+                        .id(id)
+                        .title(title)
+                        .text(text)
+                        .date(date)
+                        .author(author)
+                        .build();
 
                 allQuestion.add(q);
             }
-
         }catch(SQLException e){
             System.out.println("error : " + e.getMessage());
         }

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="question" value="${question}" />
+<c:set var="answers" value="${answers}" />
 
 <%@include file="fragments/header.jsp"%>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -26,11 +27,11 @@
         <div class="card mb-12">
           <div class="card-body">
             <h2 class="card-title">${question.title}</h2>
-            <p class="card-text">${question.body}</p>
+            <p class="card-text">${question.text}</p>
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
-            <a href="#">${question.author}</a>
+            Posted on ${question.date} by
+            <a href="${pageContext.request.contextPath}/user?username=${question.author}">${question.author}</a>
             <p>votes</p>
             <a href="#">[+]</a>
             <a href="#">[-]</a>
@@ -42,8 +43,21 @@
       <div class="col-md-12">
         <div class="card mb-12">
           <div class="card-body">
-            <h2 class="card-title">Réponse</h2> by author
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <h2 class="card-title">Réponse(s)</h2>
+            <c:forEach items="${answers}" var="answer">
+              <!-- Blog Entries Column -->
+              <div class="col-md-12">
+                <div class="card mb-12">
+                  <div class="card-body">
+                    <p class="card-text">${answer.text}</p>
+                  </div>
+                  <div class="card-footer text-muted">
+                    Posted on ${answer.date} by
+                    <a href="${pageContext.request.contextPath}/user?username=${answer.author}">${answer.author}</a>
+                  </div>
+                </div>
+              </div>
+            </c:forEach>
           </div>
         </div>
       </div>
@@ -52,8 +66,12 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-12">
-          <textarea id="comment"></textarea>
-            <a href="#" class="btn btn-primary">Répondre</a>
+          <form id="newAnswer" class="shortForm" method="POST" action="submitAnswer.do">
+            <h3>Votre réponse</h3>
+            <textarea id="tfText" name="text" form="newAnswer"> </textarea>
+            <input type="hidden" name="questionId" value="${question.id}">
+            <button id="bSubmitQuestion" class="btn btn-primary btn-small" type="submit">Répondre</button>
+          </form>
         </div>
 
       </div>
