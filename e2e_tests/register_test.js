@@ -17,7 +17,7 @@ Scenario('register to the site', ({ I }) => {
 
     //Go to profile page
     I.click('testFirstName testName')
-    I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/user')
+    I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/user?username=testUserName')
     I.see('User profile')
 
     //go to question creation page
@@ -50,20 +50,3 @@ Scenario('register to the site', ({ I }) => {
     I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/login')
 
 });
-
-/*
-Scenario('register to the site', ({ I }) => {
-    I.seeCurrentUrlEquals('localhost:8080/stackunderflow')
-    I.click('Sign in')
-    I.fillField('Nom d\'utilisateur', 'testUserName')
-    I.fillField( 'Nom', 'testName')
-    I.fillField( 'Prénom', 'testFirstName')
-    I.fillField( 'Email', 'testEmail')
-    I.fillField( 'Mot de passe', 'testPassword')
-    I.fillField( 'Confirmer le mot de passe', 'testPassword')
-    I.click('S\'enregistrer')
-    I.click('testFirstName testName')
-    I.seeCurrentUrlEquals('localhost:8080/stackunderflow/user')
-    I.see('User profile')
-});
-*/
