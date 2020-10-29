@@ -13,8 +13,8 @@ public class VoteFacade {
 
     public void proposeVote(ProposeVoteCommand command) throws RegistrationFailedException {
         Vote submittedVote = Vote.builder()
-                .idUser(command.getUserID())
-                .idQuestion(command.getQuestionID())
+                .idUser(command.getIdUser())
+                .idQuestion(command.getIdQuestion())
                 .type(command.getType())
                 .build();
         voteRepository.save(submittedVote);
