@@ -31,8 +31,6 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
             Optional<Question> q = findById(query.getId());
             if(!q.isEmpty()) {
                questions.add(q.get());
-            }else{
-                //TODO : throw error ? question id not found ?
             }
             return questions;
         }
@@ -75,7 +73,6 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
     }
 
 
-    //TODO FACTORISER çA avec une super classe JdbcRepository
     @Override
     public void save(Question entity) throws RegistrationFailedException {
 

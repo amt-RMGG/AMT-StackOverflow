@@ -6,7 +6,6 @@
     <display-name>StackUnderFlow server</display-name>
     <servlet>
         <servlet-name>RootServlet</servlet-name>
-        <!-- TODO : Servet here define the main landing page  -->
         <servlet-class>io.stackunderflow.flow.ui.web.landingpage.LandingPageEndpoint</servlet-class>
     </servlet>
     <servlet-mapping>

@@ -50,7 +50,6 @@ public class QuestionManagementFacadeTest {
         facade.proposeQuestion(questionCommandExample1());
         verify(questionRepository).save(argument.capture());
         assertEquals("H2G2", argument.getValue().getTitle());
-        //TODO : Additional verifications needed ?
     }
 
     @Test

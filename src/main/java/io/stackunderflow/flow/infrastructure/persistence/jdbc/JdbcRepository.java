@@ -60,7 +60,7 @@ public class JdbcRepository {
                 if (statement != null)
                     connection.close();
             } catch (SQLException se) {
-                //TODO : do something ?
+                se.printStackTrace();
             }
             try {
                 if (connection != null)
