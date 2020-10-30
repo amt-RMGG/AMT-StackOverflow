@@ -1,14 +1,9 @@
 package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.domain.person.Person;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
-import static org.junit.Assert.*;
 
 public class jdbcPersonTest {
     @Test
