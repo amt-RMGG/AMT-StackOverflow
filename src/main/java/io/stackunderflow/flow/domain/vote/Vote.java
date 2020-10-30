@@ -28,7 +28,7 @@ public class Vote implements IEntity {
     public Vote deepClone() {
         return this.toBuilder()
                 .username(username)
-                .idQuestion(new QuestionId(idQuestion.asString()))
+                .idQuestion(idQuestion)
                 .build();
     }
 
