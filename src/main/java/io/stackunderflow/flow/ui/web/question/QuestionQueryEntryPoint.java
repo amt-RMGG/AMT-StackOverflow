@@ -1,9 +1,11 @@
 package io.stackunderflow.flow.ui.web.question;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
+import io.stackunderflow.flow.application.answer.AnswerDTO;
 import io.stackunderflow.flow.application.question.QuestionFacade;
 import io.stackunderflow.flow.application.question.QuestionQuery;
 import io.stackunderflow.flow.application.question.QuestionsDTO;
+import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.QuestionId;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 //Specific question
 @WebServlet(name = "QuestionPageHandler", urlPatterns = "/question")
@@ -48,9 +53,20 @@ public class QuestionQueryEntryPoint extends HttpServlet {
                 .build();
 
         QuestionsDTO questionsDTO = questionFacade.getQuestions(query);
+        Collection<Answer> answers = questionsDTO.getQuestions().get(0).getAnswers();
+        List<AnswerDTO> answersDTO =
+                answers.stream()
+                        .map(answer -> AnswerDTO.builder()
+                                .id(answer.getId().asString())
+                                .text(answer.getText())
+                                .author(answer.getAuthor())
+                                .date(answer.getDate())
+                                .questionId(answer.getQuestionId())
+                                .votes(answer.getVotes())
+                                .build()).collect(Collectors.toList());
 
         req.setAttribute("question", questionsDTO.getQuestions().get(0));
-        req.setAttribute("answers", questionsDTO.getQuestions().get(0).getAnswers());
+        req.setAttribute("answers", answersDTO);
         req.getRequestDispatcher("/WEB-INF/views/question.jsp").forward(req, resp);
     }
 

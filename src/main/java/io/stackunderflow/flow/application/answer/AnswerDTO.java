@@ -11,5 +11,8 @@ public class AnswerDTO {
     private String id;
     private String text;
     private String author;
+    private String date;
+    private String questionId;
+    private int votes;
 }
 

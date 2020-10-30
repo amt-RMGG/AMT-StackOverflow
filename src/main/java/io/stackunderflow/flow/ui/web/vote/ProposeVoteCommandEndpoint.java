@@ -36,11 +36,24 @@ public class ProposeVoteCommandEndpoint extends HttpServlet {
         else
             type = VoteType.DEFAULT;
 
-        ProposeVoteCommand command = ProposeVoteCommand.builder()
-            .username(((UserDTO)request.getSession().getAttribute("currentUser")).getUsername())
-            .idQuestion(new QuestionId(request.getParameter("idQuestion")))
-            .type(type).build();
-        voteFacade.proposeVote(command);
+        ProposeVoteCommand command;
+        if(request.getParameter("objectType").equals("question")) {
+            command = ProposeVoteCommand.builder()
+                    .username(((UserDTO) request.getSession().getAttribute("currentUser")).getUsername())
+                    .idQuestion(new QuestionId(request.getParameter("idQuestion")))
+                    .type(type).build();
+
+            voteFacade.proposeVote(command, false);
+        }
+        else {
+            command = ProposeVoteCommand.builder()
+                    .username(((UserDTO) request.getSession().getAttribute("currentUser")).getUsername())
+                    .idQuestion(new QuestionId(request.getParameter("idAnswer")))
+                    .type(type).build();
+
+            voteFacade.proposeVote(command, true);
+        }
+
         response.sendRedirect("question?id="+request.getParameter("idQuestion"));
     }
 }
