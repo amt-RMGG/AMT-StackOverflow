@@ -50,3 +50,48 @@ Scenario('register to the site', ({ I }) => {
     I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/login')
 
 });
+
+Feature('update profile infos');
+
+Scenario('update my profile infos', ({ I }) => {
+
+    I.amOnPage(':8080/stackunderflow')
+
+    //log in
+    I.click('Login')
+    I.fillField('Nom d\'utilisateur', 'testUserName')
+    I.fillField( 'Mot de passe', 'testPassword')
+    I.click('input[type="submit"]')
+    I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/questions')
+
+    //visit profile
+    I.click('testFirstName testName')
+    I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/user?username=testUserName')
+    I.see('User profile')
+    I.see('testFirstName testName')
+    I.see('Username : testUserName')
+    I.see('Email : testEmail')
+
+    //update info
+    I.click('edit')
+    I.fillField('#fname', 'updatedFirstName')
+    I.fillField('#lname', 'updatedName')
+    I.fillField('#email', 'updatedEmail')
+    I.click('Confirm')
+
+    //Check results
+    I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/user?username=testUserName')
+    I.dontSee('testFirstName testName')
+    I.dontSee('Username : testUserName')
+    I.see('Email : testEmail')
+
+    I.see('updatedFirstName updatedName')
+    I.see('Username : testUserName')
+    I.see('Email : updatedEmail')
+
+
+    //check that the edit button is not visible if i am on another profile
+    
+    
+
+});
