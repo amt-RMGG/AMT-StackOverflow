@@ -1,7 +1,7 @@
 package io.stackunderflow.flow.application.identitymgmt;
 
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
-import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
+import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
 
 import java.util.Optional;
@@ -23,12 +23,15 @@ public class UserFacade {
 
         Person user = result.get();
 
-
         return UserDTO.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())
                 .build();
+    }
+
+    public void updateUser(UserQuery query) {
+        personRepository.update(query);
     }
 }

@@ -1,9 +1,11 @@
 package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
+
+import io.stackunderflow.flow.application.identitymgmt.UserQuery;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
+
+import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
-import io.stackunderflow.flow.domain.person.PersonId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -59,7 +61,7 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
         return Optional.empty();
     }
 
-    @Override
+
     public void save(Person entity) throws RegistrationFailedException {
         synchronized (entity.getUsername()) {
             if (!findByUsername(entity.getUsername()).isEmpty()) {
@@ -76,60 +78,6 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
 
         }
     }
-
-    @Override
-    public void remove(PersonId id) {
-
-    }
-
-    @Override
-    public Optional<Person> findById(PersonId id) {
-        return Optional.empty();
-    }
-
-    /*
-    @Override
-    public Optional<Person> findById(PersonId id) {
-        try {
-            ResultSet rs = super.fetchData("SELECT * FROM user WHERE id = ?", id);
-
-            String username = "";
-            String email = "";
-            String password = "";
-            String firstname = "";
-            String lastname = "";
-
-            //String username, email, password, firstname, lastname;
-
-            //Si la query n'a rien retourne
-            if (!rs.next()) {
-                return Optional.empty();
-            }else{
-                username = rs.getString(1);
-                email = rs.getString(2);
-                password = rs.getString(3);
-                firstname = rs.getString(4);
-                lastname = rs.getString(5);
-            }
-
-            Person p = Person.builder()
-                    .id(id)
-                    .username(username)
-                    .email(email)
-                    .firstname(firstname)
-                    .lastname(lastname)
-                    .encryptedPassword(password)
-                    .build();
-
-            return Optional.of(p);
-
-        }catch(SQLException e){
-            System.out.println(e.getCause());
-        }
-        return Optional.empty();
-    }
-
-     */
 
     @Override
     public Collection<Person> findAll() {
@@ -161,5 +109,21 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
             System.out.println(e.getCause());
         }
         return allPerson;
+    }
+
+
+    public void update(UserQuery query) {
+        String sqlQuery = "UPDATE user SET " +
+                "email = ?, " +
+                "firstname = ?, " +
+                "lastname = ? " +
+                "WHERE username = ?;";
+        try{
+            super.executeUpdateQuery(sqlQuery, query.getEmail(), query.getFirstName(), query.getLastName(), query.getUsername());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
     }
 }

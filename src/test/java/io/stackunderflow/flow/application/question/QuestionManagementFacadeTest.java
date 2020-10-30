@@ -3,17 +3,16 @@ package io.stackunderflow.flow.application.question;
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.answer.Answer;
-import io.stackunderflow.flow.infrastructure.persistence.IQuestionRepository;
+import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.LinkedList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
 public class QuestionManagementFacadeTest {

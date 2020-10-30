@@ -5,7 +5,7 @@ import io.stackunderflow.flow.application.identitymgmt.authenticate.Authenticati
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
+import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -26,7 +26,6 @@ public class IdentityManagementFacade {
     public void register(RegisterCommand command) throws RegistrationFailedException {
 
         //Check if another user has already the same username
-        //TODO ET l'email alors ???
         Person existingPersonWithSameUsername = personRepository.findByUsername(command.getUsername()).orElse(null);
 
         if(existingPersonWithSameUsername != null){

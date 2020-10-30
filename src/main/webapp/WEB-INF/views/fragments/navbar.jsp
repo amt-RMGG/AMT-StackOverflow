@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/">Home
+                    <a class="nav-link" href="${pageContext.request.contextPath}/">Accueil
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -44,7 +44,7 @@
                     <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/register" class="btn btn-primary">Sign in</a>
+                    <a href="${pageContext.request.contextPath}/register" class="btn btn-primary">S'enregistrer</a>
                 </li>
                 </c:otherwise>
 
