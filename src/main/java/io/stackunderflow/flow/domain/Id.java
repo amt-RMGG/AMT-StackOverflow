@@ -1,6 +1,7 @@
 package io.stackunderflow.flow.domain;
 
 import lombok.EqualsAndHashCode;
+
 import java.util.UUID;
 
 @EqualsAndHashCode

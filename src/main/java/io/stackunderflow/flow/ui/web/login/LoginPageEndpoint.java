@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 @WebServlet(name = "LoginPageHandler", urlPatterns = "/login")
 public class LoginPageEndpoint extends HttpServlet {

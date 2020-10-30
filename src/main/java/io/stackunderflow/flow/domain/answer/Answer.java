@@ -1,7 +1,10 @@
 package io.stackunderflow.flow.domain.answer;
 
 import io.stackunderflow.flow.domain.IEntity;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Setter;
 
 @Data // bundles of @ToString, @EqualsAndHashCode, @Getter
 @Builder(toBuilder = true) //https://projectlombok.org/features/Builder
