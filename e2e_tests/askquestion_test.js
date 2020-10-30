@@ -12,7 +12,31 @@ Scenario('test asking a question', ({I}) => {
     I.fillField( 'Confirmer le mot de passe', 'testPassword1')
     I.click('input[type="submit"]')
     I.click('Poser une question');
-    I.fillField('input[type="text"]', 'tfTitle');
-    I.fillField('iframe[id="tfText_ifr"]', 'tfText');
+    I.fillField('input[type="text"]', 'question title');
+    I.executeScript('tinyMCE.activeEditor.setContent("question text");')
     I.click('button[id="bSubmitQuestion"]');
+    I.click('Read More')
+    I.see('question text')
+});
+
+Feature('answerToQuestion');
+
+Scenario('test answering to a question', ({I}) => {
+   
+    I.amOnPage(':8080/stackunderflow/home')
+    I.click('Login')
+    I.fillField('Nom d\'utilisateur', 'testUserName1')
+    I.fillField( 'Mot de passe', 'testPassword1')
+    I.click('input[type="submit"]')
+    
+
+    I.amOnPage(':8080/stackunderflow/questions');
+    I.click('Read More');
+    I.see('Réponse(s)');
+    I.executeScript('tinyMCE.activeEditor.setContent("this is an answer");')
+    I.click('button[id="bSubmitQuestion"]')
+    I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/questions')
+    I.click('Read More')
+    I.see("this is an answer")
+    
 });

@@ -6,6 +6,7 @@
     <variable name="default.http.port" defaultValue="8080"/>
     <variable name="default.https.port" defaultValue="8443"/>
 
+    <!--<webApplication location="/config/dropins/stackunderflow.war" contextRoot="/stackunderflow"/>  VERSION POUR DOCKER -->
     <webApplication location="stackunderflow.war" contextRoot="/stackunderflow"/>
 
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
@@ -25,5 +26,4 @@
             serverTimezone = "UTC"
         />
     </dataSource>
-
 </server>
