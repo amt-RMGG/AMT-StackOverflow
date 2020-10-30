@@ -23,7 +23,6 @@ public class UserFacade {
 
         Person user = result.get();
 
-
         return UserDTO.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())

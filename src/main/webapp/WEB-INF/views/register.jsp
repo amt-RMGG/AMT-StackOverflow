@@ -7,6 +7,15 @@
 
 <%@include file="fragments/navbar.jsp" %>
 
+<% String errors = (String)request.getSession().getAttribute("errors"); %>
+
+
+<c:if test="${ errors != null}">
+    <script>
+        alert("${errors}");
+    </script>
+</c:if>
+
 <!-- Page Content -->
 <div class="container mainContent">
 

@@ -42,8 +42,6 @@ public class UserQueryEntryPoint extends HttpServlet {
             return;
         }
 
-
-
         UserQuery query = UserQuery.builder()
                 .username(username)
                 .build();

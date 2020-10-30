@@ -1,13 +1,15 @@
 package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
+
 import io.stackunderflow.flow.application.identitymgmt.UserQuery;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
+
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
-import io.stackunderflow.flow.domain.person.PersonId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -59,7 +61,7 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
         return Optional.empty();
     }
 
-    @Override
+
     public void save(Person entity) throws RegistrationFailedException {
         synchronized (entity.getUsername()) {
             if (!findByUsername(entity.getUsername()).isEmpty()) {
@@ -76,17 +78,6 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
 
         }
     }
-
-    @Override
-    public void remove(PersonId id) {
-
-    }
-
-    @Override
-    public Optional<Person> findById(PersonId id) {
-        return Optional.empty();
-    }
-
 
     @Override
     public Collection<Person> findAll() {
@@ -120,7 +111,7 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
         return allPerson;
     }
 
-    @Override
+
     public void update(UserQuery query) {
         String sqlQuery = "UPDATE user SET " +
                 "email = ?, " +
