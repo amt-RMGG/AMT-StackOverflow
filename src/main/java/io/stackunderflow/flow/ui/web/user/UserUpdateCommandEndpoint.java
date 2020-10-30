@@ -47,6 +47,8 @@ public class UserUpdateCommandEndpoint extends HttpServlet {
 
             userFacade.updateUser(query);
 
+            req.getSession().setAttribute("currentUser", userFacade.getUser(UserQuery.builder().username(username).build()));
+
             resp.sendRedirect("user?username=" + username);
         }else{
             resp.sendRedirect("home");
