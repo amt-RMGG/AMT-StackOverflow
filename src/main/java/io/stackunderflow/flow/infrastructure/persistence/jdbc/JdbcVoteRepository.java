@@ -77,7 +77,7 @@ public class JdbcVoteRepository extends JdbcRepository implements IVoteRepositor
     @Override
     public boolean checkIfVoteExistAnswer(String idAnswer, String username) {
         try {
-            ResultSet rs = super.fetchData("SELECT * FROM answerVote WHERE username = ? AND answerId = ?", username, idAnswer);
+            ResultSet rs = super.fetchData("SELECT * FROM answerVote WHERE userId = ? AND answerId = ?", username, idAnswer);
             if(rs.next())
                 return true;
             else

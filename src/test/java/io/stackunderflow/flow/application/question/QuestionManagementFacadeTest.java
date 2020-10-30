@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
 public class QuestionManagementFacadeTest {
-    static private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
-    static private QuestionFacade facade = new QuestionFacade(questionRepository);
+    private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
+    private QuestionFacade facade = new QuestionFacade(questionRepository);
 
-    public static ProposeQuestionCommand questionCommandExample1()
+    public ProposeQuestionCommand questionCommandExample1()
     {
         return ProposeQuestionCommand.builder()
                 .author("The mice")
@@ -28,7 +28,7 @@ public class QuestionManagementFacadeTest {
                 .build();
     }
 
-    public static ProposeAnswerCommand answerCommandExample1(String questionId)
+    public ProposeAnswerCommand answerCommandExample1(String questionId)
     {
         return ProposeAnswerCommand.builder()
                 .author("Deep thought")
@@ -37,11 +37,18 @@ public class QuestionManagementFacadeTest {
                 .build();
     }
 
-    public static QuestionQuery queryExample1()
+    public QuestionQuery queryExample1()
     {
         return QuestionQuery.builder()
                 .author("Doesn't Exist")
                 .id(new QuestionId("0")).build();
+    }
+
+    public IQuestionRepository repositoryExample1()
+    {
+        Mockito.when(questionRepository.find(new QuestionQuery(new QuestionId("1"), "The mice")));
+
+        return questionRepository;
     }
 
     @Test
@@ -68,4 +75,5 @@ public class QuestionManagementFacadeTest {
                 .questions(new LinkedList<>())
                 .build());
     }
+
 }

@@ -16,6 +16,7 @@ public class Answer implements IEntity<Answer, AnswerId> {
     private String text;
     private String date;
     private String questionId;
+    private int votes;
 
     @Override
     public Answer deepClone() {
@@ -41,7 +42,7 @@ public class Answer implements IEntity<Answer, AnswerId> {
             }
 
 
-            return new Answer(id, author, text, date, questionId);
+            return new Answer(id, author, text, date, questionId, votes);
         }
     }
 

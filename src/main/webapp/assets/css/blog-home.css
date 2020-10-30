@@ -112,3 +112,11 @@ footer {
   from {transform: scale(0)}
   to {transform: scale(1)}
 }
+
+.votes input[type="submit"] {
+  width: 100%;
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+}

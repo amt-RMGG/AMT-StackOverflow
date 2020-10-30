@@ -106,7 +106,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
         ResultSet rs = super.fetchData("SELECT * FROM question WHERE id = ?", id.asString());
         Question q = null;
         Collection<Answer> answers;
-        ResultSet votesRS = super.fetchData("select count(*) from questionVote where questionId=?", id.asString());
+        ResultSet votesRS = super.fetchData("select sum(vote) from questionVote where questionId=?", id.asString());
 
         try{
             votesRS.next();
@@ -141,6 +141,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
 
         LinkedList<Answer> ret = new LinkedList<>();
         ResultSet rs = super.fetchData("SELECT * FROM answer WHERE answer.question = ?", questionId.asString());
+
         try{
             while(rs.next()) {
                 AnswerId id = new AnswerId(rs.getString(1));
@@ -148,11 +149,16 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
                 String date = rs.getString(3);
                 String author = rs.getString(4);
 
+                ResultSet votesRS = super.fetchData("select sum(vote) from answerVote where answerId=?", id.asString());
+                votesRS.next();
+                int vote = votesRS.getInt(1);
+
                 Answer ans = Answer.builder()
                         .id(id)
                         .text(text)
                         .author(author)
                         .date(date)
+                        .votes(vote)
                         .build();
 
                 ret.add(ans);
