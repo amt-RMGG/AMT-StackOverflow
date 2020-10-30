@@ -106,10 +106,10 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
         ResultSet rs = super.fetchData("SELECT * FROM question WHERE id = ?", id.asString());
         Question q = null;
         Collection<Answer> answers;
-
+        ResultSet votesRS = super.fetchData("select count(*) from questionVote where questionId=?", id.asString());
 
         try{
-
+            votesRS.next();
             answers = getAnswers(id);
 
             if(rs.next()) {
@@ -117,6 +117,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
                 String text = rs.getString(3);
                 String date = rs.getString(4);
                 String author = rs.getString(5);
+                int votes = votesRS.getInt(1);
                 q = Question.builder()
                         .id(id)
                         .title(title)
@@ -124,6 +125,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
                         .author(author)
                         .date(date)
                         .answers(answers)
+                        .votes(votes)
                         .build();
             }
         }catch(SQLException e){

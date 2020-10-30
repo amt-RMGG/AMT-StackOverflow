@@ -21,6 +21,7 @@ public class Question implements IEntity<Question, QuestionId> {
     private String title;
     private Collection<Answer> answers;
     private String date;
+    private int votes;
 
     @Setter(AccessLevel.NONE)
     private QuestionType questionType;
@@ -60,7 +61,7 @@ public class Question implements IEntity<Question, QuestionId> {
                 date = "";
 
 
-            return new Question(id, author, text, title, answers, date, questionType);
+            return new Question(id, author, text, title, answers, date, votes, questionType);
         }
     }
 

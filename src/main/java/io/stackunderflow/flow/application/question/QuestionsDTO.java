@@ -25,6 +25,7 @@ public class QuestionsDTO {
         private String author;
         private String title;
         private String date;
+        private int votes;
         private Collection<Answer> answers;
     }
 

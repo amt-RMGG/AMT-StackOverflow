@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS user (
   firstname VARCHAR(255) NOT NULL,
   lastname VARCHAR(255) NOT NULL,
   PRIMARY KEY (username),
-  UNIQUE INDEX username_UNIQUE (username ASC) VISIBLE)
+  UNIQUE INDEX username_unique (username ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS answerVote (
   id INT NOT NULL AUTO_INCREMENT,
   userId VARCHAR(255) NOT NULL,
   answerId VARCHAR(255) NOT NULL,
+  vote INT NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_vote_user1_idx (userId ASC) VISIBLE,
   INDEX fk_vote_answer1_idx (answerId ASC) VISIBLE,
@@ -77,9 +78,10 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS questionVote (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   questionId VARCHAR(255) NOT NULL,
   userId VARCHAR(255) NOT NULL,
+  vote INT NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_questionVote_question1_idx (questionId ASC) VISIBLE,
   INDEX fk_questionVote_user1_idx (userId ASC) VISIBLE,
