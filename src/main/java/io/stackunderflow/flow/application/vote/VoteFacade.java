@@ -11,15 +11,27 @@ public class VoteFacade {
         this.voteRepository = voteRepository;
     }
 
-    public void proposeVote(ProposeVoteCommand command) {
+    public void proposeVote(ProposeVoteCommand command, boolean answer) {
         try {
-            if(!voteRepository.checkIfVoteExistQuestion(command.getIdQuestion().asString(), command.getUsername())) {
-                Vote submittedVote = Vote.builder()
-                        .username(command.getUsername())
-                        .idQuestion(command.getIdQuestion())
-                        .type(command.getType())
-                        .build();
-                voteRepository.save(submittedVote);
+            if(answer) {
+                if(!voteRepository.checkIfVoteExistAnswer(command.getIdQuestion().asString(), command.getUsername())) {
+                    Vote submittedVote = Vote.builder()
+                            .username(command.getUsername())
+                            .idQuestion(command.getIdQuestion())
+                            .type(command.getType())
+                            .build();
+                    voteRepository.saveAnswerVote(submittedVote);
+                }
+            }
+            else {
+                if(!voteRepository.checkIfVoteExistQuestion(command.getIdQuestion().asString(), command.getUsername())) {
+                    Vote submittedVote = Vote.builder()
+                            .username(command.getUsername())
+                            .idQuestion(command.getIdQuestion())
+                            .type(command.getType())
+                            .build();
+                    voteRepository.save(submittedVote);
+                }
             }
         } catch (RegistrationFailedException e) {
             e.printStackTrace();

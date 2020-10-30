@@ -16,6 +16,7 @@ public class Vote implements IEntity {
     private QuestionId idQuestion = new QuestionId();
     private int vote = 0;
     private VoteType type;
+    private String objectType;
 
     @Override
     public VoteID getId() {
@@ -44,7 +45,7 @@ public class Vote implements IEntity {
             else
                 return null;
 
-            return new Vote(username, idQuestion, vote, type);
+            return new Vote(username, idQuestion, vote, type, objectType);
         }
     }
 }

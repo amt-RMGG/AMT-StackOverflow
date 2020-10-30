@@ -87,6 +87,7 @@
                       <form name="upvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="votes col-md-1">
                         <input type="hidden" name="objectType" value="answer" />
                         <input type="hidden" name="username" value="${answer.author}" />
+                        <input type="hidden" name="idAnswer" value="${answer.id}" />
                         <input type="hidden" name="idQuestion" value="${question.id}" />
                         <input type="hidden" name="type" value="UPVOTE" />
                         <input type="submit" value="+" />
@@ -94,6 +95,7 @@
                       <form name="downvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="votes col-md-1">
                         <input type="hidden" name="objectType" value="answer" />
                         <input type="hidden" name="username" value="${answer.author}" />
+                        <input type="hidden" name="idAnswer" value="${answer.id}" />
                         <input type="hidden" name="idQuestion" value="${question.id}" />
                         <input type="hidden" name="type" value="DOWNVOTE" />
                         <input type="submit" value="-" />

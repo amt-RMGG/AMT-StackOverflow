@@ -1,5 +1,10 @@
 # StackUnderFlow
 
+## Changes since presentation
+Since this morning, we have :
+- Corrected a bug preventing downvotes (downvotes were possible, but counted as upvotes)
+- Added voting on answers
+
 ## Workflow with OpenLiberty
 
 ### Working in dev mode
