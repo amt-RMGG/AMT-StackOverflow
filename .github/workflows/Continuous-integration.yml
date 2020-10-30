@@ -1,6 +1,6 @@
 name: Run the tests 
 
-on: [push, pull_request]
+on: push
 
 jobs:
   test:
@@ -49,7 +49,7 @@ jobs:
         run: |
           cd e2e_tests
           npx codeceptjs run --override '{"helpers": {"Puppeteer": {"show": false}}}' --steps &
-          sleep 1m 30s
+          sleep 40s
       - name: Stop servers
         run: |
           cd docker/topologies/with_db
