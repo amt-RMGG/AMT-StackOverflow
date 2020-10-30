@@ -5,13 +5,20 @@ import io.stackunderflow.flow.application.identitymgmt.authenticate.Authenticati
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.domain.person.IPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@ApplicationScoped
+@Named("IdentityManagementFacade")
 public class IdentityManagementFacade {
 
     private IPersonRepository personRepository;
 
+    @Inject
     public IdentityManagementFacade(IPersonRepository personRepository){
         this.personRepository = personRepository;
     }

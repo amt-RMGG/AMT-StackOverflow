@@ -1,20 +1,13 @@
 package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
-import io.stackunderflow.flow.application.identitymgmt.UserQuery;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.domain.answer.Answer;
-import io.stackunderflow.flow.domain.person.IPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
 import io.stackunderflow.flow.domain.person.PersonId;
-import io.stackunderflow.flow.domain.question.Question;
-import io.stackunderflow.flow.domain.question.QuestionId;
 
-import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.sql.DataSource;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -40,7 +33,7 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
             String firstname = "";
             String lastname = "";
 
-            //Si la query n'a rien retourné
+            //Si la query n'a rien retourne
             if (!rs.next()) {
                 return Optional.empty();
             }else{
@@ -108,7 +101,7 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
 
             //String username, email, password, firstname, lastname;
 
-            //Si la query n'a rien retourné
+            //Si la query n'a rien retourne
             if (!rs.next()) {
                 return Optional.empty();
             }else{

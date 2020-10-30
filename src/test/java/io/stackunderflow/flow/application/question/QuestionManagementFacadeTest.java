@@ -3,12 +3,11 @@ package io.stackunderflow.flow.application.question;
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.answer.Answer;
-import io.stackunderflow.flow.domain.question.IQuestionRepository;
+import io.stackunderflow.flow.infrastructure.persistence.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,10 +17,10 @@ import java.util.LinkedList;
 import static org.mockito.Mockito.verify;
 
 public class QuestionManagementFacadeTest {
-    static private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
-    static private QuestionFacade facade = new QuestionFacade(questionRepository);
+    private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
+    private QuestionFacade facade = new QuestionFacade(questionRepository);
 
-    public static ProposeQuestionCommand questionCommandExample1()
+    public ProposeQuestionCommand questionCommandExample1()
     {
         return ProposeQuestionCommand.builder()
                 .author("The mice")
@@ -30,7 +29,7 @@ public class QuestionManagementFacadeTest {
                 .build();
     }
 
-    public static ProposeAnswerCommand answerCommandExample1(String questionId)
+    public ProposeAnswerCommand answerCommandExample1(String questionId)
     {
         return ProposeAnswerCommand.builder()
                 .author("Deep thought")
@@ -39,11 +38,18 @@ public class QuestionManagementFacadeTest {
                 .build();
     }
 
-    public static QuestionQuery queryExample1()
+    public QuestionQuery queryExample1()
     {
         return QuestionQuery.builder()
                 .author("Doesn't Exist")
                 .id(new QuestionId("0")).build();
+    }
+
+    public IQuestionRepository repositoryExample1()
+    {
+        Mockito.when(questionRepository.find(new QuestionQuery(new QuestionId("1"), "The mice")));
+
+        return questionRepository;
     }
 
     @Test
@@ -52,7 +58,6 @@ public class QuestionManagementFacadeTest {
         facade.proposeQuestion(questionCommandExample1());
         verify(questionRepository).save(argument.capture());
         assertEquals("H2G2", argument.getValue().getTitle());
-        //TODO : Additional verifications needed ?
     }
 
     @Test
@@ -71,4 +76,5 @@ public class QuestionManagementFacadeTest {
                 .questions(new LinkedList<>())
                 .build());
     }
+
 }

@@ -1,10 +1,15 @@
 <server description="Open Liberty server for StackUnderflow">
     <featureManager>
         <feature>webProfile-8.0</feature>
+
+        <!-- Arquillian -->
+        <feature>localConnector-1.0</feature>
     </featureManager>
 
     <variable name="default.http.port" defaultValue="8080"/>
     <variable name="default.https.port" defaultValue="8443"/>
+
+    <applicationMonitor updateTrigger="mbean"/>
 
     <!--<webApplication location="/config/dropins/stackunderflow.war" contextRoot="/stackunderflow"/>  VERSION POUR DOCKER -->
     <webApplication location="stackunderflow.war" contextRoot="/stackunderflow"/>
@@ -17,14 +22,15 @@
 
     <dataSource jndiName="jdbc/StackUnderFlowDS">
         <jdbcDriver libraryRef="MySqlLib"/>
-        <properties
-<!--
+        <!--<properties
             databaseName="AMT_STACKUNDERFLOW"
             serverName="localhost"
             portnumber="3306"
             user="root"
             password="rootpswd"
--->
+        />-->
+<!--
+        <properties
             databaseName="amt_stackunderflow"
             serverName="${DB_SERVER_HOSTNAME}"
             portnumber="${DB_PORT_NUMBER}"
@@ -32,5 +38,6 @@
             password="${DB_USER_PASSWORD}"
             serverTimezone = "UTC"
         />
+        -->
     </dataSource>
 </server>

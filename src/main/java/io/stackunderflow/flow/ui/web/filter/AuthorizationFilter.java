@@ -12,7 +12,7 @@ import java.io.IOException;
 public class AuthorizationFilter implements Filter {
 
 
-    //TODO : Obligé de faire ça, sinon j'ai une erreur : java filter could not be initialized
+    //TODO : Oblige de faire ca, sinon j'ai une erreur : java filter could not be initialized
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -38,10 +38,10 @@ public class AuthorizationFilter implements Filter {
             if(request.getQueryString() != null){
                 targetURL += "?" + request.getQueryString();
             }
-            request.getSession().setAttribute("targetUrl", targetURL); //dans la vidéo pas commenté, mais Liechti trouve ça bizarre donc on enleve ^^
+            request.getSession().setAttribute("targetUrl", targetURL); //dans la video pas commente, mais Liechti trouve ca bizarre donc on enleve ^^
             request.getSession().removeAttribute("targetUrl");
 
-            //Si le user n'est pas connecté, on le redirige sur la page "home"
+            //Si le user n'est pas connecte, on le redirige sur la page "home"
             ((HttpServletResponse)resp).sendRedirect("/stackunderflow/home");
             return;
         }

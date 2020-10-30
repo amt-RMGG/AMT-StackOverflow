@@ -4,7 +4,7 @@ import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedE
 import io.stackunderflow.flow.application.question.QuestionQuery;
 import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.answer.AnswerId;
-import io.stackunderflow.flow.domain.question.IQuestionRepository;
+import io.stackunderflow.flow.infrastructure.persistence.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 
@@ -74,7 +74,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
     }
 
 
-    //TODO FACTORISER çA avec une super classe JdbcRepository
+    //TODO FACTORISER CA avec une super classe JdbcRepository
     @Override
     public void save(Question entity) throws RegistrationFailedException {
 

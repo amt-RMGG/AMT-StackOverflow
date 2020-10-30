@@ -12,9 +12,21 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.11</maven.compiler.source>
+        <maven.compiler.target>1.11</maven.compiler.target>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.4.0.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -52,6 +64,18 @@
             <version>5.4.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.openliberty.arquillian</groupId>
+            <artifactId>arquillian-liberty-managed-junit</artifactId>
+            <version>1.1.6</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -61,6 +85,21 @@
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>3.2</version>
+                <configuration>
+                    <arquillianProperties>
+                        <verifyApps>arquillian-test</verifyApps>
+                    </arquillianProperties>
+                    <skipIfArquillianXmlExists>true</skipIfArquillianXmlExists>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>configure-arquillian-xml</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>configure-arquillian</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <!-- uncomment this to generate an executable jar - but packaging a .war in a Docker image is faster
                 <executions>
                     <execution>

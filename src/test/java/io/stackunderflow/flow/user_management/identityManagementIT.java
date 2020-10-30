@@ -1,32 +1,56 @@
 package io.stackunderflow.flow.user_management;
 
-import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
-import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
+import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 
+import javax.inject.Inject;
+import java.net.URL;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+@RunWith(Arquillian.class)
+public class identityManagementIT {
 
-public class identityManagementTest {
-/*
-    static private IPersonRepository personRepository = new JdbcPersonRepository();
+    @Inject
+    IPersonRepository personRepository;
 
-    static private IdentityManagementFacade facade = new IdentityManagementFacade(personRepository);
+    @Inject
+    IdentityManagementFacade facade;
+
+    @ArquillianResource
+    private URL baseURL;
+
+    @Deployment(testable = true)
+    public static WebArchive createDeployment()
+    {
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "arquillian-managed.war")
+                .addPackages(true, "io.stackunderflow.flow");
+        System.out.println(archive.toString(true));
+        return archive;
+    }
 
     @BeforeAll
-    public static void validRegistration() throws RegistrationFailedException {
-        facade.register(registerExample1());
+    public void validRegistration() throws RegistrationFailedException {
+        //facade.register(registerExample1());
     }
 
     public static RegisterCommand registerExample1() {
@@ -78,5 +102,5 @@ public class identityManagementTest {
             exception.printStackTrace();
         }
     }
-    */
 }
+

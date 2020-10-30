@@ -1,8 +1,7 @@
-package io.stackunderflow.flow.domain.person;
+package io.stackunderflow.flow.infrastructure.persistence;
 
-import io.stackunderflow.flow.application.identitymgmt.UserQuery;
-import io.stackunderflow.flow.application.question.QuestionQuery;
-import io.stackunderflow.flow.domain.IRepository;
+import io.stackunderflow.flow.domain.person.Person;
+import io.stackunderflow.flow.domain.person.PersonId;
 
 import java.util.Optional;
 

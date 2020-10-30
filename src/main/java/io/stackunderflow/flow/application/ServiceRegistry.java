@@ -3,8 +3,8 @@ package io.stackunderflow.flow.application;
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.UserFacade;
 import io.stackunderflow.flow.application.question.QuestionFacade;
-import io.stackunderflow.flow.domain.person.IPersonRepository;
-import io.stackunderflow.flow.domain.question.IQuestionRepository;
+import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
+import io.stackunderflow.flow.infrastructure.persistence.IQuestionRepository;
 import jdk.jfr.Name;
 
 import javax.annotation.PostConstruct;
