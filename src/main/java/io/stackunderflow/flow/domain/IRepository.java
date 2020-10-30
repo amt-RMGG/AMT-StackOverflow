@@ -1,4 +1,4 @@
-package io.stackunderflow.flow.infrastructure.persistence;
+package io.stackunderflow.flow.domain;
 
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.IEntity;

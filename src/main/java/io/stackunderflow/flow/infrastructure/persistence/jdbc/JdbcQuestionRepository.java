@@ -4,7 +4,7 @@ import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedE
 import io.stackunderflow.flow.application.question.QuestionQuery;
 import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.answer.AnswerId;
-import io.stackunderflow.flow.infrastructure.persistence.IQuestionRepository;
+import io.stackunderflow.flow.domain.question.IQuestionRepository;
 import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 

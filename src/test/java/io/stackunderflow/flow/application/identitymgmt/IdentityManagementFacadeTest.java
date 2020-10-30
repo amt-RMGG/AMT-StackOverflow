@@ -1,23 +1,17 @@
 package io.stackunderflow.flow.application.identitymgmt;
 
-import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticateCommand;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.AuthenticationFailedException;
 import io.stackunderflow.flow.application.identitymgmt.login.RegisterCommand;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.domain.answer.Answer;
+import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
-import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
-import io.stackunderflow.flow.infrastructure.persistence.IQuestionRepository;
-import io.stackunderflow.flow.domain.question.Question;
-import io.stackunderflow.flow.domain.question.QuestionId;
+
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.LinkedList;
 import java.util.Optional;
 
 import static org.mockito.Matchers.anyObject;
