@@ -10,12 +10,13 @@ import io.stackunderflow.flow.domain.person.Person;
 import io.stackunderflow.flow.infrastructure.persistence.IPersonRepository;
 import io.stackunderflow.flow.infrastructure.persistence.jdbc.JdbcPersonRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,11 +28,22 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @RunWith(Arquillian.class)
 public class identityManagementIT {
 
+    private final static String WARNAME = "arquillian-managed.war";
+
+    @Deployment(testable = true)
+    public static WebArchive createDeployment() {
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, WARNAME)
+                .addPackages(true, "io.stackunderflow");
+        System.out.println(archive.toString(true));
+        return archive;
+    }
+
     @Inject
-    IPersonRepository personRepository;
+    JdbcPersonRepository personRepository;
 
     @Inject
     IdentityManagementFacade facade;
@@ -39,19 +51,11 @@ public class identityManagementIT {
     @ArquillianResource
     private URL baseURL;
 
-    @Deployment(testable = true)
-    public static WebArchive createDeployment()
-    {
-        WebArchive archive = ShrinkWrap.create(WebArchive.class, "arquillian-managed.war")
-                .addPackages(true, "io.stackunderflow.flow");
-        System.out.println(archive.toString(true));
-        return archive;
-    }
-
+    /*
     @BeforeAll
     public void validRegistration() throws RegistrationFailedException {
         //facade.register(registerExample1());
-    }
+    }*/
 
     public static RegisterCommand registerExample1() {
         return RegisterCommand.builder()

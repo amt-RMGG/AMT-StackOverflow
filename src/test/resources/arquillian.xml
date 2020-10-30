@@ -19,6 +19,10 @@
     </engine>
     -->
 
+    <engine>
+        <property name="deploymentExportPath">target/deployments</property>
+    </engine>
+
     <container qualifier="liberty_managed" default="true">
         <configuration>
 
