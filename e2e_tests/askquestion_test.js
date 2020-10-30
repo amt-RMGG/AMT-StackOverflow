@@ -11,8 +11,9 @@ Scenario('test asking a question', ({I}) => {
     I.fillField( 'Mot de passe', 'testPassword1')
     I.fillField( 'Confirmer le mot de passe', 'testPassword1')
     I.click('input[type="submit"]')
+
     I.click('Poser une question');
-    I.fillField('input[type="text"]', 'question title');
+    I.fillField('#title', 'question title');
     I.executeScript('tinyMCE.activeEditor.setContent("question text");')
     I.click('button[id="bSubmitQuestion"]');
     I.click('Voir plus')
@@ -38,5 +39,32 @@ Scenario('test answering to a question', ({I}) => {
     I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/questions')
     I.click('Voir plus')
     I.see("this is an answer")
+    
+});
+
+Feature('Vote');
+
+Scenario('test upvoting a question', ({I}) => {
+
+    I.amOnPage(':8080/stackunderflow/home')
+    I.click('Login')
+    I.fillField('Nom d\'utilisateur', 'testUserName1')
+    I.fillField( 'Mot de passe', 'testPassword1')
+    I.click('input[type="submit"]')
+
+    I.amOnPage(':8080/stackunderflow/questions');
+    I.click('Voir plus');
+    I.see('0 points')
+    I.click('.question .upvoteButton')
+    I.see('1 points')
+
+    I.click('.answer .downvoteButton')
+    I.see('-1 points')
+
+    //Cannot vote twice on the same object
+    I.click('.answer .downvoteButton')
+    I.see('-1 points')
+    I.click('.question .upvoteButton')
+    I.see('1 points')
     
 });

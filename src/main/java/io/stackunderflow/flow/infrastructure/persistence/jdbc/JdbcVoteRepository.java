@@ -2,9 +2,6 @@ package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.application.vote.VoteQuery;
-import io.stackunderflow.flow.domain.answer.Answer;
-import io.stackunderflow.flow.domain.answer.AnswerId;
-import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 import io.stackunderflow.flow.domain.vote.IVoteRepository;
 import io.stackunderflow.flow.domain.vote.Vote;
@@ -15,7 +12,6 @@ import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Optional;
 
 @ApplicationScoped

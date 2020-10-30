@@ -33,7 +33,7 @@
     <div class="row">
 
       <!-- Blog Entries Column -->
-      <div class="col-md-12">
+      <div class="col-md-12 question">
         <div class="card mb-12">
           <div class="card-body">
             <h2 class="card-title">${question.title}</h2>
@@ -51,14 +51,14 @@
                 <input type="hidden" name="username" value="${question.author}" />
                 <input type="hidden" name="idQuestion" value="${question.id}" />
                 <input type="hidden" name="type" value="UPVOTE" />
-                <input type="submit" value="+" />
+                <input class="upvoteButton" type="submit" value="+" />
               </form>
               <form name="downvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="votes col-md-1">
                 <input type="hidden" name="objectType" value="question" />
                 <input type="hidden" name="username" value="${question.author}" />
                 <input type="hidden" name="idQuestion" value="${question.id}" />
                 <input type="hidden" name="type" value="DOWNVOTE" />
-                <input type="submit" value="-" />
+                <input class="downvoteButton" type="submit" value="-" />
               </form>
             </div>
           </div>
@@ -72,7 +72,7 @@
             <h2 class="card-title">Réponse(s)</h2>
             <c:forEach items="${answers}" var="answer">
               <!-- Blog Entries Column -->
-              <div class="col-md-12">
+              <div class="col-md-12 answer">
                 <div class="card mb-12">
                   <div class="card-body">
                     <p class="card-text">${answer.text}</p>
@@ -90,7 +90,7 @@
                         <input type="hidden" name="idAnswer" value="${answer.id}" />
                         <input type="hidden" name="idQuestion" value="${question.id}" />
                         <input type="hidden" name="type" value="UPVOTE" />
-                        <input type="submit" value="+" />
+                        <input class="upvoteButton" type="submit" value="+" />
                       </form>
                       <form name="downvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="votes col-md-1">
                         <input type="hidden" name="objectType" value="answer" />
@@ -98,7 +98,7 @@
                         <input type="hidden" name="idAnswer" value="${answer.id}" />
                         <input type="hidden" name="idQuestion" value="${question.id}" />
                         <input type="hidden" name="type" value="DOWNVOTE" />
-                        <input type="submit" value="-" />
+                        <input class="downvoteButton" type="submit" value="-" />
                       </form>
                     </div>
                   </div>

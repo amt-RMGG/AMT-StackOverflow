@@ -49,7 +49,7 @@ jobs:
         run: |
           cd e2e_tests
           npx codeceptjs run --override '{"helpers": {"Puppeteer": {"show": false}}}' --steps &
-          sleep 40s
+          sleep 1m
       - name: Stop servers
         run: |
           cd docker/topologies/with_db

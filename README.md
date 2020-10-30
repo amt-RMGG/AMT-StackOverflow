@@ -4,6 +4,7 @@
 Since this morning, we have :
 - Corrected a bug preventing downvotes (downvotes were possible, but counted as upvotes)
 - Added voting on answers
+- Added end to end tests for voting
 
 ## Workflow with OpenLiberty
 

@@ -1,8 +1,7 @@
 package io.stackunderflow.flow.domain.person;
-import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 
 import io.stackunderflow.flow.application.identitymgmt.UserQuery;
-import io.stackunderflow.flow.domain.IRepository;
+import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 
 import java.util.Collection;
 import java.util.Optional;
