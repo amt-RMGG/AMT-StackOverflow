@@ -49,7 +49,7 @@
                     <p class="card-text">${answer.text}</p>
                   </div>
                   <div class="card-footer text-muted">
-                    Posted on ${answer.date} by
+                    Posté le ${answer.date} par
                     <a href="${pageContext.request.contextPath}/user?username=${answer.author}">${answer.author}</a>
                   </div>
                 </div>

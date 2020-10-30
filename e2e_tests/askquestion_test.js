@@ -3,7 +3,7 @@ Feature('askQuestion');
 
 Scenario('test asking a question', ({I}) => {
     I.amOnPage(':8080/stackunderflow')
-    I.click('Sign in')
+    I.click('S\'enregistrer')
     I.fillField('Nom d\'utilisateur', 'testUserName1')
     I.fillField( 'Nom', 'testName1')
     I.fillField( 'Prénom', 'testFirstName1')
@@ -15,7 +15,7 @@ Scenario('test asking a question', ({I}) => {
     I.fillField('input[type="text"]', 'question title');
     I.executeScript('tinyMCE.activeEditor.setContent("question text");')
     I.click('button[id="bSubmitQuestion"]');
-    I.click('Read More')
+    I.click('Voir plus')
     I.see('question text')
 });
 
@@ -31,12 +31,12 @@ Scenario('test answering to a question', ({I}) => {
     
 
     I.amOnPage(':8080/stackunderflow/questions');
-    I.click('Read More');
+    I.click('Voir plus');
     I.see('Réponse(s)');
     I.executeScript('tinyMCE.activeEditor.setContent("this is an answer");')
     I.click('button[id="bSubmitQuestion"]')
     I.seeCurrentUrlEquals('http://localhost:8080/stackunderflow/questions')
-    I.click('Read More')
+    I.click('Voir plus')
     I.see("this is an answer")
     
 });
