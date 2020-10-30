@@ -3,13 +3,11 @@ package io.stackunderflow.flow.infrastructure.persistence.jdbc;
 
 import io.stackunderflow.flow.application.identitymgmt.UserQuery;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;

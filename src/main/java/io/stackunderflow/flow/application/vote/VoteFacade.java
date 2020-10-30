@@ -4,10 +4,6 @@ import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedE
 import io.stackunderflow.flow.domain.vote.IVoteRepository;
 import io.stackunderflow.flow.domain.vote.Vote;
 
-import java.util.List;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
 public class VoteFacade {
     private IVoteRepository voteRepository;
 
