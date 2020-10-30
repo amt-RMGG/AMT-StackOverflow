@@ -15,7 +15,14 @@ You can also generate a .jar file with the application + the application server,
 ### Docker deployement
 To deploy the solution with docker, you will first need to build the webapp image using the `build-image.sh` script, found at the root of the project. Then, use the ```run-image.sh``` script to launch the webapp and the database. Alternatively, you can go to `docker/topologies/with_db` and run a ```docker-compose up```.
 
-#### Docker-compose
+
+#### Run images based on the current release from the Github Conainer Registry
+
+In the root directory, execute the bash file `run-release.sh`.  
+This will pull the latest image from the registry and run it paired with a mysql container hosting the database, all inside a topology.  
+
+
+#### Run images based on the current state of the code
 
 In the root directory, you can execute the bash file `build-image.sh`
 ```
