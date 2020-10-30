@@ -24,11 +24,10 @@
                     <div class="card-body">
                         <h2 class="card-title">${question.title}</h2>
                         <p class="card-text">${question.text}</p>
-                        <a href="${pageContext.request.contextPath}/question" class="btn btn-primary disabled">Read More &rarr;</a>
+                        <a href="${pageContext.request.contextPath}/question" class="btn btn-primary disabled">Voir plus &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
-                        Posted on January 1, 2020 by
-                        <a href="#">${question.author}</a>
+                        Posté le ${question.date} par <a href="${pageContext.request.contextPath}/user?username=${question.author}">${question.author}</a>
                     </div>
                 </div>
             </c:forEach>

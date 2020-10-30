@@ -109,4 +109,20 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
         }
         return allPerson;
     }
+
+    @Override
+    public void update(UserQuery query) {
+        String sqlQuery = "UPDATE user SET " +
+                "email = ?, " +
+                "firstname = ?, " +
+                "lastname = ? " +
+                "WHERE username = ?;";
+        try{
+            super.executeUpdateQuery(sqlQuery, query.getEmail(), query.getFirstName(), query.getLastName(), query.getUsername());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+    }
 }

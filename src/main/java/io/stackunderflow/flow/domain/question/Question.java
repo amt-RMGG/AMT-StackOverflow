@@ -2,7 +2,10 @@ package io.stackunderflow.flow.domain.question;
 
 import io.stackunderflow.flow.domain.IEntity;
 import io.stackunderflow.flow.domain.answer.Answer;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Setter;
 
 import java.util.Collection;
 import java.util.LinkedList;

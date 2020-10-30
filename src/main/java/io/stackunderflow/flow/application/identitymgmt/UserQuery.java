@@ -9,4 +9,7 @@ import lombok.Getter;
 @EqualsAndHashCode
 public class UserQuery {
     private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
 }

@@ -3,6 +3,7 @@ package io.stackunderflow.flow.application.identitymgmt;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.domain.person.IPersonRepository;
 import io.stackunderflow.flow.domain.person.Person;
+
 import java.util.Optional;
 
 public class UserFacade {
@@ -28,5 +29,9 @@ public class UserFacade {
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())
                 .build();
+    }
+
+    public void updateUser(UserQuery query) {
+        personRepository.update(query);
     }
 }
