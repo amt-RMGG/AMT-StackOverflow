@@ -43,7 +43,7 @@ public class JdbcVoteRepository extends JdbcRepository implements IVoteRepositor
     @Override
     public void save(Vote entity) throws RegistrationFailedException {
         try {
-            String query = "INSERT INTO questionVote (questionId, userId) VALUES(?, ?, ?)";
+            String query = "INSERT INTO questionVote (questionId, userId, vote) VALUES(?, ?, ?)";
             super.executeInsertQuery(query, entity.getIdQuestion().asString(), entity.getUsername(), entity.getVote());
 
         }catch(RegistrationFailedException e){

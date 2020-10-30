@@ -35,11 +35,13 @@
             <p>votes</p>
             <form name="upvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="col-md-12">
               <input type="hidden" name="username" value="${question.author}" />
+              <input type="hidden" name="idQuestion" value="${question.id}" />
               <input type="hidden" name="type" value="UPVOTE" />
               <input type="submit" value="+" />
             </form>
             <form name="downvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="col-md-12">
               <input type="hidden" name="username" value="${question.author}" />
+              <input type="hidden" name="idQuestion" value="${question.id}" />
               <input type="hidden" name="type" value="DOWNVOTE" />
               <input type="submit" value="-" />
             </form>
