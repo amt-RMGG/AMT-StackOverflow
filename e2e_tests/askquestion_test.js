@@ -57,5 +57,14 @@ Scenario('test upvoting a question', ({I}) => {
     I.see('0 points')
     I.click('.question .upvoteButton')
     I.see('1 points')
+
+    I.click('.answer .downvoteButton')
+    I.see('-1 points')
+
+    //Cannot vote twice on the same object
+    I.click('.answer .downvoteButton')
+    I.see('-1 points')
+    I.click('.question .upvoteButton')
+    I.see('1 points')
     
 });
