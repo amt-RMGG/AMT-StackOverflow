@@ -1,41 +1,45 @@
 package io.stackunderflow.flow.domain.question;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QuestionIdTest {
 
     @Test
     public void noParameterConstructorShouldProvideId(){
         QuestionId questionId = new QuestionId();
-        Assert.assertNotEquals("", questionId.asString());
+        assertNotEquals("", questionId.asString());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void invalidStringParameterConstructor(){
-        QuestionId questionId = new QuestionId("1234");
+        assertThrows(IllegalArgumentException.class, () -> {
+            new QuestionId("1234");
+        });
     }
 
     @Test
     public void stringUUIDParameterConstructor(){
         UUID uuid = UUID.randomUUID();
         QuestionId questionId = new QuestionId(uuid.toString());
-        Assert.assertEquals(uuid.toString(), questionId.asString());
+        assertEquals(uuid.toString(), questionId.asString());
     }
     @Test
     public void UUIDParameterConstructor(){
         UUID uuid = UUID.randomUUID();
         QuestionId questionId = new QuestionId(uuid);
-        Assert.assertEquals(uuid.toString(), questionId.asString());
+        assertEquals(uuid.toString(), questionId.asString());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void shouldThrowExceptionWhenNullUUID(){
-        UUID uuid = UUID.randomUUID();
-        uuid = null;
-        QuestionId questionId = new QuestionId(uuid);
+        UUID uuid = null;
+        assertThrows(NullPointerException.class, () -> {
+            new QuestionId(uuid);
+        });
     }
 
 }

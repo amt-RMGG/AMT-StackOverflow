@@ -10,8 +10,9 @@ import io.stackunderflow.flow.domain.question.QuestionId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;

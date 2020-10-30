@@ -1,10 +1,9 @@
 package io.stackunderflow.flow.user_management;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-public class identityManagementFacadeTest {
+public class identityManagementTest {
 /*
     static private IPersonRepository personRepository = new JdbcPersonRepository();
+
     static private IdentityManagementFacade facade = new IdentityManagementFacade(personRepository);
 
     @BeforeAll
@@ -60,5 +59,6 @@ public class identityManagementFacadeTest {
         {
             exception.printStackTrace();
         }
-    }*/
+    }
+    */
 }

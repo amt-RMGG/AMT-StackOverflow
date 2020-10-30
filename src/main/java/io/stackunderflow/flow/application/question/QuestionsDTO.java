@@ -1,6 +1,5 @@
 package io.stackunderflow.flow.application.question;
 
-import io.stackunderflow.flow.application.answer.AnswerDTO;
 import io.stackunderflow.flow.domain.answer.Answer;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
