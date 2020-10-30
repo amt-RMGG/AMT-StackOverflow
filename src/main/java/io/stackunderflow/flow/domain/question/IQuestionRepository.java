@@ -4,6 +4,8 @@ import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedE
 import io.stackunderflow.flow.application.question.QuestionQuery;
 import io.stackunderflow.flow.domain.IRepository;
 import io.stackunderflow.flow.domain.answer.Answer;
+import io.stackunderflow.flow.domain.question.Question;
+import io.stackunderflow.flow.domain.question.QuestionId;
 
 import java.util.Collection;
 

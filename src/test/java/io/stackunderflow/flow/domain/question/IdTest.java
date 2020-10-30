@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class QuestionIdTest {
+public class IdTest {
 
     @Test
     public void noParameterConstructorShouldProvideId(){

@@ -35,7 +35,7 @@ public class JdbcPersonRepository extends JdbcRepository implements IPersonRepos
             String firstname = "";
             String lastname = "";
 
-            //Si la query n'a rien retourné
+            //Si la query n'a rien retourne
             if (!rs.next()) {
                 return Optional.empty();
             }else{
