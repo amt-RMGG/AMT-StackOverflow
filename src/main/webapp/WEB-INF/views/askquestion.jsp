@@ -27,11 +27,11 @@
                 <div class="row">
                     <div class="col-md-12">
                             <form id="newQuestion" class="shortForm" method="POST" action="submitQuestion.do">
-                                <h3>Title</h3>
+                                <h3>Titre</h3>
                                 <input type="text" class="short-text-input" id="title" name="title">
-                                <h3>Text</h3>
+                                <h3>Texte</h3>
                                 <textarea id="tfText" name="text" form="newQuestion"> </textarea>
-                                <button id="bSubmitQuestion" class="btn btn-primary btn-small" type="submit">Submit question</button>
+                                <button id="bSubmitQuestion" class="btn btn-primary btn-small" type="submit">Poser la question</button>
                             </form>
                     </div>
                 </div>

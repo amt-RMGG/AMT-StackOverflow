@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <div class="col-md-12">
                 <div class="card-body">
-                    <h5 class="card-header">User profile</h5>
+                    <h5 class="card-header">Profil d'utilisateur</h5>
                     <div class="">
                         <c:choose>
                             <c:when test="${user != null}">
@@ -24,13 +24,13 @@
                                 <p>Email : ${user.email}</p>
                                 <c:choose>
                                     <c:when test="${user.username == currentUser.username}">
-                                        <a class="text-small-link" onclick="document.getElementById('prompt').style.display='block'" href="#">edit</a>
+                                        <a class="text-small-link" onclick="document.getElementById('prompt').style.display='block'" href="#">Editer</a>
                                     </c:when>
                                 </c:choose>
 
                             </c:when>
                             <c:otherwise>
-                                User not found
+                                Impossible de trouver l'utilisateur
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -48,16 +48,16 @@
 
                                 <input style="display:none" id="currentuname" type="text" name="currentuname" value="${user.username}" required>
 
-                                <label for="fname"><b>First name</b></label>
+                                <label for="fname"><b>Prénom</b></label>
                                 <input id="fname" type="text" placeholder="New first name" name="fname" value="${user.firstname}" required>
 
-                                <label for="lname"><b>Last name</b></label>
+                                <label for="lname"><b>Nom</b></label>
                                 <input id="lname" type="text" placeholder="New last name" name="lname" value="${user.lastname}" required>
 
                                 <label for="email"><b>Email</b></label>
                                 <input id="email" type="text" placeholder="New email" name="email" value="${user.email}" required>
 
-                                <button type="submit">Confirm</button>
+                                <button type="submit">Confirmer</button>
                             </div>
 
                         </form>
