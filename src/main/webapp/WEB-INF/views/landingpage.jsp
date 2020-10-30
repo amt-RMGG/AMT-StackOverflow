@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <div class="col-md-12">
                 <div class="card-body">
-                    <h5 class="card-header">Welcome in StackUnderFlow !</h5>
+                    <h5 class="card-header">Bienvenue chez StackUnderFlow !</h5>
                     <div class="input-group">
                         <img src="https://pbs.twimg.com/media/EXy32bWWkAUQyj-.jpg" />
                     </div>

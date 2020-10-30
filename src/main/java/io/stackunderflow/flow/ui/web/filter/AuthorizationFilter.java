@@ -12,7 +12,6 @@ import java.io.IOException;
 public class AuthorizationFilter implements Filter {
 
 
-    //TODO : Oblige de faire ca, sinon j'ai une erreur : java filter could not be initialized
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

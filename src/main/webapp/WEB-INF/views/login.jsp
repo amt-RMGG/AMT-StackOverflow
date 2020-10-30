@@ -12,7 +12,7 @@
 
 <c:if test="${ errors != null}">
     <script>
-        alert("Nom d'utilisateur et/ou mot de passe invalide!");
+        alert("${errors}");
     </script>
 </c:if>
 

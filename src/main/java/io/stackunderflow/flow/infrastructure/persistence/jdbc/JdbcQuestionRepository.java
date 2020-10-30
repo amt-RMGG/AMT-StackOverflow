@@ -10,8 +10,9 @@ import io.stackunderflow.flow.domain.question.QuestionId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
@@ -30,8 +31,6 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
             Optional<Question> q = findById(query.getId());
             if(!q.isEmpty()) {
                questions.add(q.get());
-            }else{
-                //TODO : throw error ? question id not found ?
             }
             return questions;
         }
@@ -74,7 +73,6 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
     }
 
 
-    //TODO FACTORISER CA avec une super classe JdbcRepository
     @Override
     public void save(Question entity) throws RegistrationFailedException {
 
