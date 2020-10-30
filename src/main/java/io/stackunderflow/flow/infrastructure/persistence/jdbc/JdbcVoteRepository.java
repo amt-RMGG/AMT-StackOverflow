@@ -42,6 +42,7 @@ public class JdbcVoteRepository extends JdbcRepository implements IVoteRepositor
 
     @Override
     public void save(Vote entity) throws RegistrationFailedException {
+
         try {
             String query = "INSERT INTO questionVote (questionId, userId, vote) VALUES(?, ?, ?)";
             super.executeInsertQuery(query, entity.getIdQuestion().asString(), entity.getUsername(), entity.getVote());
@@ -60,6 +61,36 @@ public class JdbcVoteRepository extends JdbcRepository implements IVoteRepositor
         }catch(RegistrationFailedException e){
             throw new RegistrationFailedException(e.getMessage());
         }
+    }
+
+    @Override
+    public boolean checkIfVoteExistQuestion(String idQuestion, String username) {
+        try {
+            ResultSet rs = super.fetchData("SELECT * FROM questionVote WHERE userId = ? AND questionId = ?", username, idQuestion);
+            if(rs.next())
+                return true;
+            else
+                return false;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean checkIfVoteExistAnswer(String idAnswer, String username) {
+        try {
+            ResultSet rs = super.fetchData("SELECT * FROM answerVote WHERE username = ? AND answerId = ?", username, idAnswer);
+            if(rs.next())
+                return true;
+            else
+                return false;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
     }
 
     @Override
@@ -96,41 +127,5 @@ public class JdbcVoteRepository extends JdbcRepository implements IVoteRepositor
     @Override
     public Collection<Vote> findAll() {
         return null;
-    }
-
-    public int getSumVotesQuestion(QuestionId questionId) {
-        int result = 0;
-
-        ResultSet rs = super.fetchData("SELECT vote FROM questionVote WHERE questionId = ?", questionId.asString());
-        int i;
-
-        try {
-            if(rs.next()) {
-                i = rs.getInt(1);
-                result += i;
-            }
-        } catch (SQLException e) {
-            System.out.println("error : " + e.getMessage());
-        }
-
-        return result;
-    }
-
-    public int getSumVotesAnswer(AnswerId answerId) {
-        int result = 0;
-
-        ResultSet rs = super.fetchData("SELECT vote FROM answerVote WHERE answerId = ?", answerId.asString());
-        int i;
-
-        try {
-            if(rs.next()) {
-                i = rs.getInt(1);
-                result += i;
-            }
-        } catch (SQLException e) {
-            System.out.println("error : " + e.getMessage());
-        }
-
-        return result;
     }
 }

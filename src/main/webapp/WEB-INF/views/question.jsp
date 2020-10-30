@@ -32,7 +32,7 @@
           <div class="card-footer text-muted">
             Posted on ${question.date} by
             <a href="${pageContext.request.contextPath}/user?username=${question.author}">${question.author}</a>
-            <p>votes</p>
+            <p>${question.votes} points</p>
             <form name="upvote" method="post" action="${pageContext.request.contextPath}/submitVote.do" class="col-md-12">
               <input type="hidden" name="username" value="${question.author}" />
               <input type="hidden" name="idQuestion" value="${question.id}" />

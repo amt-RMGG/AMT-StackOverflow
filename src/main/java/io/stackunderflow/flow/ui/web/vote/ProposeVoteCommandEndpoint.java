@@ -41,5 +41,6 @@ public class ProposeVoteCommandEndpoint extends HttpServlet {
             .idQuestion(new QuestionId(request.getParameter("idQuestion")))
             .type(type).build();
         voteFacade.proposeVote(command);
+        response.sendRedirect("question?id="+request.getParameter("idQuestion"));
     }
 }

@@ -17,27 +17,16 @@ public class VoteFacade {
 
     public void proposeVote(ProposeVoteCommand command) {
         try {
-            Vote submittedVote = Vote.builder()
-                    .username(command.getUsername())
-                    .idQuestion(command.getIdQuestion())
-                    .type(command.getType())
-                    .build();
-            voteRepository.save(submittedVote);
+            if(!voteRepository.checkIfVoteExistQuestion(command.getIdQuestion().asString(), command.getUsername())) {
+                Vote submittedVote = Vote.builder()
+                        .username(command.getUsername())
+                        .idQuestion(command.getIdQuestion())
+                        .type(command.getType())
+                        .build();
+                voteRepository.save(submittedVote);
+            }
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
-    }
-
-    public VoteDTO getVotes(VoteQuery query) {
-        Collection<Vote> allVotes = voteRepository.find(query);
-
-        List<VoteDTO.ProposedVoteDTO> allVotesDTO = allVotes.stream()
-                                                            .map(vote -> VoteDTO.ProposedVoteDTO.builder()
-                                                                 .username(vote.getUsername())
-                                                                 .questionID(vote.getIdQuestion())
-                                                                 .type(vote.getType()).build())
-                                                            .collect(Collectors.toList());
-
-        return VoteDTO.builder().votes(allVotesDTO).build();
     }
 }
