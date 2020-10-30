@@ -106,7 +106,7 @@ public class JdbcQuestionRepository extends JdbcRepository implements IQuestionR
         ResultSet rs = super.fetchData("SELECT * FROM question WHERE id = ?", id.asString());
         Question q = null;
         Collection<Answer> answers;
-        ResultSet votesRS = super.fetchData("select count(*) from questionVote where questionId=?", id.asString());
+        ResultSet votesRS = super.fetchData("select sum(vote) from questionVote where questionId=?", id.asString());
 
         try{
             votesRS.next();

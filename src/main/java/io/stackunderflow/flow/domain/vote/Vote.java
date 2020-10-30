@@ -1,8 +1,6 @@
 package io.stackunderflow.flow.domain.vote;
 
 import io.stackunderflow.flow.domain.IEntity;
-import io.stackunderflow.flow.domain.person.PersonId;
-import io.stackunderflow.flow.domain.question.Question;
 import io.stackunderflow.flow.domain.question.QuestionId;
 import lombok.AccessLevel;
 import lombok.Builder;
