@@ -29,12 +29,12 @@ public class ProposeVoteCommandEndpoint extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("type").equals("DEFAULT"))
-            type = VoteType.DEFAULT;
+        if(request.getParameter("type").equals("UPVOTE"))
+            type = VoteType.UPVOTE;
         else if(request.getParameter("type").equals("DOWNVOTE"))
             type = VoteType.DOWNVOTE;
         else
-            type = VoteType.UPVOTE;
+            type = VoteType.DEFAULT;
 
         ProposeVoteCommand command = ProposeVoteCommand.builder()
             .username(((UserDTO)request.getSession().getAttribute("currentUser")).getUsername())

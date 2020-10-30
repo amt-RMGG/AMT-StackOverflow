@@ -1,6 +1,5 @@
 package io.stackunderflow.flow.application.vote;
 
-import io.stackunderflow.flow.domain.person.PersonId;
 import io.stackunderflow.flow.domain.question.QuestionId;
 import io.stackunderflow.flow.domain.vote.VoteType;
 import lombok.Builder;
