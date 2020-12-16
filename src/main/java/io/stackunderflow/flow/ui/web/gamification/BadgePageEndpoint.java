@@ -1,11 +1,7 @@
 package io.stackunderflow.flow.ui.web.gamification;
 
-import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.gamification.Badge;
-import io.stackunderflow.flow.application.gamification.BadgeFacade;
-import io.stackunderflow.flow.application.identitymgmt.UserFacade;
-import io.stackunderflow.flow.application.identitymgmt.UserQuery;
-import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
+import io.stackunderflow.flow.application.gamification.GamificationFacade;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -15,14 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 @WebServlet(name = "BadgePageHandler", urlPatterns = "/badge")
 public class BadgePageEndpoint extends HttpServlet{
 
     @Inject
-    BadgeFacade badgeFacade;
+    GamificationFacade badgeFacade;
 
     @Override
     public void init() throws ServletException {
