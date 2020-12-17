@@ -3,18 +3,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import com.squareup.okhttp.*;
-import com.sun.tools.jconsole.JConsoleContext;
-import io.github.cdimascio.dotenv.Dotenv;
 import jdk.jfr.Name;
 import javax.enterprise.context.ApplicationScoped;
-import java.io.BufferedReader;
+import javax.enterprise.context.Dependent;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +16,11 @@ import java.util.Optional;
 @Name("BadgeFacade")
 public class GamificationFacade {
 
-    // TODO : Mettre tout ça dans un fichier de config (.env ?)
-    final private int PORT = 8090;
-    final private String ADRESS = "localhost";
-    final private String apiURL = "http://" + ADRESS + ":" + PORT;
-    final private String apiKey = "fcf02ac4-372e-4923-a0d3-7f375dec06d0";
+    // TODO : trouver un moyen "propre" de déclarer ces infos dans un fichier xml, json ou qqch comme ça ?
+    final private int PORT = ServerInformation.PORT;
+    final private String ADRESS = ServerInformation.ADRESS;
+    final private String apiURL = ServerInformation.apiURL;
+    final private String apiKey = ServerInformation.apiKey;
 
     final private OkHttpClient client = new OkHttpClient();
     final private MediaType JSON = MediaType.parse("application/json; charset=utf-8");
