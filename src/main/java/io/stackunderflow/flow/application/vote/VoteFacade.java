@@ -1,5 +1,6 @@
 package io.stackunderflow.flow.application.vote;
 
+import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.gamification.GamificationFacade;
 import io.stackunderflow.flow.application.gamification.ServerInformation;
 import io.stackunderflow.flow.application.identitymgmt.UserFacade;
@@ -8,18 +9,20 @@ import io.stackunderflow.flow.domain.util.Hasher;
 import io.stackunderflow.flow.domain.vote.IVoteRepository;
 import io.stackunderflow.flow.domain.vote.Vote;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class VoteFacade {
 
     private IVoteRepository voteRepository;
-    @Inject
     private GamificationFacade gamificationFacade;
 
     public VoteFacade(){}
 
-    public VoteFacade(IVoteRepository voteRepository) {
+    public VoteFacade(IVoteRepository voteRepository, GamificationFacade gamificationFacade) {
         this.voteRepository = voteRepository;
+        this.gamificationFacade = gamificationFacade;
     }
 
     public void proposeVote(ProposeVoteCommand command, boolean answer) {
@@ -34,8 +37,7 @@ public class VoteFacade {
                     voteRepository.saveAnswerVote(submittedVote);
 
                     //Send a event to the gamification server
-                    // TODO on devrait avoir un userId :/
-                    // gamificationFacade.sendEvent(ServerInformation.upvoteEventType, ))
+                    gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
                 }
             }
             else {
@@ -46,6 +48,9 @@ public class VoteFacade {
                             .type(command.getType())
                             .build();
                     voteRepository.save(submittedVote);
+
+                    //Send a event to the gamification server
+                    gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
                 }
             }
         } catch (RegistrationFailedException e) {

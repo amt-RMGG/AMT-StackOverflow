@@ -9,11 +9,10 @@ import javax.enterprise.context.Dependent;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-@ApplicationScoped
-@Name("BadgeFacade")
 public class GamificationFacade {
 
     // TODO : trouver un moyen "propre" de déclarer ces infos dans un fichier xml, json ou qqch comme ça ?
@@ -53,15 +52,22 @@ public class GamificationFacade {
 
     /**
      * Save badge - user association into our db
-     * @param userId id of the user
+     * @param username id of the user
      */
- /*   public List<Badge> getUserBadges(int userId){
-            // TODO
-    }*/
+    public List<Badge> getUserBadges(String username){
+        List<Badge> badges = new LinkedList<>();
+        return badges;
+    }
 
-    public Optional<Badge> sendEvent(int userId, int eventTypeId){
+    /**
+     *
+     * @param username
+     * @param eventTypeId
+     * @return
+     */
+    public Optional<Badge> sendEvent(String username, int eventTypeId){
         RequestBody body = RequestBody.create(JSON,
-                "{\"userid\": "+ userId +",\"eventTypeId\":"+eventTypeId+"}");
+                "{\"username\": "+ username +",\"eventTypeId\":"+eventTypeId+"}");
 
         Request request = new Request.Builder()
                 .url(apiURL + "/events/")
