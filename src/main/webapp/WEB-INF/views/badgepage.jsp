@@ -20,7 +20,7 @@
                                 <td>Nom</td>
                                 <td>Experience</td>
                             </tr>
-                        <c:forEach items="${badges}" var="badge">
+                        <c:forEach items="${availaibleBadges}" var="badge">
                             <tr>
                                 <td>${badge.id}</td>
                                 <td>${badge.name}</td>
@@ -28,7 +28,24 @@
                             </tr>
                         </c:forEach>
                         </table>
+
+                    <h5 class="card-header">Badges optenus</h5>
+                    <table style="width:100%">
+                        <tr style="font-size: large">
+                            <td>Id</td>
+                            <td>Nom</td>
+                            <td>Experience</td>
+                        </tr>
+                        <c:forEach items="${userBadges}" var="u_badge">
+                            <tr>
+                                <td>${u_badge.id}</td>
+                                <td>${u_badge.name}</td>
+                                <td>${u_badge.experienceValue}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
+
             </div>
         </div>
 

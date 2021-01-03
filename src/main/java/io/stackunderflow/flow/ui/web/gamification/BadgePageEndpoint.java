@@ -3,6 +3,7 @@ package io.stackunderflow.flow.ui.web.gamification;
 import io.stackunderflow.flow.application.ServiceRegistry;
 import io.stackunderflow.flow.application.gamification.Badge;
 import io.stackunderflow.flow.application.gamification.GamificationFacade;
+import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -34,8 +35,18 @@ public class BadgePageEndpoint extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Badge> badges = badgeFacade.getAvailaibleBadges();
-        req.setAttribute("badges", badges);
+
+        //If no username is passed in the url parameter, we return on the home page
+        HttpServletRequest  request     = (HttpServletRequest) req;
+        UserDTO currentUser = (UserDTO) request.getSession().getAttribute("currentUser");
+        String username = currentUser.getUsername();
+
+        List<Badge> availaibleBadges = badgeFacade.getAvailaibleBadges();
+        req.setAttribute("availaibleBadges", availaibleBadges);
+
+        List<Badge> userBadges = badgeFacade.getUserBadges(username);
+        req.setAttribute("userBadges", userBadges);
+
         req.getRequestDispatcher("/WEB-INF/views/badgepage.jsp").forward(req, resp);
     }
 }

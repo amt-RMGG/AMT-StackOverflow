@@ -29,9 +29,21 @@ public class GamificationFacade {
      * Get all the registered badges
      * @return List of Badge
      */
-    public List<Badge> getAvailaibleBadges() throws IOException {
+    public List<Badge> getAvailaibleBadges(){
+        return getListOfBadges("");
+    }
+
+    /**
+     * Save badge - user association into our db
+     * @param username id of the user
+     */
+    public List<Badge> getUserBadges(String username){
+        return getListOfBadges("user/" + username);
+    }
+
+    public List<Badge> getListOfBadges(String additionalRequest){
         Request request = new Request.Builder()
-                .url(apiURL + "/badges/")
+                .url(apiURL + "/badges/" + additionalRequest)
                 .header("x-api-key", apiKey)
                 .build();
 
@@ -40,22 +52,16 @@ public class GamificationFacade {
         try{
             //Send the request
             Response response = call.execute();
+            if(response.code() == 404){
+                return badges;
+            }
             //Parse the response
             Type badgeListType = new TypeToken<ArrayList<Badge>>(){}.getType();
             badges = gson.fromJson(response.body().string(), badgeListType);
 
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
-        return badges;
-    }
-
-    /**
-     * Save badge - user association into our db
-     * @param username id of the user
-     */
-    public List<Badge> getUserBadges(String username){
-        List<Badge> badges = new LinkedList<>();
         return badges;
     }
 
@@ -67,7 +73,7 @@ public class GamificationFacade {
      */
     public Optional<Badge> sendEvent(String username, int eventTypeId){
         RequestBody body = RequestBody.create(JSON,
-                "{\"username\": "+ username +",\"eventTypeId\":"+eventTypeId+"}");
+                "{\"username\": \""+ username +"\",\"eventTypeId\":"+eventTypeId+"}");
 
         Request request = new Request.Builder()
                 .url(apiURL + "/events/")
@@ -80,7 +86,7 @@ public class GamificationFacade {
         try{
             //Send the request
             Response response = call.execute();
-            if(response.code() != 200){
+                if(response.code() != 200){
                 throw new IllegalArgumentException();
             }
             // For some reason, putting the response in a string before check it
