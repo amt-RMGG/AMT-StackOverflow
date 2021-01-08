@@ -1,7 +1,7 @@
 package io.stackunderflow.flow.ui.web.vote;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
-import io.stackunderflow.flow.application.gamification.Badge;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.vote.ProposeVoteCommand;
 import io.stackunderflow.flow.application.vote.VoteFacade;

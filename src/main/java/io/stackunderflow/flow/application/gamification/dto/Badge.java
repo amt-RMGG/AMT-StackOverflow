@@ -1,4 +1,4 @@
-package io.stackunderflow.flow.application.gamification;
+package io.stackunderflow.flow.application.gamification.dto;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
