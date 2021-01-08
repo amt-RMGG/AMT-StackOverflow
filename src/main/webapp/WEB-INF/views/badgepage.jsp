@@ -13,22 +13,6 @@
         <div class="col-md-6">
             <div class="col-md-12">
                 <div class="card-body">
-                    <h5 class="card-header">Badges disponibles</h5>
-                        <table style="width:100%">
-                            <tr style="font-size: large">
-                                <td>Id</td>
-                                <td>Nom</td>
-                                <td>Experience</td>
-                            </tr>
-                        <c:forEach items="${availaibleBadges}" var="badge">
-                            <tr>
-                                <td>${badge.id}</td>
-                                <td>${badge.name}</td>
-                                <td>${badge.experienceValue}</td>
-                            </tr>
-                        </c:forEach>
-                        </table>
-
                     <h5 class="card-header">Badges optenus</h5>
                     <table style="width:100%">
                         <tr style="font-size: large">
@@ -44,8 +28,44 @@
                             </tr>
                         </c:forEach>
                     </table>
+                    <h5 class="card-header">Badges disponibles</h5>
+                        <table style="width:100%">
+                            <tr style="font-size: large">
+                                <td>Id</td>
+                                <td>Nom</td>
+                                <td>Experience</td>
+                            </tr>
+                        <c:forEach items="${availaibleBadges}" var="badge">
+                            <tr>
+                                <td>${badge.id}</td>
+                                <td>${badge.name}</td>
+                                <td>${badge.experienceValue}</td>
+                            </tr>
+                        </c:forEach>
+                        </table>
                 </div>
 
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <h5 class="card-header">Top 10 utilisateurs</h5>
+                    <table style="width:100%">
+                        <tr style="font-size: large">
+                            <td>No.</td>
+                            <td>Username</td>
+                            <td>Experience value</td>
+                        </tr>
+                    <c:forEach begin="0" items="${topUsers}" var="user" varStatus="loop">
+                        <tr>
+                            <td>${loop.index + 1}</td>
+                            <td>${user.username}</td>
+                            <td>${user.experienceValue}</td>
+                        </tr>
+                    </c:forEach>
+                    </table>
+                </div>
             </div>
         </div>
 
