@@ -1,6 +1,7 @@
 package io.stackunderflow.flow.application.vote;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
+import io.stackunderflow.flow.application.gamification.Badge;
 import io.stackunderflow.flow.application.gamification.GamificationFacade;
 import io.stackunderflow.flow.application.gamification.ServerInformation;
 import io.stackunderflow.flow.application.identitymgmt.UserFacade;
@@ -12,6 +13,7 @@ import io.stackunderflow.flow.domain.vote.Vote;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Optional;
 
 public class VoteFacade {
 
@@ -25,7 +27,7 @@ public class VoteFacade {
         this.gamificationFacade = gamificationFacade;
     }
 
-    public void proposeVote(ProposeVoteCommand command, boolean answer) {
+    public Optional<Badge> proposeVote(ProposeVoteCommand command, boolean answer) {
         try {
             if(answer) {
                 if(!voteRepository.checkIfVoteExistAnswer(command.getIdQuestion().asString(), command.getUsername())) {
@@ -37,7 +39,7 @@ public class VoteFacade {
                     voteRepository.saveAnswerVote(submittedVote);
 
                     //Send a event to the gamification server
-                    gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
+                    return gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
                 }
             }
             else {
@@ -50,11 +52,12 @@ public class VoteFacade {
                     voteRepository.save(submittedVote);
 
                     //Send a event to the gamification server
-                    gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
+                    return gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
                 }
             }
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
+        return Optional.empty();
     }
 }
