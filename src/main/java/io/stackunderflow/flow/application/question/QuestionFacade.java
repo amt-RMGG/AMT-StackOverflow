@@ -1,6 +1,8 @@
 package io.stackunderflow.flow.application.question;
 
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
+import io.stackunderflow.flow.application.gamification.GamificationFacade;
+import io.stackunderflow.flow.application.gamification.ServerInformation;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 public class QuestionFacade {
 
     private IQuestionRepository questionRepository;
+    private GamificationFacade gamificationFacade;
 
     public QuestionFacade(IQuestionRepository questionRepository){
         this.questionRepository = questionRepository;
@@ -27,6 +30,9 @@ public class QuestionFacade {
                     .build();
 
             questionRepository.save(submittedQuestion);
+
+            //Send a event to the gamification server
+            gamificationFacade.sendEvent(command.getAuthor(), ServerInformation.firstQuestionEventType);
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
@@ -41,6 +47,9 @@ public class QuestionFacade {
                     .build();
 
             questionRepository.saveAnswer(submittedAnswer);
+
+            //Send a event to the gamification server
+            // gamificationFacade.sendEvent(command.getAuthor(), ServerInformation.firstAnswerEventType);
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
