@@ -10,9 +10,9 @@ services:
       MYSQL_USER: stackunderflow_user
       MYSQL_PASSWORD: stackunderflow_secret
     ports:
-      - "3306:3306"
-    expose:
-      - '3306'
+      - "3307:3307"
+#    expose:
+#      - '3306'
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
 
@@ -21,7 +21,8 @@ services:
     container_name: webapp_stackunderflow
     environment:
      - ADMIN_PASSWORD=admin
-    ports:
-     - "8080:8080"
-     - "8443:8443"
+#    ports:
+#     - "8080:8080"
+#     - "8443:8443"
+    network_mode: "host"
 
