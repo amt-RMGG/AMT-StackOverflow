@@ -1,7 +1,7 @@
 package io.stackunderflow.flow.ui.web.question;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
-import io.stackunderflow.flow.application.gamification.Badge;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.question.ProposeQuestionCommand;
 import io.stackunderflow.flow.application.question.QuestionFacade;
@@ -37,6 +37,7 @@ public class ProposeQuestionCommandEndpoint extends HttpServlet {
                 .build();
 
         Optional<Badge> badge = questionFacade.proposeQuestion(command);
+        //Optional<Badge> badge = questionFacade.proposeQuestion(command);
         String awardedBadge = "";
         if(badge.isPresent()){
             awardedBadge = "?awardedBadge=" + badge.get().getName();

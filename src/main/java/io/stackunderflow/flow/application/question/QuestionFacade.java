@@ -1,7 +1,7 @@
 package io.stackunderflow.flow.application.question;
 
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
-import io.stackunderflow.flow.application.gamification.Badge;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.gamification.GamificationFacade;
 import io.stackunderflow.flow.application.gamification.ServerInformation;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
