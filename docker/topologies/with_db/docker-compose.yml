@@ -21,6 +21,15 @@ services:
      - ADMIN_PASSWORD=admin
     ports:
       - "8080:8080"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    networks:
+      - dev_default
+      - default
+
+    #extra_hosts:
+      #- "host.docker.internal:host-gateway"
+
+networks:
+  dev_default:
+    external: true
+
 
