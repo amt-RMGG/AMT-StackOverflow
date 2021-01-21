@@ -1,8 +1,9 @@
 package io.stackunderflow.flow.ui.web.gamification;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
-import io.stackunderflow.flow.application.gamification.Badge;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.gamification.GamificationFacade;
+import io.stackunderflow.flow.application.gamification.dto.User;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Provider;
 import java.util.List;
 
 @WebServlet(name = "BadgePageHandler", urlPatterns = "/badges")
@@ -46,6 +46,9 @@ public class BadgePageEndpoint extends HttpServlet{
 
         List<Badge> userBadges = badgeFacade.getUserBadges(username);
         req.setAttribute("userBadges", userBadges);
+
+        List<User> topUsers = badgeFacade.getTopUsersChart(10);
+        req.setAttribute("topUsers", topUsers);
 
         req.getRequestDispatcher("/WEB-INF/views/badgepage.jsp").forward(req, resp);
     }

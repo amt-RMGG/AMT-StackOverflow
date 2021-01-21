@@ -1,18 +1,12 @@
 package io.stackunderflow.flow.application.vote;
 
-import io.stackunderflow.flow.application.ServiceRegistry;
-import io.stackunderflow.flow.application.gamification.Badge;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.gamification.GamificationFacade;
 import io.stackunderflow.flow.application.gamification.ServerInformation;
-import io.stackunderflow.flow.application.identitymgmt.UserFacade;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
-import io.stackunderflow.flow.domain.util.Hasher;
 import io.stackunderflow.flow.domain.vote.IVoteRepository;
 import io.stackunderflow.flow.domain.vote.Vote;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.Optional;
 
 public class VoteFacade {

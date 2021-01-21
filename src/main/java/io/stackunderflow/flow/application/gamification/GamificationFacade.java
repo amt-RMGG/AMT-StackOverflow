@@ -3,9 +3,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import com.squareup.okhttp.*;
-import jdk.jfr.Name;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
+import io.stackunderflow.flow.application.gamification.dto.User;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -41,6 +41,11 @@ public class GamificationFacade {
         return getListOfBadges("user/" + username);
     }
 
+    /**
+     * Generic call to /badges
+     * @param additionalRequest : additional url request, eg. "/user/toto"
+     * @return List of badges
+     */
     public List<Badge> getListOfBadges(String additionalRequest){
         Request request = new Request.Builder()
                 .url(apiURL + "/badges/" + additionalRequest)
@@ -69,7 +74,7 @@ public class GamificationFacade {
      *
      * @param username
      * @param eventTypeId
-     * @return
+     * @return Optional<Badge>
      */
     public Optional<Badge> sendEvent(String username, int eventTypeId){
         RequestBody body = RequestBody.create(JSON,
@@ -102,4 +107,39 @@ public class GamificationFacade {
         }
         return Optional.empty();
     }
+
+
+    /**
+     * Get the top users by experience they got with their badges
+     * @param limit lenght of the top (5, 10, 100 ...)
+     * @return Arraylist of users
+     */
+    public List<User> getTopUsersChart(int limit){
+        Request request = new Request.Builder()
+                .url(apiURL + "/top/" + limit)
+                .header("x-api-key", apiKey)
+                .build();
+
+        Call call = client.newCall(request);
+        List<User> topUsers = new ArrayList<>();
+        try{
+            //Send the request
+            Response response = call.execute();
+            if(response.code() != 200){
+                throw new IllegalArgumentException();
+            }
+            // For some reason, putting the response in a string before check it
+            // change the behavior of directly access it
+            String respBody = response.body().string();
+
+            Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
+            topUsers = gson.fromJson(respBody, userListType);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return topUsers;
+    }
+
 }
