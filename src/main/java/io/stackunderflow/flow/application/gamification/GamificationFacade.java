@@ -17,7 +17,7 @@ public class GamificationFacade {
 
     // TODO : trouver un moyen "propre" de déclarer ces infos dans un fichier xml, json ou qqch comme ça ?
     final private int PORT = ServerInformation.PORT;
-    final private String ADRESS = ServerInformation.ADRESS;
+    final private String ADDRESS = ServerInformation.ADDRESS;
     final private String apiURL = ServerInformation.apiURL;
     final private String apiKey = ServerInformation.apiKey;
 
@@ -77,6 +77,7 @@ public class GamificationFacade {
      * @return Optional<Badge>
      */
     public Optional<Badge> sendEvent(String username, int eventTypeId){
+        //System.out.println("key = " + apiKey + "\n url = " + apiURL + "\n " + ServerInformation.upvoteEventType + "   " + ServerInformation.proposeQuestionEventType);
         RequestBody body = RequestBody.create(JSON,
                 "{\"username\": \""+ username +"\",\"eventTypeId\":"+eventTypeId+"}");
 
@@ -92,7 +93,10 @@ public class GamificationFacade {
             //Send the request
             Response response = call.execute();
                 if(response.code() != 200){
+                    //System.out.println(response.body());
+                    //System.out.println(response.code());
                 throw new IllegalArgumentException();
+
             }
             // For some reason, putting the response in a string before check it
             // change the behavior of directly access it
