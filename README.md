@@ -149,3 +149,11 @@ services:
      - "8080:8080"
      - "8443:8443"
 ```
+
+# Gamification server API Integration
+
+## Steps
+- Start the gamification server
+- With PostMan, use the collection Badge.postman_collection.json. <br>
+You can use Newman to execute all the collection straight in command line. <br>
+- Once you generate your API key, badges, eventTypes, and rules, put the value of the API key and eventTypes in the docker-compose file.
