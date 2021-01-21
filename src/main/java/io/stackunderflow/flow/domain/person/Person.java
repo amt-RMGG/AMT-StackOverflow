@@ -1,5 +1,6 @@
 package io.stackunderflow.flow.domain.person;
 
+import io.stackunderflow.flow.domain.util.Hasher;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -65,17 +66,6 @@ public class Person {
     }
 
     private static String hashPassword(String clearPassword){
-
-        byte[] salt = "".getBytes();
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-512");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(salt);
-        byte[] hashedPassword = md.digest(clearPassword.getBytes());
-
-        return new String(hashedPassword, StandardCharsets.UTF_8);
+        return Hasher.hash(clearPassword);
     }
 }

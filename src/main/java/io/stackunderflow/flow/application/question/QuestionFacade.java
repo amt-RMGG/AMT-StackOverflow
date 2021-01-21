@@ -1,6 +1,9 @@
 package io.stackunderflow.flow.application.question;
 
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
+import io.stackunderflow.flow.application.gamification.GamificationFacade;
+import io.stackunderflow.flow.application.gamification.ServerInformation;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
@@ -8,17 +11,20 @@ import io.stackunderflow.flow.domain.question.Question;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class QuestionFacade {
 
     private IQuestionRepository questionRepository;
+    private GamificationFacade gamificationFacade;
 
-    public QuestionFacade(IQuestionRepository questionRepository){
+    public QuestionFacade(IQuestionRepository questionRepository, GamificationFacade gamificationFacade){
         this.questionRepository = questionRepository;
+        this.gamificationFacade = gamificationFacade;
     }
 
-    public void proposeQuestion(ProposeQuestionCommand command){
+    public Optional<Badge> proposeQuestion(ProposeQuestionCommand command){
         try {
             Question submittedQuestion = Question.builder()
                     .author(command.getAuthor())
@@ -27,9 +33,13 @@ public class QuestionFacade {
                     .build();
 
             questionRepository.save(submittedQuestion);
+
+            //Send a event to the gamification server
+            return gamificationFacade.sendEvent(command.getAuthor(), ServerInformation.proposeQuestionEventType);
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
+        return Optional.empty();
     }
 
     public void proposeAnswer(ProposeAnswerCommand command) {
@@ -41,6 +51,9 @@ public class QuestionFacade {
                     .build();
 
             questionRepository.saveAnswer(submittedAnswer);
+
+            //Send a event to the gamification server
+            // gamificationFacade.sendEvent(command.getAuthor(), ServerInformation.firstAnswerEventType);
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }

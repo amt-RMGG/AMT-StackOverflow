@@ -1,6 +1,7 @@
 package io.stackunderflow.flow.ui.web.vote;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.vote.ProposeVoteCommand;
 import io.stackunderflow.flow.application.vote.VoteFacade;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "SubmitVoteCommandHandler", urlPatterns = "/submitVote.do")
 public class ProposeVoteCommandEndpoint extends HttpServlet {
@@ -36,6 +38,8 @@ public class ProposeVoteCommandEndpoint extends HttpServlet {
         else
             type = VoteType.DEFAULT;
 
+
+        Optional<Badge> badge;
         ProposeVoteCommand command;
         if(request.getParameter("objectType").equals("question")) {
             command = ProposeVoteCommand.builder()
@@ -43,7 +47,7 @@ public class ProposeVoteCommandEndpoint extends HttpServlet {
                     .idQuestion(new QuestionId(request.getParameter("idQuestion")))
                     .type(type).build();
 
-            voteFacade.proposeVote(command, false);
+            badge = voteFacade.proposeVote(command, false);
         }
         else {
             command = ProposeVoteCommand.builder()
@@ -51,9 +55,12 @@ public class ProposeVoteCommandEndpoint extends HttpServlet {
                     .idQuestion(new QuestionId(request.getParameter("idAnswer")))
                     .type(type).build();
 
-            voteFacade.proposeVote(command, true);
+            badge = voteFacade.proposeVote(command, true);
         }
-
-        response.sendRedirect("question?id="+request.getParameter("idQuestion"));
+        String awardedBadge = "";
+        if(badge.isPresent()){
+            awardedBadge = "&awardedBadge=" + badge.get().getName();
+        }
+        response.sendRedirect("question?id="+request.getParameter("idQuestion") + awardedBadge);
     }
 }

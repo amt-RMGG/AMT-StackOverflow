@@ -1,17 +1,27 @@
 package io.stackunderflow.flow.application.vote;
 
+import io.stackunderflow.flow.application.gamification.dto.Badge;
+import io.stackunderflow.flow.application.gamification.GamificationFacade;
+import io.stackunderflow.flow.application.gamification.ServerInformation;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.vote.IVoteRepository;
 import io.stackunderflow.flow.domain.vote.Vote;
 
-public class VoteFacade {
-    private IVoteRepository voteRepository;
+import java.util.Optional;
 
-    public VoteFacade(IVoteRepository voteRepository) {
+public class VoteFacade {
+
+    private IVoteRepository voteRepository;
+    private GamificationFacade gamificationFacade;
+
+    public VoteFacade(){}
+
+    public VoteFacade(IVoteRepository voteRepository, GamificationFacade gamificationFacade) {
         this.voteRepository = voteRepository;
+        this.gamificationFacade = gamificationFacade;
     }
 
-    public void proposeVote(ProposeVoteCommand command, boolean answer) {
+    public Optional<Badge> proposeVote(ProposeVoteCommand command, boolean answer) {
         try {
             if(answer) {
                 if(!voteRepository.checkIfVoteExistAnswer(command.getIdQuestion().asString(), command.getUsername())) {
@@ -21,6 +31,9 @@ public class VoteFacade {
                             .type(command.getType())
                             .build();
                     voteRepository.saveAnswerVote(submittedVote);
+
+                    //Send a event to the gamification server
+                    return gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
                 }
             }
             else {
@@ -31,10 +44,14 @@ public class VoteFacade {
                             .type(command.getType())
                             .build();
                     voteRepository.save(submittedVote);
+
+                    //Send a event to the gamification server
+                    return gamificationFacade.sendEvent(command.getUsername(), ServerInformation.upvoteEventType);
                 }
             }
         } catch (RegistrationFailedException e) {
             e.printStackTrace();
         }
+        return Optional.empty();
     }
 }
