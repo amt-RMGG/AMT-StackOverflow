@@ -153,7 +153,13 @@ services:
 # Gamification server API Integration
 
 ## Steps
-- Start the gamification server
-- With PostMan, use the collection Badge.postman_collection.json. <br>
-You can use Newman to execute all the collection straight in command line. <br>
-- Once you generate your API key, badges, eventTypes, and rules, put the value of the API key and eventTypes in the docker-compose file.
+Start the gamification server with the instructions given on [this](https://github.com/amt-RMGG/Gamification-Engine) repo.  
+Then, With PostMan, use the collection Badge.postman_collection.json. You can use Newman to execute all the collection straight in command line. Create events types for upvotes and new questions asked, and keep the IDs of the returned objects as you will need them for the next step.  
+Once you generate your API key, badges, eventTypes, and rules with the premade postman requests, put the value of the API key and eventTypes IDs in the docker-compose file that you can find at `docker/topologies/with_db/docker-compose.yml`.  
+You will need to fill the values of the following environnment variables :  
+- For `GAMIFICATION_TOKEN`, paste the api key you got from the application registration in postman.  
+- For `UPVOTE_EVENTTYPE`, give the id of the upvote event type you created in the previous step.
+- For `NEW_QUESTION_EVENTTYPE`, give the id of the new question asked event type you created in the previous step.  
+
+Once all of this is done. Build the image if you haven't already with `./build-image.sh`. Then, you can start the StackUnderflow server with `./run-image`.  
+

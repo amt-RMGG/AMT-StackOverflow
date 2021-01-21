@@ -10,9 +10,7 @@ services:
       MYSQL_USER: stackunderflow_user
       MYSQL_PASSWORD: stackunderflow_secret
     ports:
-      - "3306:3306"
-    expose:
-      - '3306'
+      - "3307:3306"
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
 
@@ -21,7 +19,19 @@ services:
     container_name: webapp_stackunderflow
     environment:
      - ADMIN_PASSWORD=admin
+     - GAMIFICATION_ADDRESS=gamificationServer
+     - GAMIFICATION_PORT=8090
+     - GAMIFICATION_TOKEN=a093a78e-140b-44cb-bb86-31f0136844e9
+     - UPVOTE_EVENTTYPE=1
+     - NEW_QUESTION_EVENTTYPE=2
     ports:
-     - "8080:8080"
-     - "8443:8443"
+      - "8080:8080"
+    networks:
+      - dev_default
+      - default
+
+networks:
+  dev_default:
+    external: true
+
 
