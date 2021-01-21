@@ -19,5 +19,8 @@ services:
     container_name: webapp_stackunderflow
     environment:
      - ADMIN_PASSWORD=admin
-    network_mode: "host"
+    ports:
+      - "8080:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
