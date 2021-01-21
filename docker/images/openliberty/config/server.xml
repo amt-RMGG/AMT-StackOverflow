@@ -26,6 +26,6 @@
             password="stackunderflow_secret"
             serverTimezone = "UTC"
         />
-    </dataSource> 
+    </dataSource>
 
 </server>
