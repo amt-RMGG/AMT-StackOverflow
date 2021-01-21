@@ -1,5 +1,6 @@
 package io.stackunderflow.flow.application;
 
+import io.stackunderflow.flow.application.gamification.GamificationFacade;
 import io.stackunderflow.flow.application.identitymgmt.IdentityManagementFacade;
 import io.stackunderflow.flow.application.identitymgmt.UserFacade;
 import io.stackunderflow.flow.application.question.QuestionFacade;
@@ -35,12 +36,15 @@ public class ServiceRegistry {
     private IVoteRepository voteRepository;
     private VoteFacade voteFacade;
 
+    private GamificationFacade gamificationFacade;
+
     @PostConstruct
     public void postConstruct(){
-        questionFacade = new QuestionFacade(questionRepository);
+        gamificationFacade = new GamificationFacade();
+        questionFacade = new QuestionFacade(questionRepository, gamificationFacade);
         identityManagementFacade = new IdentityManagementFacade(personRepository);
         userFacade = new UserFacade(personRepository);
-        voteFacade = new VoteFacade(voteRepository);
+        voteFacade = new VoteFacade(voteRepository, gamificationFacade);
     }
 
     public QuestionFacade getQuestionFacade() { return questionFacade; }
@@ -56,4 +60,6 @@ public class ServiceRegistry {
     public UserFacade getUserFacade() {
         return userFacade;
     }
+
+    public GamificationFacade getGamificationFacade() { return gamificationFacade; }
 }

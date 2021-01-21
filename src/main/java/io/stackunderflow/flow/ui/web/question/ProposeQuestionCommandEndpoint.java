@@ -1,6 +1,7 @@
 package io.stackunderflow.flow.ui.web.question;
 
 import io.stackunderflow.flow.application.ServiceRegistry;
+import io.stackunderflow.flow.application.gamification.dto.Badge;
 import io.stackunderflow.flow.application.identitymgmt.authenticate.UserDTO;
 import io.stackunderflow.flow.application.question.ProposeQuestionCommand;
 import io.stackunderflow.flow.application.question.QuestionFacade;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "SubmitQuestionsCommandHandler", urlPatterns = "/submitQuestion.do")
 public class ProposeQuestionCommandEndpoint extends HttpServlet {
@@ -34,7 +36,12 @@ public class ProposeQuestionCommandEndpoint extends HttpServlet {
                 .title(req.getParameter("title"))
                 .build();
 
-        questionFacade.proposeQuestion(command);
-        resp.sendRedirect("questions");
+        Optional<Badge> badge = questionFacade.proposeQuestion(command);
+        //Optional<Badge> badge = questionFacade.proposeQuestion(command);
+        String awardedBadge = "";
+        if(badge.isPresent()){
+            awardedBadge = "?awardedBadge=" + badge.get().getName();
+        }
+        resp.sendRedirect("questions" + awardedBadge);
     }
 }

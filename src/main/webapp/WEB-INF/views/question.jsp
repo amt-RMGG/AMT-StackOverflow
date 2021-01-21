@@ -16,6 +16,8 @@
 <body>
 
 <%@include file="fragments/navbar.jsp" %>
+<%--<% pageContext.setAttribute("badgeAwarded", response.getHeader("badgeAwarded"));%>--%>
+<% pageContext.setAttribute("awardedBadge", request.getParameter("awardedBadge"));%>
 
   <style>
     .votes input[type="submit"] {
@@ -29,9 +31,19 @@
 
   <!-- Page Content -->
   <div class="container mainContent">
-
     <div class="row">
-
+      <c:if test="${awardedBadge.length() > 0}">
+        <div class="col-md-12 question">
+          <div class="card mb-12">
+            <div class="card-body">
+              <h4>
+                Vous avez gagné un badge : ${awardedBadge} ! <br>
+                Vos badges sont visibles <a href="${pageContext.request.contextPath}/badges">ici</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </c:if>
       <!-- Blog Entries Column -->
       <div class="col-md-12 question">
         <div class="card mb-12">

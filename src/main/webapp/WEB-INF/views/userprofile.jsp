@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <div class="col-md-12">
                 <div class="card-body">
-                    <h5 class="card-header">Profil d'utilisateur</h5>
+                    <h5 class="card-header">Profil d'utilisateur <a href="${pageContext.request.contextPath}/badges" class="btn btn-primary">Badges</a> </h5>
                     <div class="">
                         <c:choose>
                             <c:when test="${user != null}">
@@ -27,7 +27,6 @@
                                         <a class="text-small-link" onclick="document.getElementById('prompt').style.display='block'" href="#">Editer</a>
                                     </c:when>
                                 </c:choose>
-
                             </c:when>
                             <c:otherwise>
                                 Impossible de trouver l'utilisateur
@@ -62,13 +61,9 @@
 
                         </form>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.row -->
 

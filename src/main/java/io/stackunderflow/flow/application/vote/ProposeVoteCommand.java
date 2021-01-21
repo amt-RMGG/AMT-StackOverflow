@@ -12,7 +12,6 @@ import lombok.Getter;
 public class ProposeVoteCommand {
     @Builder.Default
     private String username = "Anonymous";
-
     @Builder.Default
     private QuestionId idQuestion = null;
 

@@ -49,10 +49,11 @@ public class AuthorizationFilter implements Filter {
             ((HttpServletResponse)resp).sendRedirect("stackunderflow/questions");
         }
         chain.doFilter(req, resp);
-
     }
 
     boolean isPublicRessouce(String requestURI) {
+        if(requestURI.startsWith("/stackunderflow/badge"))
+            return true;
         if(requestURI.startsWith("/stackunderflow/search"))
             return true;
         if(requestURI.startsWith("/stackunderflow/user"))
