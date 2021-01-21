@@ -1,6 +1,7 @@
 package io.stackunderflow.flow.application.question;
 
 import io.stackunderflow.flow.application.answer.ProposeAnswerCommand;
+import io.stackunderflow.flow.application.gamification.GamificationFacade;
 import io.stackunderflow.flow.application.identitymgmt.login.RegistrationFailedException;
 import io.stackunderflow.flow.domain.answer.Answer;
 import io.stackunderflow.flow.domain.question.IQuestionRepository;
@@ -17,7 +18,7 @@ import static org.mockito.Mockito.verify;
 
 public class QuestionManagementFacadeTest {
     private IQuestionRepository questionRepository = Mockito.mock(IQuestionRepository.class);
-    private QuestionFacade facade = new QuestionFacade(questionRepository);
+    private QuestionFacade facade = new QuestionFacade(questionRepository, Mockito.mock(GamificationFacade.class));
 
     public ProposeQuestionCommand questionCommandExample1()
     {

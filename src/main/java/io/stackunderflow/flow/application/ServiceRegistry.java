@@ -41,7 +41,7 @@ public class ServiceRegistry {
     @PostConstruct
     public void postConstruct(){
         gamificationFacade = new GamificationFacade();
-        questionFacade = new QuestionFacade(questionRepository);
+        questionFacade = new QuestionFacade(questionRepository, gamificationFacade);
         identityManagementFacade = new IdentityManagementFacade(personRepository);
         userFacade = new UserFacade(personRepository);
         voteFacade = new VoteFacade(voteRepository, gamificationFacade);
