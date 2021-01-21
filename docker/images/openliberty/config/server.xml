@@ -20,7 +20,7 @@
         <jdbcDriver libraryRef="MySqlLib"/>
         <properties
             databaseName="amt_stackunderflow"
-            serverName="db_stackunderflow"
+            serverName="localhost"
             portnumber="3307"
             user="stackunderflow_user"
             password="stackunderflow_secret"
