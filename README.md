@@ -165,5 +165,5 @@ You will need to fill the values of the following environnment variables :
 - For `UPVOTE_EVENTTYPE`, give the id of the upvote event type you created in the previous step.
 - For `NEW_QUESTION_EVENTTYPE`, give the id of the new question asked event type you created in the previous step.  
 
-Once all of this is done. Build the image if you haven't already with `./build-image.sh`. Then, you can start the StackUnderflow server with `./run-image`.  
+Once all of this is done, you can start the StackUnderflow server with `./run-release.sh`.  
 
