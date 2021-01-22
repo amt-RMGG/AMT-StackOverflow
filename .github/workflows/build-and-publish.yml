@@ -25,6 +25,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+    - name: build war
+      run: mvn clean package
+
 
     - name: Build and publish Docker image
       run: echo ${{ secrets.PAT_RMGG_DEPLOY }} | docker login ghcr.io -u RMGG-deploy --password-stdin &&
