@@ -154,7 +154,11 @@ services:
 
 ## Steps
 Start the gamification server with the instructions given on [this](https://github.com/amt-RMGG/Gamification-Engine) repo.  
-Then, With PostMan, use the collection Badge.postman_collection.json. You can use Newman to execute all the collection straight in command line. Create events types for upvotes and new questions asked, and keep the IDs of the returned objects as you will need them for the next step.  
+Then, With PostMan, use the collection Badge.postman_collection.json. You can use Newman to execute all the collection straight in command line. <br>
+N.b : You can specify the url of the server with the command --env-var <br>
+`newman run Badge.postman_collection.json --env-var baseUrl=localhost:8090` <br>
+
+Create events types for upvotes and new questions asked, and keep the IDs of the returned objects as you will need them for the next step.  
 Once you generate your API key, badges, eventTypes, and rules with the premade postman requests, put the value of the API key and eventTypes IDs in the docker-compose file that you can find at `docker/topologies/with_db/docker-compose.yml`.  
 You will need to fill the values of the following environnment variables :  
 - For `GAMIFICATION_TOKEN`, paste the api key you got from the application registration in postman.  
