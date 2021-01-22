@@ -19,13 +19,13 @@ This command will be used in our docker deployement. It generate the 'target' fo
 You can also generate a .jar file with the application + the application server, by uncomment the "\<executions\>" lines in the pom.xml file. Once you have the .jar file, you can run it with ```java -jar <file>.jar``` 
 
 ### Docker deployement
-To deploy the solution with docker, you will first need to build the webapp image using the `build-image.sh` script, found at the root of the project. Then, use the ```run-image.sh``` script to launch the webapp and the database. Alternatively, you can go to `docker/topologies/with_db` and run a ```docker-compose up```.
+You have 2 solutions for the docker deployment: Using the latest docker image from the github container registry, or building your own image, based on the current state of the code.  
 
 
 #### Run images based on the current release from the Github Conainer Registry
-
 In the root directory, execute the bash file `run-release.sh`.  
 This will pull the latest image from the registry and run it paired with a mysql container hosting the database, all inside a topology.  
+This way, you will not need to build your own image.  
 
 
 #### Run images based on the current state of the code
